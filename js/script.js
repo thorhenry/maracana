@@ -15,6 +15,139 @@ const styles = `
         padding: 0;
     }
 
+    /* Loading Screen Styles */
+    .loader {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(135deg, #37003c 0%, #1a0033 50%, #0a001a 100%);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 9999;
+        transition: opacity 0.8s ease-out, visibility 0.8s ease-out, transform 0.8s ease-out;
+        transform: scale(1);
+    }
+
+    .loader.hidden {
+        opacity: 0;
+        visibility: hidden;
+        transform: scale(0.95);
+    }
+
+    .loader-content {
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+    }
+
+    .loader-logo {
+        animation: logoFloat 2s ease-in-out infinite;
+    }
+
+    .loader-logo-img {
+        width: 120px;
+        height: 120px;
+        filter: drop-shadow(0 0 20px rgba(0, 255, 133, 0.3));
+    }
+
+    .loader-text {
+        color: #00ff85;
+        font-size: 1.2rem;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        animation: textPulse 1.5s ease-in-out infinite;
+    }
+
+    .loader-balls {
+        height: 80px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .ball-container {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+    }
+
+    .ball-img {
+        width: 30px;
+        height: 30px;
+        filter: drop-shadow(0 0 8px rgba(0, 255, 133, 0.4));
+        display: inline-block;
+    }
+
+    @keyframes logoFloat {
+        0%, 100% {
+            transform: translateY(0px);
+        }
+        50% {
+            transform: translateY(-10px);
+        }
+    }
+
+    @keyframes textPulse {
+        0%, 100% {
+            opacity: 1;
+        }
+        50% {
+            opacity: 0.6;
+        }
+    }
+
+    #ball-1 {
+        animation-name: bounce;
+        animation-delay: 0s;
+        animation-duration: 1.2s;
+        animation-iteration-count: infinite;
+    }
+
+    #ball-2 {
+        animation-name: bounce;
+        animation-delay: 0.1s;
+        animation-duration: 1.2s;
+        animation-iteration-count: infinite;
+    }
+
+    #ball-3 {
+        animation-name: bounce;
+        animation-delay: 0.2s;
+        animation-duration: 1.2s;
+        animation-iteration-count: infinite;
+    }
+
+    @keyframes bounce {
+        0% {
+            transform: translateY(0);
+        }
+        40% {
+            transform: translateY(-25px);
+        }
+        60% {
+            transform: translateY(-25px);
+        }
+        80% {
+            transform: translateY(0);
+        }
+    }
+
+    /* Hide app content while loading */
+    #app {
+        opacity: 0;
+        transition: opacity 0.8s ease-in;
+    }
+
+    #app.loaded {
+        opacity: 1;
+    }
+
     #app {
         width: 100%;
         margin: 0;
@@ -2542,11 +2675,60 @@ const styles = `
         transition: transform 0.3s ease;
     }
 
+    .stats-page-container {
+        margin: 0 2%;
+        width: 96%;
+    }
+
     .stats-sections {
         display: grid;
         grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
         gap: 30px;
         margin: 30px 0;
+        width: 100%;
+    }
+
+    .view-more-container {
+        text-align: center;
+        margin: 20px 0;
+        padding: 15px 0;
+    }
+
+    .view-more-btn {
+        background: rgba(0, 255, 133, 0.1);
+        border: 1px solid rgba(0, 255, 133, 0.3);
+        color: #00ff85;
+        padding: 10px 20px;
+        border-radius: 6px;
+        cursor: pointer;
+        font-size: 0.9rem;
+        font-weight: 500;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        transition: all 0.3s ease;
+        margin: 0 auto;
+    }
+
+    .view-more-btn:hover {
+        background: rgba(0, 255, 133, 0.2);
+        border-color: rgba(0, 255, 133, 0.5);
+        transform: translateY(-1px);
+    }
+
+    .view-more-icon {
+        width: 16px;
+        height: 16px;
+        transition: transform 0.3s ease;
+    }
+
+    .stats-list-extra {
+        margin-top: 10px;
+        animation: fadeIn 0.3s ease-in;
+    }
+
+    .stats-list-extra.hidden {
+        display: none;
     }
 
     .stats-section {
@@ -3407,8 +3589,8 @@ const styles = `
     }
 
     .preview-section {
-        padding: 25px;
-        width: 100%;
+        padding: 25px 0;
+        width: 96%;
         margin: 0 auto;
     }
 
@@ -3419,6 +3601,8 @@ const styles = `
         margin-bottom: 20px;
         padding-bottom: 15px;
         border-bottom: 1px solid rgba(0, 255, 133, 0.2);
+        width: 96%;
+        margin: 0 auto 20px auto;
     }
 
     .section-header h3 {
@@ -3450,10 +3634,13 @@ const styles = `
         display: flex;
         flex-direction: column;
         gap: 20px;
+        width: 100%;
+        padding: 0;
     }
 
     .preview-subsection {
-        padding: 15px;
+        padding: 15px 0;
+        width: 100%;
     }
 
     .preview-subsection h4 {
@@ -3461,12 +3648,25 @@ const styles = `
         font-size: 1rem;
         font-weight: 600;
         margin-bottom: 10px;
+        width: 96%;
+        margin: 0 auto 10px auto;
+    }
+
+    /* Ensure all elements within preview sections have consistent width */
+    .preview-section * {
+        box-sizing: border-box;
     }
 
     .matches-list {
         display: flex;
         flex-direction: column;
         gap: 10px;
+        width: 100%;
+    }
+
+    .matches-list .fixture {
+        width: 96%;
+        margin: 0 auto;
     }
 
     .match-item {
@@ -3539,6 +3739,13 @@ const styles = `
 
     .knockout-preview {
         padding: 15px;
+        width: 96%;
+        margin: 0 auto;
+    }
+
+    .stage-info {
+        width: 96%;
+        margin: 0 auto;
     }
 
     .stage-info h4 {
@@ -3557,6 +3764,8 @@ const styles = `
         display: flex;
         flex-direction: column;
         gap: 10px;
+        width: 96%;
+        margin: 0 auto;
     }
 
     .knockout-match {
@@ -3902,16 +4111,16 @@ function getTeamForm(teamName) {
                     form.push('<span class="form-pending">-</span>');
                 } else if (match.status === 'completed') {
                     // Show result for completed matches
-                    const isHome = match.homeTeam === teamName;
-                    const teamScore = isHome ? match.homeScore : match.awayScore;
-                    const opponentScore = isHome ? match.awayScore : match.homeScore;
-                    
-                    if (teamScore > opponentScore) {
-                        form.push('<span class="form-win"><svg class="form-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M9 12l2 2 4-4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>');
-                    } else if (teamScore < opponentScore) {
-                        form.push('<span class="form-loss"><svg class="form-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M18 6L6 18M6 6l12 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>');
-                    } else {
-                        form.push('<span class="form-draw"><svg class="form-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M5 12h14" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>');
+                const isHome = match.homeTeam === teamName;
+                const teamScore = isHome ? match.homeScore : match.awayScore;
+                const opponentScore = isHome ? match.awayScore : match.homeScore;
+                
+                if (teamScore > opponentScore) {
+                    form.push('<span class="form-win"><svg class="form-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M9 12l2 2 4-4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>');
+                } else if (teamScore < opponentScore) {
+                    form.push('<span class="form-loss"><svg class="form-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M18 6L6 18M6 6l12 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>');
+                } else {
+                    form.push('<span class="form-draw"><svg class="form-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M5 12h14" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>');
                     }
                 }
                 matchCount++;
@@ -4252,24 +4461,24 @@ const leagueData = {
                     homeTeam: 'Arua',
                     awayTeam: 'Mbarara',
                     venue: 'Maracanã Stadium',
-                    status: 'live',
+                    status: 'upcoming',
                     homeScore: 4,
                     awayScore: 0,
                     playerOfTheMatch: "arua-henry",
                     home: {
                         starting: [
                             { playerId: "arua-emmanuel", captain: false, goals: 0, goalMinutes: [], assists: 0, assistMinutes: [], yellowCard: false, yellowCardMinutes: [], redCard: false, redCardMinutes: [], substituted: false, substitutionMinute: null, cleanSheet: true },
-                            { playerId: "arua-aaron", captain: false, goals: 0, goalMinutes: [], assists: 0, assistMinutes: [], yellowCard: false, yellowCardMinutes: [], redCard: true, redCardMinutes: [83], substituted: false, substitutionMinute: null },
-                            { playerId: "arua-sharif", captain: false, goals: 0, goalMinutes: [], assists: 0, assistMinutes: [], yellowCard: false, yellowCardMinutes: [], redCard: false, redCardMinutes: [], substituted: false, substitutionMinute: null },
-                            { playerId: "arua-denis", captain: false, goals: 1, goalMinutes: [23], goalTypes: ["penalty"], assists: 2, assistMinutes: [69,"90+1"], yellowCard: false, yellowCardMinutes: [], redCard: false, redCardMinutes: [], substituted: false, substitutionMinute: null },
-                            { playerId: "arua-emmy", captain: true, goals: 0, goalMinutes: [], assists: 0, assistMinutes: [], yellowCard: false, yellowCardMinutes: [], redCard: false, redCardMinutes: [], substituted: true, substitutionMinute: 55 },
-                            { playerId: "arua-millio", captain: false, goals: 1, goalMinutes: [56], goalTypes: ["own"], assists: 0, assistMinutes: [], yellowCard: false, yellowCardMinutes: [], redCard: false, redCardMinutes: [], substituted: true, substitutionMinute: 60 },
+                            { playerId: "arua-aaron", captain: false, goals: 0, goalMinutes: [], assists: 0, assistMinutes: [], yellowCard: false, yellowCardMinutes: [], redCard: true, redCardMinutes: [83], substituted: false, substitutionMinute: null, cleanSheet: true },
+                            { playerId: "arua-sharif", captain: false, goals: 0, goalMinutes: [], assists: 0, assistMinutes: [], yellowCard: false, yellowCardMinutes: [], redCard: false, redCardMinutes: [], substituted: false, substitutionMinute: null, cleanSheet: true },
+                            { playerId: "arua-denis", captain: false, goals: 1, goalMinutes: [23], goalTypes: ["penalty"], assists: 2, assistMinutes: [69,"90+1"], yellowCard: false, yellowCardMinutes: [], redCard: false, redCardMinutes: [], substituted: false, substitutionMinute: null, cleanSheet: true },
+                            { playerId: "arua-emmy", captain: true, goals: 0, goalMinutes: [], assists: 0, assistMinutes: [], yellowCard: false, yellowCardMinutes: [], redCard: false, redCardMinutes: [], substituted: true, substitutionMinute: 55, cleanSheet: true },
+                            { playerId: "arua-millio", captain: false, goals: 1, goalMinutes: [56], goalTypes: ["own"], assists: 0, assistMinutes: [], yellowCard: false, yellowCardMinutes: [], redCard: false, redCardMinutes: [], substituted: true, substitutionMinute: 60, cleanSheet: true },
                         ],
                         substitutes: [
-                            { playerId: "arua-henry", captain: false, goals: 2, goalMinutes: [69, "90+1"], goalTypes: ["open", "open"], assists: 0, assistMinutes: [], yellowCard: true, yellowCardMinutes: [67], redCard: false, redCardMinutes: [], substituted: true, substitutionMinute: 55, cameOnFor: "arua-emmy" },
-                            { playerId: "arua-arthur-o", captain: false, goals: 0, goalMinutes: [], assists: 0, assistMinutes: [], yellowCard: false, yellowCardMinutes: [], redCard: false, redCardMinutes: [], substituted: true, substitutionMinute: 45, cameOnFor: "arua-emo" },
-                            { playerId: "arua-mark-o", captain: false, goals: 0, goalMinutes: [], assists: 0, assistMinutes: [], yellowCard: true, yellowCardMinutes: [80], redCard: false, redCardMinutes: [], substituted: true, substitutionMinute: 60, cameOnFor: "arua-millio" },
-                            { playerId: "arua-victor", captain: false, goals: 0, goalMinutes: [], assists: 0, assistMinutes: [], yellowCard: false, yellowCardMinutes: [], redCard: false, redCardMinutes: [], substituted: true, substitutionMinute: 60, cameOnFor: "arua-aggrey" }
+                            { playerId: "arua-henry", captain: false, goals: 2, goalMinutes: [69, "90+1"], goalTypes: ["open", "open"], assists: 0, assistMinutes: [], yellowCard: true, yellowCardMinutes: [67], redCard: false, redCardMinutes: [], substituted: true, substitutionMinute: 55, cameOnFor: "arua-emmy", cleanSheet: true },
+                            { playerId: "arua-arthur-o", captain: false, goals: 0, goalMinutes: [], assists: 0, assistMinutes: [], yellowCard: false, yellowCardMinutes: [], redCard: false, redCardMinutes: [], substituted: true, substitutionMinute: 45, cameOnFor: "arua-emo", cleanSheet: true },
+                            { playerId: "arua-mark-o", captain: false, goals: 0, goalMinutes: [], assists: 0, assistMinutes: [], yellowCard: true, yellowCardMinutes: [80], redCard: false, redCardMinutes: [], substituted: true, substitutionMinute: 60, cameOnFor: "arua-millio", cleanSheet: true },
+                            { playerId: "arua-victor", captain: false, goals: 0, goalMinutes: [], assists: 0, assistMinutes: [], yellowCard: false, yellowCardMinutes: [], redCard: false, redCardMinutes: [], substituted: true, substitutionMinute: 60, cameOnFor: "arua-aggrey", cleanSheet: true }
                         ]
                     },
                     away: {
@@ -4292,7 +4501,7 @@ const leagueData = {
                     homeTeam: 'Mbale',
                     awayTeam: 'Gulu',
                     venue: 'Maracanã Stadium',
-                    status: 'live',
+                    status: 'upcoming',
                     homeScore: 0,
                     awayScore: 0
                 }
@@ -4889,8 +5098,8 @@ async function generateHomePage() {
     const latestResults = getLatestResults(4);
     const topTeams = calculateStandings().slice(0, 4);
     const playerStats = calculatePlayerStats();
-    const topScorers = getTopScorers(playerStats, 3);
-    const topAssists = getTopAssists(playerStats, 3);
+    const topScorers = getTopScorers(playerStats).slice(0, 3);
+    const topAssists = getTopAssists(playerStats).slice(0, 3);
     const matchStats = calculateMatchStats();
     const sponsors = await getSponsorLogos();
     
@@ -4975,14 +5184,26 @@ async function generateHomePage() {
                             <h4>Upcoming Matches</h4>
                             <div class="matches-list">
                                 ${upcomingMatches.length > 0 ? upcomingMatches.map(match => `
-                                    <div class="match-item" onclick="viewMatchDetails('${match.time}', '${match.homeTeam}', '${match.awayTeam}')">
-                                        <div class="match-teams">
-                                            <span class="team-name">${match.homeTeam}</span>
-                                            <span class="vs">vs</span>
-                                            <span class="team-name">${match.awayTeam}</span>
+                                    <section class="fixture" onclick="viewMatchDetails('${match.source === 'knockout' ? 'knockout' : match.time}', '${match.homeTeam}', '${match.awayTeam}')">
+                                        <div class="teams">
+                                            <div class="team-match">
+                                                <div class="team-name-container">
+                                                    <span>${match.homeTeam}</span>
+                                                </div>
+                                                ${getTeamLogoElement(leagueData.teams.find(t => t.name === match.homeTeam)?.id || '', '40px')}
+                                            </div>
+                                            <div class="score-container">
+                                                <span class="vs-score">vs</span>
+                                                <div class="match-time">${match.time}</div>
+                                            </div>
+                                            <div class="team-match">
+                                                ${getTeamLogoElement(leagueData.teams.find(t => t.name === match.awayTeam)?.id || '', '40px')}
+                                                <div class="team-name-container">
+                                                    <span>${match.awayTeam}</span>
+                                                </div>
+                                            </div>
                                         </div>
-                                        <div class="match-time">${match.time}</div>
-                                    </div>
+                                    </section>
                                 `).join('') : '<div class="no-data">No upcoming matches</div>'}
                             </div>
                         </div>
@@ -4990,20 +5211,28 @@ async function generateHomePage() {
                             <h4>Latest Results</h4>
                             <div class="matches-list">
                                 ${latestResults.length > 0 ? latestResults.map(match => `
-                                    <div class="match-item" onclick="viewMatchDetails('${match.time}', '${match.homeTeam}', '${match.awayTeam}')">
-                                        <div class="match-teams">
-                                            <div class="team-name-container">
-                                            <span class="team-name">${match.homeTeam}</span>
-                                                ${(match.status === 'live' || match.status === 'completed') && getTeamRedCards(match, match.homeTeam) > 0 ? `<span class="red-card-indicator">${getRedCardSVG()}</span>` : ''}
+                                    <section class="fixture" onclick="viewMatchDetails('${match.source === 'knockout' ? 'knockout' : match.time}', '${match.homeTeam}', '${match.awayTeam}')">
+                                        <div class="teams">
+                                            <div class="team-match">
+                                                <div class="team-name-container">
+                                                    <span>${match.homeTeam}</span>
+                                                    ${(match.status === 'live' || match.status === 'completed') && getTeamRedCards(match, match.homeTeam) > 0 ? `<span class="red-card-indicator">${getRedCardSVG()}</span>` : ''}
+                                                </div>
+                                                ${getTeamLogoElement(leagueData.teams.find(t => t.name === match.homeTeam)?.id || '', '40px')}
                                             </div>
-                                            <span class="score">${match.homeScore} - ${match.awayScore}</span>
-                                            <div class="team-name-container">
-                                            <span class="team-name">${match.awayTeam}</span>
-                                                ${(match.status === 'live' || match.status === 'completed') && getTeamRedCards(match, match.awayTeam) > 0 ? `<span class="red-card-indicator">${getRedCardSVG()}</span>` : ''}
+                                            <div class="score-container">
+                                                <span class="vs-score">${match.homeScore} - ${match.awayScore}</span>
+                                                <div class="match-status ft">FT</div>
+                                            </div>
+                                            <div class="team-match">
+                                                ${getTeamLogoElement(leagueData.teams.find(t => t.name === match.awayTeam)?.id || '', '40px')}
+                                                <div class="team-name-container">
+                                                    <span>${match.awayTeam}</span>
+                                                    ${(match.status === 'live' || match.status === 'completed') && getTeamRedCards(match, match.awayTeam) > 0 ? `<span class="red-card-indicator">${getRedCardSVG()}</span>` : ''}
+                                                </div>
                                             </div>
                                         </div>
-                                        <div class="match-time">${match.time}</div>
-                                    </div>
+                                    </section>
                                 `).join('') : '<div class="no-data">No recent results</div>'}
                             </div>
                         </div>
@@ -5062,6 +5291,10 @@ async function generateHomePage() {
                     </div>
         </div>
         
+                ${areAllGroupStageMatchesCompleted() ? (() => {
+                    const currentStage = getCurrentKnockoutStage();
+                    const displayMatches = currentStage.matches.slice(0, 2);
+                    return `
                 <div class="preview-section">
                     <div class="section-header">
                         <h3>Knockout Stage</h3>
@@ -5072,25 +5305,43 @@ async function generateHomePage() {
                             <div class="stage-info">
                                 <h4>Current Stage</h4>
                                 <div class="section-divider"></div>
-                                <p>Quarter Finals</p>
+                                <p>${currentStage.title}</p>
                 </div>
                             <div class="knockout-matches">
-                                ${leagueData.knockout.quarterFinals.slice(0, 2).map((match, index) => `
-                                    <div class="knockout-match">
-                                        <div class="match-teams">
-                                            <span class="team-name">${match.homeTeam}</span>
-                                            <span class="vs">vs</span>
-                                            <span class="team-name">${match.awayTeam}</span>
+                                ${displayMatches.map((match, index) => `
+                                    <section class="fixture" onclick="viewMatchDetails('knockout', '${match.homeTeam}', '${match.awayTeam}')">
+                                        <div class="teams">
+                                            <div class="team-match">
+                                                <div class="team-name-container">
+                                                    <span>${match.homeTeam}</span>
+                                                    ${match.home && (match.status === 'live' || match.status === 'completed') && getTeamRedCards(match, match.homeTeam) > 0 ? `<span class="red-card-indicator">${getRedCardSVG()}</span>` : ''}
+                                                </div>
+                                                ${getTeamLogoElement(match.homeTeam === 'TBD' ? 'TBD' : (leagueData.teams.find(t => t.name === match.homeTeam)?.id || ''), '40px')}
+                                            </div>
+                                            <div class="score-container">
+                                                <span class="vs-score">${match.status === 'completed' ? `${match.homeScore} - ${match.awayScore}` : 'vs'}</span>
+                                                ${match.status === 'completed' ? '<div class="match-status ft">FT</div>' : 
+                                                  match.status === 'live' ? '<div class="match-status live">LIVE</div>' :
+                                                  match.status === 'postponed' ? '<div class="match-status postponed">POSTPONED</div>' : ''}
+                                            </div>
+                                            <div class="team-match">
+                                                ${getTeamLogoElement(match.awayTeam === 'TBD' ? 'TBD' : (leagueData.teams.find(t => t.name === match.awayTeam)?.id || ''), '40px')}
+                                                <div class="team-name-container">
+                                                    <span>${match.awayTeam}</span>
+                                                    ${match.away && (match.status === 'live' || match.status === 'completed') && getTeamRedCards(match, match.awayTeam) > 0 ? `<span class="red-card-indicator">${getRedCardSVG()}</span>` : ''}
+                                                </div>
+                                            </div>
                                         </div>
-                                        <div class="match-status">${match.status}</div>
-                                    </div>
-                                    ${index < leagueData.knockout.quarterFinals.slice(0, 2).length - 1 ? '<div class="section-divider"></div>' : ''}
+                                    </section>
             `).join('')}
                             </div>
                         </div>
                     </div>
         </div>
+                `;
+                })() : ''}
         
+                ${matchStats.completedMatches > 0 ? `
                 <div class="preview-section">
                     <div class="section-header">
                         <h3>Statistics</h3>
@@ -5146,6 +5397,7 @@ async function generateHomePage() {
                         </div>
                     </div>
                 </div>
+                ` : ''}
                 
                 <div class="preview-section">
                     <div class="section-header">
@@ -5839,7 +6091,24 @@ function generateKnockoutPage() {
 function calculatePlayerStats() {
     const playerStats = {};
     
-    // Process fixtures data
+    // First, initialize all players from all squads with zero stats
+    leagueData.teams.forEach(team => {
+        team.squad.forEach(player => {
+            playerStats[player.id] = {
+                playerId: player.id,
+                name: player.name,
+                team: team.name,
+                goals: 0,
+                assists: 0,
+                yellowCards: 0,
+                redCards: 0,
+                cleanSheets: 0,
+                matches: 0
+            };
+        });
+    });
+    
+    // Then, process fixtures data to update stats for players who have played
     leagueData.fixturesData.forEach(timeSlot => {
         timeSlot.matches.forEach(match => {
             if ((match.status === 'completed' || match.status === 'live') && match.home && match.away) {
@@ -5868,8 +6137,10 @@ function calculatePlayerStats() {
 function processMatchPlayers(match, playerStats) {
     // Process home team players
     [...(match.home.starting || []), ...(match.home.substitutes || [])].forEach(player => {
+        // Player should already exist from squad initialization, but check just in case
         if (!playerStats[player.playerId]) {
             playerStats[player.playerId] = {
+                playerId: player.playerId,
                 name: getPlayerName(player.playerId),
                 team: getPlayerTeam(player.playerId),
                 goals: 0,
@@ -5893,8 +6164,10 @@ function processMatchPlayers(match, playerStats) {
     
     // Process away team players
     [...(match.away.starting || []), ...(match.away.substitutes || [])].forEach(player => {
+        // Player should already exist from squad initialization, but check just in case
         if (!playerStats[player.playerId]) {
             playerStats[player.playerId] = {
+                playerId: player.playerId,
                 name: getPlayerName(player.playerId),
                 team: getPlayerTeam(player.playerId),
                 goals: 0,
@@ -5931,6 +6204,16 @@ function getPlayerTeam(playerId) {
         if (player) return team.name;
     }
     return 'Unknown';
+}
+
+function isPlayerGoalkeeper(playerId) {
+    for (const team of leagueData.teams) {
+        const player = team.squad.find(p => p.id === playerId);
+        if (player && player.position === 'Goalkeeper') {
+            return true;
+        }
+    }
+    return false;
 }
 
 function calculateMatchStats() {
@@ -5973,18 +6256,28 @@ function calculateMatchStats() {
     };
 }
 
-function getTopScorers(playerStats, limit = 5) {
+function getTopScorers(playerStats) {
     return Object.values(playerStats)
-        .filter(p => p.goals > 0)
-        .sort((a, b) => b.goals - a.goals)
-        .slice(0, limit);
+        .sort((a, b) => {
+            // Primary: Goals (descending)
+            if (b.goals !== a.goals) return b.goals - a.goals;
+            // Secondary: Matches played (descending)
+            if (b.matches !== a.matches) return b.matches - a.matches;
+            // Tertiary: Alphabetical by name (ascending)
+            return a.name.localeCompare(b.name);
+        });
 }
 
-function getTopAssists(playerStats, limit = 5) {
+function getTopAssists(playerStats) {
     return Object.values(playerStats)
-        .filter(p => p.assists > 0)
-        .sort((a, b) => b.assists - a.assists)
-        .slice(0, limit);
+        .sort((a, b) => {
+            // Primary: Assists (descending)
+            if (b.assists !== a.assists) return b.assists - a.assists;
+            // Secondary: Matches played (descending)
+            if (b.matches !== a.matches) return b.matches - a.matches;
+            // Tertiary: Alphabetical by name (ascending)
+            return a.name.localeCompare(b.name);
+        });
 }
 
 function getMostCards(playerStats, limit = 5) {
@@ -5994,25 +6287,112 @@ function getMostCards(playerStats, limit = 5) {
         .slice(0, limit);
 }
 
-function getMostYellowCards(playerStats, limit = 5) {
+function getMostYellowCards(playerStats) {
     return Object.values(playerStats)
-        .filter(p => p.yellowCards > 0)
-        .sort((a, b) => b.yellowCards - a.yellowCards)
-        .slice(0, limit);
+        .sort((a, b) => {
+            // Primary: Yellow cards (descending)
+            if (b.yellowCards !== a.yellowCards) return b.yellowCards - a.yellowCards;
+            // Secondary: Matches played (descending)
+            if (b.matches !== a.matches) return b.matches - a.matches;
+            // Tertiary: Alphabetical by name (ascending)
+            return a.name.localeCompare(b.name);
+        });
 }
 
-function getMostRedCards(playerStats, limit = 5) {
+function getMostRedCards(playerStats) {
     return Object.values(playerStats)
-        .filter(p => p.redCards > 0)
-        .sort((a, b) => b.redCards - a.redCards)
-        .slice(0, limit);
+        .sort((a, b) => {
+            // Primary: Red cards (descending)
+            if (b.redCards !== a.redCards) return b.redCards - a.redCards;
+            // Secondary: Matches played (descending)
+            if (b.matches !== a.matches) return b.matches - a.matches;
+            // Tertiary: Alphabetical by name (ascending)
+            return a.name.localeCompare(b.name);
+        });
 }
 
-function getTopCleanSheets(playerStats, limit = 5) {
+function getTopCleanSheets(playerStats) {
     return Object.values(playerStats)
-        .filter(p => p.cleanSheets > 0)
-        .sort((a, b) => b.cleanSheets - a.cleanSheets)
-        .slice(0, limit);
+        .sort((a, b) => {
+            // Primary: Goalkeepers first
+            const aIsGoalkeeper = isPlayerGoalkeeper(a.playerId);
+            const bIsGoalkeeper = isPlayerGoalkeeper(b.playerId);
+            if (aIsGoalkeeper && !bIsGoalkeeper) return -1;
+            if (!aIsGoalkeeper && bIsGoalkeeper) return 1;
+            
+            // Secondary: Clean sheets (descending)
+            if (b.cleanSheets !== a.cleanSheets) return b.cleanSheets - a.cleanSheets;
+            // Tertiary: Matches played (descending)
+            if (b.matches !== a.matches) return b.matches - a.matches;
+            // Quaternary: Alphabetical by name (ascending)
+            return a.name.localeCompare(b.name);
+        });
+}
+
+// Helper function to generate stats list with view more functionality
+function generateStatsList(players, statType, statValue, statLabel) {
+    const allPlayers = players;
+    const visiblePlayers = allPlayers.slice(0, 5);
+    const hasMore = allPlayers.length > 5;
+    
+    return `
+        <div class="stats-list" id="${statType}-list">
+            ${visiblePlayers.map((player, index) => `
+                <div class="stat-item">
+                    <div class="stat-rank">${index + 1}</div>
+                    <div class="stat-player">
+                        <div class="player-name">${player.name}</div>
+                        <div class="player-team">${player.team}</div>
+                    </div>
+                    <div class="stat-matches">${player.matches}</div>
+                    <div class="stat-value">${player[statValue]} ${statLabel}</div>
+                </div>
+            `).join('')}
+            ${hasMore ? `
+                <div class="view-more-container">
+                    <button class="view-more-btn" onclick="toggleViewMore('${statType}')">
+                        <span class="view-more-text">View More</span>
+                        <svg class="view-more-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </button>
+                </div>
+                <div class="stats-list-extra hidden" id="${statType}-extra">
+                    ${allPlayers.slice(5).map((player, index) => `
+                        <div class="stat-item">
+                            <div class="stat-rank">${index + 6}</div>
+                            <div class="stat-player">
+                                <div class="player-name">${player.name}</div>
+                                <div class="player-team">${player.team}</div>
+                            </div>
+                            <div class="stat-matches">${player.matches}</div>
+                            <div class="stat-value">${player[statValue]} ${statLabel}</div>
+                        </div>
+                    `).join('')}
+                </div>
+            ` : ''}
+        </div>
+    `;
+}
+
+// Function to toggle view more for stats
+function toggleViewMore(statType) {
+    const extraList = document.getElementById(`${statType}-extra`);
+    const viewMoreBtn = document.querySelector(`#${statType}-list .view-more-btn`);
+    const viewMoreText = viewMoreBtn.querySelector('.view-more-text');
+    const viewMoreIcon = viewMoreBtn.querySelector('.view-more-icon');
+    
+    if (extraList.classList.contains('hidden')) {
+        // Show more
+        extraList.classList.remove('hidden');
+        viewMoreText.textContent = 'View Less';
+        viewMoreIcon.style.transform = 'rotate(180deg)';
+    } else {
+        // Show less
+        extraList.classList.add('hidden');
+        viewMoreText.textContent = 'View More';
+        viewMoreIcon.style.transform = 'rotate(0deg)';
+    }
 }
 
 function areAllMatchesCompleted() {
@@ -6225,6 +6605,44 @@ function areAllGroupStageMatchesCompleted() {
     return true;
 }
 
+function getCurrentKnockoutStage() {
+    // Determine the current knockout stage based on match statuses
+    const { quarterFinals, semiFinals, thirdPlace, final } = leagueData.knockout;
+    
+    // Check if final is completed
+    if (final[0].status === 'completed') {
+        return { stage: 'final', title: 'Final', matches: final };
+    }
+    
+    // Check if third place playoff is completed or in progress
+    if (thirdPlace[0].status === 'completed' || thirdPlace[0].status === 'live') {
+        return { stage: 'thirdPlace', title: 'Third Place Playoff', matches: thirdPlace };
+    }
+    
+    // Check if semi-finals are completed or in progress
+    const semiFinalsCompleted = semiFinals.every(match => match.status === 'completed');
+    const semiFinalsInProgress = semiFinals.some(match => match.status === 'live' || match.status === 'completed');
+    
+    if (semiFinalsCompleted) {
+        return { stage: 'thirdPlace', title: 'Third Place Playoff', matches: thirdPlace };
+    } else if (semiFinalsInProgress) {
+        return { stage: 'semiFinals', title: 'Semi Finals', matches: semiFinals };
+    }
+    
+    // Check if quarter-finals are completed or in progress
+    const quarterFinalsCompleted = quarterFinals.every(match => match.status === 'completed');
+    const quarterFinalsInProgress = quarterFinals.some(match => match.status === 'live' || match.status === 'completed');
+    
+    if (quarterFinalsCompleted) {
+        return { stage: 'semiFinals', title: 'Semi Finals', matches: semiFinals };
+    } else if (quarterFinalsInProgress) {
+        return { stage: 'quarterFinals', title: 'Quarter Finals', matches: quarterFinals };
+    }
+    
+    // Default to quarter finals if no matches have started
+    return { stage: 'quarterFinals', title: 'Quarter Finals', matches: quarterFinals };
+}
+
 function getLatestResults(limit = 4) {
     const completedMatches = [];
     
@@ -6300,17 +6718,17 @@ function getTeamRecentForm(teamName) {
             return '<span class="form-pending">-</span>';
         } else if (match.status === 'completed') {
             // Show result for completed matches
-            const isHome = match.homeTeam === teamName;
-            const teamScore = isHome ? match.homeScore : match.awayScore;
-            const opponentScore = isHome ? match.awayScore : match.homeScore;
-            
-            if (teamScore > opponentScore) {
-                return '<span class="form-win"><svg class="form-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M9 12l2 2 4-4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>';
-            } else if (teamScore < opponentScore) {
-                return '<span class="form-loss"><svg class="form-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M18 6L6 18M6 6l12 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>';
-            } else {
-                return '<span class="form-draw"><svg class="form-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M5 12h14" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>';
-            }
+        const isHome = match.homeTeam === teamName;
+        const teamScore = isHome ? match.homeScore : match.awayScore;
+        const opponentScore = isHome ? match.awayScore : match.homeScore;
+        
+        if (teamScore > opponentScore) {
+            return '<span class="form-win"><svg class="form-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M9 12l2 2 4-4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>';
+        } else if (teamScore < opponentScore) {
+            return '<span class="form-loss"><svg class="form-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M18 6L6 18M6 6l12 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>';
+        } else {
+            return '<span class="form-draw"><svg class="form-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M5 12h14" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>';
+        }
         }
         return '';
     }).join('');
@@ -6608,6 +7026,7 @@ function generateStatsPage() {
     // Check if there are any completed matches
     if (matchStats.completedMatches === 0) {
     return `
+        <div class="stats-page-container">
         <h2 class="page-title">Statistics</h2>
         
             <div class="stats-pending">
@@ -6633,6 +7052,7 @@ function generateStatsPage() {
             </div>
             </div>
             </div>
+        </div>
         `;
     }
     
@@ -6643,7 +7063,8 @@ function generateStatsPage() {
     const topCleanSheets = getTopCleanSheets(playerStats);
     
     return `
-        <h2 class="page-title">Statistics</h2>
+        <div class="stats-page-container">
+            <h2 class="page-title">Statistics</h2>
 
         <div class="stats-sections">
             <div class="stats-section">
@@ -6653,19 +7074,7 @@ function generateStatsPage() {
                     <span>Matches</span>
                     <span>Goals</span>
                 </div>
-                <div class="stats-list">
-                    ${topScorers.map((player, index) => `
-                        <div class="stat-item">
-                            <div class="stat-rank">${index + 1}</div>
-                            <div class="stat-player">
-                                <div class="player-name">${player.name}</div>
-                                <div class="player-team">${player.team}</div>
-                            </div>
-                            <div class="stat-matches">${player.matches}</div>
-                            <div class="stat-value">${player.goals} goals</div>
-                        </div>
-                    `).join('')}
-                </div>
+                ${generateStatsList(topScorers, 'scorers', 'goals', 'goals')}
             </div>
             
             <hr class="horizontal-divider">
@@ -6677,19 +7086,7 @@ function generateStatsPage() {
                     <span>Matches</span>
                     <span>Assists</span>
                 </div>
-                <div class="stats-list">
-                    ${topAssists.map((player, index) => `
-                        <div class="stat-item">
-                            <div class="stat-rank">${index + 1}</div>
-                            <div class="stat-player">
-                                <div class="player-name">${player.name}</div>
-                                <div class="player-team">${player.team}</div>
-                            </div>
-                            <div class="stat-matches">${player.matches}</div>
-                            <div class="stat-value">${player.assists} assists</div>
-                        </div>
-                    `).join('')}
-                </div>
+                ${generateStatsList(topAssists, 'assists', 'assists', 'assists')}
             </div>
             
             <hr class="horizontal-divider">
@@ -6701,19 +7098,7 @@ function generateStatsPage() {
                     <span>Matches</span>
                     <span>Clean Sheets</span>
                 </div>
-                <div class="stats-list">
-                    ${topCleanSheets.map((player, index) => `
-                        <div class="stat-item">
-                            <div class="stat-rank">${index + 1}</div>
-                            <div class="stat-player">
-                                <div class="player-name">${player.name}</div>
-                                <div class="player-team">${player.team}</div>
-                            </div>
-                            <div class="stat-matches">${player.matches}</div>
-                            <div class="stat-value">${player.cleanSheets} clean sheets</div>
-                        </div>
-                    `).join('')}
-                </div>
+                ${generateStatsList(topCleanSheets, 'cleanSheets', 'cleanSheets', 'clean sheets')}
             </div>
             
             <hr class="horizontal-divider">
@@ -6725,19 +7110,7 @@ function generateStatsPage() {
                     <span>Matches</span>
                     <span>Yellow Cards</span>
                 </div>
-                <div class="stats-list">
-                    ${mostYellowCards.map((player, index) => `
-                        <div class="stat-item">
-                            <div class="stat-rank">${index + 1}</div>
-                            <div class="stat-player">
-                                <div class="player-name">${player.name}</div>
-                                <div class="player-team">${player.team}</div>
-                            </div>
-                            <div class="stat-matches">${player.matches}</div>
-                            <div class="stat-value">${player.yellowCards} 🟨</div>
-                        </div>
-                    `).join('')}
-                </div>
+                ${generateStatsList(mostYellowCards, 'yellowCards', 'yellowCards', '🟨')}
             </div>
             
             <hr class="horizontal-divider">
@@ -6749,19 +7122,8 @@ function generateStatsPage() {
                     <span>Matches</span>
                     <span>Red Cards</span>
                 </div>
-                <div class="stats-list">
-                    ${mostRedCards.map((player, index) => `
-                        <div class="stat-item">
-                            <div class="stat-rank">${index + 1}</div>
-                            <div class="stat-player">
-                                <div class="player-name">${player.name}</div>
-                                <div class="player-team">${player.team}</div>
+                ${generateStatsList(mostRedCards, 'redCards', 'redCards', '🟥')}
                             </div>
-                            <div class="stat-matches">${player.matches}</div>
-                            <div class="stat-value">${player.redCards} 🟥</div>
-                        </div>
-                    `).join('')}
-                </div>
             </div>
         </div>
     `;
@@ -7773,7 +8135,36 @@ function switchMatchTab(tabName) {
     document.getElementById(`${tabName}-tab`).classList.add('active');
 }
 
+// Loader functionality
+function hideLoader() {
+    const loader = document.getElementById('loader');
+    const app = document.getElementById('app');
+    
+    if (loader && app) {
+        // Add loaded class to app
+        app.classList.add('loaded');
+        
+        // Hide loader after a short delay
+        setTimeout(() => {
+            loader.classList.add('hidden');
+            
+            // Remove loader from DOM after transition completes
+            setTimeout(() => {
+                if (loader.parentNode) {
+                    loader.parentNode.removeChild(loader);
+                }
+            }, 800); // Match the CSS transition duration
+        }, 1200); // Show loader for at least 1.2 seconds
+    }
+}
+
 // Initialize the app when the page loads
-document.addEventListener('DOMContentLoaded', initApp);
+document.addEventListener('DOMContentLoaded', function() {
+    // Initialize the app
+    initApp();
+    
+    // Hide loader when everything is ready
+    hideLoader();
+});
 
 // Force browser reload - live status dots added
