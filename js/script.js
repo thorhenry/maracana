@@ -4218,7 +4218,7 @@ const leagueData = {
                     homeTeam: 'Mbale',
                     awayTeam: 'Gulu',
                     venue: 'Maracanã Stadium',
-                    status: 'completed',
+                    status: 'live',
                     homeScore: 0,
                     awayScore: 0
                 }
@@ -4854,9 +4854,8 @@ async function generateHomePage() {
                             <path d="M12 6v6l4 2" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
                         </svg>
                         Live Matches
-                        <span class="live-indicator">LIVE</span>
                     </h3>
-                    <a href="#" class="view-more-link" onclick="loadPage('fixtures')">View all fixtures</a>
+                    <span class="live-indicator">LIVE</span>
                 </div>
                 <div class="live-matches-content">
                     ${liveMatches.map(match => `
