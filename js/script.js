@@ -840,7 +840,7 @@ const styles = `
         text-decoration: none;
         font-weight: 600;
         transition: all 0.3s ease;
-        margin-bottom: 20px;
+        margin: 20px 0 20px 0;
     }
 
     .back-button:hover {
@@ -1641,7 +1641,8 @@ const styles = `
         transition: max-height 0.3s ease;
         background: rgba(255, 255, 255, 0.02);
         border-radius: 8px;
-        margin: 0 20px;
+        margin: 0 auto;
+        width: 96%;
     }
 
     .team-details-collapsed.expanded {
