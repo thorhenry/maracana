@@ -52,11 +52,6 @@
                 </div>
                 
                 <div class="mobile-menu" id="mobileMenu">
-                    <button class="mobile-close-btn" onclick="toggleMobileMenu()">
-                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M18 6L6 18M6 6l12 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                        </svg>
-                    </button>
                     <button class="mobile-nav-btn active" data-page="home">Home</button>
                     <button class="mobile-nav-btn" data-page="fixtures">Fixtures</button>
                     <button class="mobile-nav-btn" data-page="table">League Table</button>
@@ -64,6 +59,13 @@
                     <button class="mobile-nav-btn" data-page="knockout">Knockout</button>
                     <button class="mobile-nav-btn" data-page="stats">Stats</button>
                     <button class="mobile-nav-btn" data-page="awards">Awards</button>
+                    
+                    <div class="mobile-sponsors-section">
+                        <h3 class="mobile-sponsors-title">Our Sponsors</h3>
+                        <div class="mobile-sponsors-grid" id="mobileSponsorsGrid">
+                            <!-- Sponsors will be dynamically loaded here -->
+                        </div>
+                    </div>
                 </div>
             </nav>
         </header>

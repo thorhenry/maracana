@@ -4310,15 +4310,28 @@ async function loadMobileSponsors() {
         const sponsors = await getSponsorLogos();
         const mobileSponsorsGrid = document.getElementById('mobileSponsorsGrid');
         
-        if (mobileSponsorsGrid && sponsors.length > 0) {
+        console.log('Loading mobile sponsors:', sponsors);
+        console.log('Mobile sponsors grid element:', mobileSponsorsGrid);
+        
+        if (mobileSponsorsGrid && sponsors && sponsors.length > 0) {
             mobileSponsorsGrid.innerHTML = sponsors.map(sponsor => `
                 <div class="mobile-sponsor-item">
-                    <img src="assets/sponsors/${sponsor.file}" alt="${sponsor.name}" class="mobile-sponsor-logo">
+                    <img src="assets/sponsors/${sponsor.file}" alt="${sponsor.name}" class="mobile-sponsor-logo" onerror="console.error('Failed to load sponsor image:', '${sponsor.file}')">
                 </div>
             `).join('');
+            console.log('Mobile sponsors loaded successfully');
+        } else {
+            console.warn('Mobile sponsors grid not found or no sponsors available');
+            if (mobileSponsorsGrid) {
+                mobileSponsorsGrid.innerHTML = '<div class="mobile-sponsor-item">No sponsors available</div>';
+            }
         }
     } catch (error) {
         console.error('Error loading mobile sponsors:', error);
+        const mobileSponsorsGrid = document.getElementById('mobileSponsorsGrid');
+        if (mobileSponsorsGrid) {
+            mobileSponsorsGrid.innerHTML = '<div class="mobile-sponsor-item">Error loading sponsors</div>';
+        }
     }
 }
 
@@ -4515,7 +4528,8 @@ async function getSponsorLogos() {
         'io-fitness-gym.svg',
         'maracana-sports-centre.svg',
         'paul-fitness-training.svg',
-        'success-motors.svg'
+        'success-motors.svg',
+        'thorvisual.svg'
         // Add new sponsor files here: 'new-sponsor.svg'
     ];
     
@@ -6263,6 +6277,13 @@ function toggleMobileMenu() {
             // Opening animation
             mobileMenu.classList.add('active');
             hamburger.classList.add('active');
+            
+            // Try to load sponsors when opening menu (fallback)
+            const mobileSponsorsGrid = document.getElementById('mobileSponsorsGrid');
+            if (mobileSponsorsGrid && mobileSponsorsGrid.children.length === 0) {
+                console.log('Attempting to reload mobile sponsors...');
+                loadMobileSponsors();
+            }
             
             // Trigger button animations with delay
             setTimeout(() => {
