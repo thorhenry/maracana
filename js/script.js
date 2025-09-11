@@ -127,13 +127,21 @@ const styles = `
         opacity: 0;
         visibility: hidden;
         transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-        overflow: hidden;
+        overflow-y: auto;
+        overflow-x: hidden;
         display: flex;
         flex-direction: column;
-        justify-content: center;
+        justify-content: flex-start;
         align-items: center;
         padding: 20px;
         box-sizing: border-box;
+        /* Hide scrollbar for webkit browsers */
+        scrollbar-width: none; /* Firefox */
+        -ms-overflow-style: none; /* Internet Explorer 10+ */
+    }
+
+    .mobile-menu::-webkit-scrollbar {
+        display: none; /* WebKit browsers */
     }
 
     .mobile-menu.active {
@@ -160,6 +168,7 @@ const styles = `
         transform: translateY(30px);
         opacity: 0;
         animation: slideInFromBottom 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+        flex-shrink: 0;
     }
 
     .mobile-nav-btn:nth-child(1) { animation-delay: 0.1s; }
@@ -200,11 +209,12 @@ const styles = `
     /* Mobile Sponsors Section */
     .mobile-sponsors-section {
         margin-top: 30px;
-        padding: 20px 0;
+        padding: 20px 0 40px 0;
         border-top: 1px solid rgba(0, 255, 133, 0.2);
         width: 95%;
         transform: translateY(30px);
         opacity: 0;
+        flex-shrink: 0;
     }
 
     .mobile-sponsors-title {
@@ -6260,6 +6270,10 @@ function toggleMobileMenu() {
             mobileMenu.classList.remove('active');
             hamburger.classList.remove('active');
             
+            // Re-enable body scrolling
+            document.body.style.overflow = '';
+            document.body.style.position = '';
+            
             // Reset button animations
             mobileNavBtns.forEach(btn => {
                 btn.style.animation = 'none';
@@ -6277,6 +6291,11 @@ function toggleMobileMenu() {
             // Opening animation
             mobileMenu.classList.add('active');
             hamburger.classList.add('active');
+            
+            // Prevent body scrolling
+            document.body.style.overflow = 'hidden';
+            document.body.style.position = 'fixed';
+            document.body.style.width = '100%';
             
             // Try to load sponsors when opening menu (fallback)
             const mobileSponsorsGrid = document.getElementById('mobileSponsorsGrid');
@@ -6312,6 +6331,11 @@ document.addEventListener('click', (event) => {
         !hamburger.contains(event.target)) {
         mobileMenu.classList.remove('active');
         hamburger.classList.remove('active');
+        
+        // Re-enable body scrolling
+        document.body.style.overflow = '';
+        document.body.style.position = '';
+        document.body.style.width = '';
     }
 });
 
