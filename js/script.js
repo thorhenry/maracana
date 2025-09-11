@@ -4644,6 +4644,30 @@ async function loadPage(page) {
             break;
         case 'fixtures':
             content.innerHTML = generateFixturesPage();
+            // Apply current view state and render fixtures
+            setTimeout(() => {
+                applyFilters();
+                // Update toggle button state
+                const toggleBtn = document.querySelector('.view-toggle-btn');
+                if (toggleBtn) {
+                    toggleBtn.classList.toggle('active', currentFixturesView === 'grid');
+                    const svg = toggleBtn.querySelector('svg');
+                    if (svg) {
+                        if (currentFixturesView === 'grid') {
+                            svg.innerHTML = `
+                                <rect x="3" y="3" width="7" height="7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                <rect x="14" y="3" width="7" height="7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                <rect x="14" y="14" width="7" height="7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                <rect x="3" y="14" width="7" height="7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            `;
+                        } else {
+                            svg.innerHTML = `
+                                <path d="M8 6h13M8 12h13M8 18h13M3 6h.01M3 12h.01M3 18h.01" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            `;
+                        }
+                    }
+                }
+            }, 100);
             break;
         case 'table':
             content.innerHTML = generateTablePage();
@@ -6605,6 +6629,10 @@ function applyFilters() {
     
     // Update CSS class for view type
     fixturesContent.className = currentFixturesView === 'grid' ? 'fixtures-grid-view' : '';
+    
+    // Debug: Log the current view state
+    console.log('Current fixtures view:', currentFixturesView);
+    console.log('Fixtures content class:', fixturesContent.className);
     
     let filteredFixtures = [...leagueData.fixturesData];
     
