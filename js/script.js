@@ -115,12 +115,12 @@ const styles = `
 
     .mobile-menu {
         position: fixed;
-        top: 0;
+        top: 81px;
         left: 0;
         right: 0;
         bottom: 0;
         width: 100vw;
-        height: 100vh;
+        height: calc(100vh - 81px);
         background: linear-gradient(135deg, #37003c 0%, #1a0033 50%, #0a001a 100%);
         z-index: 9999;
         transform: translateY(-100%);
@@ -132,7 +132,7 @@ const styles = `
         flex-direction: column;
         justify-content: center;
         align-items: center;
-        padding: 80px 20px 20px 20px;
+        padding: 20px;
         box-sizing: border-box;
     }
 
@@ -142,36 +142,6 @@ const styles = `
         visibility: visible;
     }
 
-    .mobile-close-btn {
-        position: absolute;
-        top: 15px;
-        right: 15px;
-        width: 45px;
-        height: 45px;
-        background: rgba(0, 0, 0, 0.3);
-        border: 2px solid rgba(0, 255, 133, 0.3);
-        border-radius: 50%;
-        color: #00ff85;
-        cursor: pointer;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        transition: all 0.3s ease;
-        backdrop-filter: blur(10px);
-        z-index: 10000;
-    }
-
-    .mobile-close-btn:hover {
-        background: rgba(0, 255, 133, 0.1);
-        border-color: rgba(0, 255, 133, 0.6);
-        transform: scale(1.1);
-        box-shadow: 0 4px 15px rgba(0, 255, 133, 0.2);
-    }
-
-    .mobile-close-btn svg {
-        width: 24px;
-        height: 24px;
-    }
 
     .mobile-nav-btn {
         display: block;
@@ -179,13 +149,13 @@ const styles = `
         background: transparent;
         border: none;
         color: #ffffff;
-        padding: 20px 30px;
-        font-size: 1.2rem;
+        padding: 15px 22px;
+        font-size: 0.9rem;
         font-weight: 600;
         text-align: center;
-        border: 2px solid rgba(0, 255, 133, 0.2);
-        border-radius: 12px;
-        margin: 8px 0;
+        border: 1.5px solid rgba(0, 255, 133, 0.2);
+        border-radius: 9px;
+        margin: 6px 0;
         transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
         transform: translateY(30px);
         opacity: 0;
@@ -225,6 +195,61 @@ const styles = `
             transform: translateY(0);
             opacity: 1;
         }
+    }
+
+    /* Mobile Sponsors Section */
+    .mobile-sponsors-section {
+        margin-top: 30px;
+        padding: 20px 0;
+        border-top: 1px solid rgba(0, 255, 133, 0.2);
+        width: 95%;
+        transform: translateY(30px);
+        opacity: 0;
+    }
+
+    .mobile-sponsors-title {
+        color: #00ff85;
+        font-size: 0.825rem;
+        font-weight: 600;
+        text-align: center;
+        margin-bottom: 15px;
+        text-shadow: 0 0 7.5px rgba(0, 255, 133, 0.3);
+    }
+
+    .mobile-sponsors-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(60px, 1fr));
+        gap: 11px;
+        padding: 0 7.5px;
+    }
+
+    .mobile-sponsor-item {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 7.5px;
+        background: rgba(0, 255, 133, 0.05);
+        border: 0.75px solid rgba(0, 255, 133, 0.2);
+        border-radius: 6px;
+        transition: all 0.3s ease;
+    }
+
+    .mobile-sponsor-item:hover {
+        background: rgba(0, 255, 133, 0.1);
+        border-color: rgba(0, 255, 133, 0.4);
+        transform: translateY(-2px);
+    }
+
+    .mobile-sponsor-logo {
+        width: 45px;
+        height: 45px;
+        filter: brightness(0) invert(1) sepia(0%) saturate(0%) hue-rotate(0deg) brightness(0.8) contrast(1.2);
+        transition: all 0.3s ease;
+    }
+
+    .mobile-sponsor-item:hover .mobile-sponsor-logo {
+        transform: scale(1.05);
+        filter: brightness(0) invert(1) sepia(0%) saturate(0%) hue-rotate(0deg) brightness(1) contrast(1.2);
     }
 
     .nav-btn {
@@ -4239,6 +4264,7 @@ let currentPage = 'home';
 function initApp() {
     setupNavigation();
     loadPage(currentPage);
+    loadMobileSponsors();
 }
 
 function setupNavigation() {
@@ -4276,6 +4302,24 @@ function setActivePage(page) {
     }
     
     currentPage = page;
+}
+
+// Load sponsors into mobile menu
+async function loadMobileSponsors() {
+    try {
+        const sponsors = await getSponsorLogos();
+        const mobileSponsorsGrid = document.getElementById('mobileSponsorsGrid');
+        
+        if (mobileSponsorsGrid && sponsors.length > 0) {
+            mobileSponsorsGrid.innerHTML = sponsors.map(sponsor => `
+                <div class="mobile-sponsor-item">
+                    <img src="assets/sponsors/${sponsor.file}" alt="${sponsor.name}" class="mobile-sponsor-logo">
+                </div>
+            `).join('');
+        }
+    } catch (error) {
+        console.error('Error loading mobile sponsors:', error);
+    }
 }
 
 // Search page functions
@@ -6192,6 +6236,7 @@ function toggleMobileMenu() {
     const mobileMenu = document.getElementById('mobileMenu');
     const hamburger = document.querySelector('.hamburger');
     const mobileNavBtns = document.querySelectorAll('.mobile-nav-btn');
+    const mobileSponsorsSection = document.querySelector('.mobile-sponsors-section');
     
     if (mobileMenu && hamburger) {
         const isActive = mobileMenu.classList.contains('active');
@@ -6207,6 +6252,13 @@ function toggleMobileMenu() {
                 btn.style.transform = 'translateY(30px)';
                 btn.style.opacity = '0';
             });
+            
+            // Reset sponsors section animation
+            if (mobileSponsorsSection) {
+                mobileSponsorsSection.style.animation = 'none';
+                mobileSponsorsSection.style.transform = 'translateY(30px)';
+                mobileSponsorsSection.style.opacity = '0';
+            }
         } else {
             // Opening animation
             mobileMenu.classList.add('active');
@@ -6217,6 +6269,13 @@ function toggleMobileMenu() {
                 mobileNavBtns.forEach((btn, index) => {
                     btn.style.animation = `slideInFromBottom 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) ${index * 0.08 + 0.2}s forwards`;
                 });
+                
+                // Animate sponsors section after navigation buttons
+                if (mobileSponsorsSection) {
+                    setTimeout(() => {
+                        mobileSponsorsSection.style.animation = `slideInFromBottom 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.6s forwards`;
+                    }, 100);
+                }
             }, 150);
         }
     }
