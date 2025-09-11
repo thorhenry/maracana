@@ -392,6 +392,33 @@ const styles = `
         margin-top: 20px;
     }
 
+    .view-toggle-btn {
+        width: 40px;
+        height: 40px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: rgba(0, 0, 0, 0.3);
+        border: 1px solid rgba(0, 255, 133, 0.2);
+        border-radius: 8px;
+        color: rgba(255, 255, 255, 0.7);
+        cursor: pointer;
+        transition: all 0.3s ease;
+        padding: 0;
+    }
+
+    .view-toggle-btn:hover {
+        color: #00ff85;
+        background: rgba(0, 255, 133, 0.1);
+        border-color: rgba(0, 255, 133, 0.4);
+    }
+
+    .view-toggle-btn.active {
+        background: rgba(0, 255, 133, 0.2);
+        color: #00ff85;
+        border-color: rgba(0, 255, 133, 0.4);
+    }
+
     .fixtures-sort-controls {
         width: 96%;
         margin: 0 auto 30px auto;
@@ -1275,6 +1302,82 @@ const styles = `
         backdrop-filter: blur(10px);
     }
 
+    /* Grid View Styles */
+    .fixtures-grid-view .time-slot-grid {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 2%;
+        margin-bottom: 25px;
+        justify-content: flex-start;
+        padding-left: 2%;
+    }
+
+    .fixtures-grid-view .fixture {
+        width: 47%;
+        aspect-ratio: 1;
+        margin: 0;
+        padding: 15px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        box-sizing: border-box;
+    }
+
+    .fixtures-grid-view .fixture-teams {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 8px;
+        margin-bottom: 10px;
+        width: 100%;
+    }
+
+    .fixtures-grid-view .team-badge {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        padding: 4px 8px;
+        background: rgba(0, 255, 133, 0.1);
+        border: 1px solid rgba(0, 255, 133, 0.3);
+        border-radius: 15px;
+        font-size: 0.75rem;
+        font-weight: 600;
+        color: #00ff85;
+        width: 100%;
+        justify-content: center;
+    }
+
+    .fixtures-grid-view .team-badge .team-logo {
+        width: 16px;
+        height: 16px;
+    }
+
+    .fixtures-grid-view .vs-separator {
+        color: rgba(255, 255, 255, 0.6);
+        font-weight: 600;
+        font-size: 0.8rem;
+        margin: 2px 0;
+    }
+
+    .fixtures-grid-view .fixture-info {
+        text-align: center;
+        font-size: 0.75rem;
+        color: rgba(255, 255, 255, 0.7);
+        line-height: 1.3;
+    }
+
+    .fixtures-grid-view .red-card-indicator {
+        margin-left: 4px;
+        display: inline-flex;
+        align-items: center;
+    }
+
+    .fixtures-grid-view .red-card-indicator svg {
+        width: 12px;
+        height: 12px;
+    }
+
     .fixture.team-win {
         border: 1px solid #00ff85;
         box-shadow: 0 0 8px rgba(0, 255, 133, 0.2);
@@ -1319,6 +1422,41 @@ const styles = `
         margin-top: 4px;
         text-align: center;
         font-style: italic;
+    }
+
+    .match-status-message {
+        background: rgba(0, 255, 133, 0.1);
+        border: 1px solid rgba(0, 255, 133, 0.3);
+        border-radius: 12px;
+        padding: 20px;
+        margin: 20px 0;
+        text-align: center;
+    }
+
+    .status-message-content {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 15px;
+    }
+
+    .status-message-content svg {
+        color: #00ff85;
+        flex-shrink: 0;
+    }
+
+    .status-message-text h4 {
+        color: #00ff85;
+        margin: 0 0 8px 0;
+        font-size: 1.1rem;
+        font-weight: 600;
+    }
+
+    .status-message-text p {
+        color: rgba(255, 255, 255, 0.8);
+        margin: 0;
+        font-size: 0.9rem;
+        line-height: 1.4;
     }
 
     @keyframes pulse {
@@ -4848,11 +4986,17 @@ function generateFixturesPage() {
                     <option value="postponed">Postponed</option>
                 </select>
             </div>
+            
+            <button class="view-toggle-btn" onclick="toggleFixturesView()" title="Toggle View">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M8 6h13M8 12h13M8 18h13M3 6h.01M3 12h.01M3 18h.01" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </button>
         </div>
         
         <hr class="horizontal-divider">
         
-        <div id="fixtures-content">
+        <div id="fixtures-content" class="${currentFixturesView === 'grid' ? 'fixtures-grid-view' : ''}">
         ${leagueData.fixturesData.map(timeSlot => `
             <h3 class="time-slot-title">
                 <svg class="time-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -6347,6 +6491,52 @@ let currentFilters = {
     status: 'all'
 };
 
+// Team badges mapping
+const teamBadges = {
+    'Gulu': 'GLU',
+    'Arua': 'ARU',
+    'Wakiso': 'WAK',
+    'Kabale': 'KBL',
+    'Mbale': 'MBL',
+    'Jinja': 'JNJ',
+    'Mbarara': 'MBA',
+    'Masaka': 'MSK'
+};
+
+// Fixtures view state
+let currentFixturesView = 'list';
+
+function toggleFixturesView() {
+    // Toggle between list and grid view
+    currentFixturesView = currentFixturesView === 'list' ? 'grid' : 'list';
+    
+    // Update toggle button
+    const toggleBtn = document.querySelector('.view-toggle-btn');
+    if (toggleBtn) {
+        toggleBtn.classList.toggle('active', currentFixturesView === 'grid');
+        
+        // Update icon based on current view
+        const svg = toggleBtn.querySelector('svg');
+        if (svg) {
+            if (currentFixturesView === 'grid') {
+                svg.innerHTML = `
+                    <rect x="3" y="3" width="7" height="7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    <rect x="14" y="3" width="7" height="7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    <rect x="14" y="14" width="7" height="7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    <rect x="3" y="14" width="7" height="7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                `;
+            } else {
+                svg.innerHTML = `
+                    <path d="M8 6h13M8 12h13M8 18h13M3 6h.01M3 12h.01M3 18h.01" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                `;
+            }
+        }
+    }
+    
+    // Update fixtures content
+    applyFilters();
+}
+
 function filterByTeam(team) {
     currentFilters.team = team;
     applyFilters();
@@ -6413,6 +6603,9 @@ function applyFilters() {
     const fixturesContent = document.getElementById('fixtures-content');
     if (!fixturesContent) return;
     
+    // Update CSS class for view type
+    fixturesContent.className = currentFixturesView === 'grid' ? 'fixtures-grid-view' : '';
+    
     let filteredFixtures = [...leagueData.fixturesData];
     
     // Filter by time
@@ -6436,15 +6629,53 @@ function applyFilters() {
     })).filter(timeSlot => timeSlot.matches.length > 0); // Remove empty time slots
     
     // Regenerate fixtures content
-    fixturesContent.innerHTML = filteredFixtures.map(timeSlot => `
-        <h3 class="time-slot-title">
-            <svg class="time-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2"/>
-                <path d="M12 6v6l4 2" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-            </svg>
-            ${timeSlot.time}
-        </h3>
-        ${timeSlot.matches.map(match => {
+    if (currentFixturesView === 'grid') {
+        fixturesContent.innerHTML = filteredFixtures.map(timeSlot => `
+            <h3 class="time-slot-title">
+                <svg class="time-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2"/>
+                    <path d="M12 6v6l4 2" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                </svg>
+                ${timeSlot.time}
+            </h3>
+            <div class="time-slot-grid">
+                ${timeSlot.matches.map(match => {
+                    const homeTeamBadge = teamBadges[match.homeTeam] || match.homeTeam.substring(0, 3).toUpperCase();
+                    const awayTeamBadge = teamBadges[match.awayTeam] || match.awayTeam.substring(0, 3).toUpperCase();
+                    const homeScore = (match.homeScore !== undefined && match.homeScore !== null) ? match.homeScore : '-';
+                    const awayScore = (match.awayScore !== undefined && match.awayScore !== null) ? match.awayScore : '-';
+                    const scoreDisplay = (match.status === 'upcoming' || match.status === 'scheduled' || homeScore === '-' || awayScore === '-') ? 'VS' : `${homeScore} - ${awayScore}`;
+                    
+                    return `
+                        <div class="fixture" onclick="viewMatchDetails('${timeSlot.time}', '${match.homeTeam}', '${match.awayTeam}')">
+                            <div class="fixture-teams">
+                                <div class="team-badge">
+                                    ${getTeamLogoElement(leagueData.teams.find(t => t.name === match.homeTeam)?.id || match.homeTeam, '16px')}
+                                    <span>${homeTeamBadge}</span>
+                                    ${(getTeamRedCards(match, match.homeTeam) || 0) > 0 ? `<span class="red-card-indicator">${getRedCardSVG()}</span>` : ''}
+                                </div>
+                                <span class="vs-separator">${scoreDisplay}</span>
+                                <div class="team-badge">
+                                    ${getTeamLogoElement(leagueData.teams.find(t => t.name === match.awayTeam)?.id || match.awayTeam, '16px')}
+                                    <span>${awayTeamBadge}</span>
+                                    ${(getTeamRedCards(match, match.awayTeam) || 0) > 0 ? `<span class="red-card-indicator">${getRedCardSVG()}</span>` : ''}
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                }).join('')}
+            </div>
+        `).join('');
+    } else {
+        fixturesContent.innerHTML = filteredFixtures.map(timeSlot => `
+            <h3 class="time-slot-title">
+                <svg class="time-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2"/>
+                    <path d="M12 6v6l4 2" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                </svg>
+                ${timeSlot.time}
+            </h3>
+            ${timeSlot.matches.map(match => {
             // Determine if we should add result-based styling
             let resultClass = '';
             if (currentFilters.team !== 'all' && match.status === 'completed') {
@@ -6487,6 +6718,7 @@ function applyFilters() {
         `;
         }).join('')}
     `).join('');
+    }
 }
 
 // Function to view match details
@@ -6800,6 +7032,26 @@ function generateMatchDetailsPage(match, time) {
                         `<div class="penalties-display">Penalties: ${match.penalties.home}-${match.penalties.away}</div>` : ''}
                 </div>
                 <p style="color: rgba(255, 255, 255, 0.7); margin: 10px 0;">${time}${match.venue ? ` • ${match.venue}` : ''}</p>
+                
+                ${(match.status === 'scheduled' || match.status === 'upcoming' || match.status === 'pending' || match.status === 'postponed') ? `
+                <div class="match-status-message">
+                    <div class="status-message-content">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2"/>
+                            <path d="M12 6v6l4 2" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                        </svg>
+                        <div class="status-message-text">
+                            <h4>${match.status === 'postponed' ? 'Match Postponed' : 
+                                  match.status === 'scheduled' ? 'Match Scheduled' :
+                                  match.status === 'upcoming' ? 'Upcoming Match' : 'Match Pending'}</h4>
+                            <p>${match.status === 'postponed' ? 'This match has been postponed. Please check back later for updates.' :
+                               match.status === 'scheduled' ? 'This match is scheduled to take place. Lineup and analysis will be available closer to kickoff.' :
+                               match.status === 'upcoming' ? 'This match is coming up soon. Stay tuned for live updates and detailed analysis.' :
+                               'This match is currently pending. More information will be available soon.'}</p>
+                        </div>
+                    </div>
+                </div>
+                ` : ''}
             </div>
             
             <div class="match-tabs">
