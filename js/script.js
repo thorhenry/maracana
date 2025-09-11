@@ -1764,6 +1764,59 @@ const styles = `
         font-size: 0.8rem;
     }
 
+    .knockout-pending {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 400px;
+        padding: 40px 20px;
+    }
+
+    .knockout-pending-content {
+        text-align: center;
+        max-width: 500px;
+        background: linear-gradient(135deg, rgba(0, 255, 133, 0.05) 0%, rgba(55, 0, 60, 0.1) 100%);
+        border: 1px solid rgba(0, 255, 133, 0.2);
+        border-radius: 20px;
+        padding: 40px 30px;
+    }
+
+    .knockout-pending-icon {
+        margin-bottom: 20px;
+        opacity: 0.7;
+    }
+
+    .knockout-pending-title {
+        color: #00ff85;
+        font-size: 1.8rem;
+        font-weight: 700;
+        margin-bottom: 15px;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+    }
+
+    .knockout-pending-message {
+        color: rgba(255, 255, 255, 0.8);
+        font-size: 1.1rem;
+        line-height: 1.6;
+        margin-bottom: 25px;
+    }
+
+    .knockout-pending-details {
+        text-align: left;
+        background: rgba(0, 0, 0, 0.2);
+        border-radius: 10px;
+        padding: 20px;
+        border-left: 3px solid #00ff85;
+    }
+
+    .knockout-pending-details p {
+        color: #00ff85;
+        font-weight: 600;
+        margin-bottom: 10px;
+        font-size: 1rem;
+    }
+
     @media (max-width: 768px) {
         .stats-grid {
             grid-template-columns: repeat(4, 1fr);
@@ -1789,6 +1842,27 @@ const styles = `
         }
 
         .stats-pending-details {
+            padding: 15px;
+        }
+
+        .knockout-pending {
+            min-height: 300px;
+            padding: 20px 15px;
+        }
+
+        .knockout-pending-content {
+            padding: 30px 20px;
+        }
+
+        .knockout-pending-title {
+            font-size: 1.5rem;
+        }
+
+        .knockout-pending-message {
+            font-size: 1rem;
+        }
+
+        .knockout-pending-details {
             padding: 15px;
         }
 
@@ -4501,8 +4575,8 @@ const leagueData = {
     knockout: {
         quarterFinals: [
             { 
-                homeTeam: "Mbarara", 
-                awayTeam: "Kabale", 
+                homeTeam: "TBD", 
+                awayTeam: "TBD", 
                 homeScore: 3, 
                 awayScore: 3, 
                 status: "scheduled",
@@ -4534,13 +4608,13 @@ const leagueData = {
                     ]
                 }
             },
-            { homeTeam: "Gulu", awayTeam: "Jinja", homeScore: 2, awayScore: 0, status: "scheduled" },
-            { homeTeam: "Arua", awayTeam: "Wakiso", homeScore: 1, awayScore: 1, status: "scheduled" },
-            { homeTeam: "Masaka", awayTeam: "Mbale", homeScore: 2, awayScore: 1, status: "scheduled" }
+            { homeTeam: "TBD", awayTeam: "TBD", homeScore: 2, awayScore: 0, status: "scheduled" },
+            { homeTeam: "TBD", awayTeam: "TBD", homeScore: 1, awayScore: 1, status: "scheduled" },
+            { homeTeam: "TBD", awayTeam: "TBD", homeScore: 2, awayScore: 1, status: "scheduled" }
         ],
         semiFinals: [
-            { homeTeam: "Mbarara", awayTeam: "Gulu", homeScore: null, awayScore: null, status: "scheduled" },
-            { homeTeam: "Arua", awayTeam: "Masaka", homeScore: null, awayScore: null, status: "scheduled" }
+            { homeTeam: "TBD", awayTeam: "TBD", homeScore: null, awayScore: null, status: "scheduled" },
+            { homeTeam: "TBD", awayTeam: "TBD", homeScore: null, awayScore: null, status: "scheduled" }
         ],
         thirdPlace: [
             { homeTeam: "TBD", awayTeam: "TBD", homeScore: null, awayScore: null, status: "scheduled" }
@@ -5575,6 +5649,31 @@ function generateTeamsPage() {
 }
 
 function generateKnockoutPage() {
+    // Check if all group stage matches are completed
+    if (!areAllGroupStageMatchesCompleted()) {
+        return `
+            <h2 class="page-title">Knockout Stage</h2>
+            
+            <div class="knockout-pending">
+                <div class="knockout-pending-content">
+                    <div class="knockout-pending-icon">
+                        <svg width="80" height="80" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="12" cy="12" r="10" stroke="rgba(0, 255, 133, 0.3)" stroke-width="2"/>
+                            <path d="M12 6v6l4 2" stroke="rgba(0, 255, 133, 0.5)" stroke-width="2" stroke-linecap="round"/>
+                        </svg>
+                    </div>
+                    <h3 class="knockout-pending-title">Knockout Stage Coming Soon</h3>
+                    <p class="knockout-pending-message">
+                        The knockout stage will begin once all group stage matches are completed.
+                    </p>
+                    <div class="knockout-pending-details">
+                        <p>Complete all fixtures to unlock the knockout bracket and see which teams advance to the next round.</p>
+                    </div>
+                </div>
+            </div>
+        `;
+    }
+    
     return `
         <h2 class="page-title">Knockout Stage</h2>
         
@@ -6111,6 +6210,19 @@ function getTeamLiveScore(teamName) {
     }
     
     return null;
+}
+
+function areAllGroupStageMatchesCompleted() {
+    // Check all fixtures data for group stage matches
+    for (let timeSlot of leagueData.fixturesData) {
+        for (let match of timeSlot.matches) {
+            // If any match is not completed, return false
+            if (match.status !== 'completed') {
+                return false;
+            }
+        }
+    }
+    return true;
 }
 
 function getLatestResults(limit = 4) {
