@@ -714,10 +714,7 @@ const styles = `
         letter-spacing: 0.5px;
     }
 
-    .player-item {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
+    .lineup-section .player-item {
         padding: 6px 10px;
         background: rgba(0, 0, 0, 0.15);
         border-radius: 6px;
@@ -739,42 +736,39 @@ const styles = `
         border-left-color: #ff4757;
     }
 
-    .player-info {
+    .lineup-section .player-info {
         display: flex;
         align-items: center;
-        gap: 10px;
+        gap: 2px;
     }
 
-    .player-number {
-        background: rgba(0, 255, 133, 0.2);
+    .lineup-section .player-item-wrap .player-info {
+        flex-wrap: wrap;
+    }
+
+    .lineup-section .player-number {
         color: #00ff85;
-        width: 20px;
-        height: 20px;
-        border-radius: 50%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 0.8rem;
-        font-weight: 600;
+        font-weight: 500;
+        min-width: 20px;
     }
 
-    .player-name {
+    .lineup-section .player-name {
         color: #fff;
         font-weight: 500;
-        font-size: 0.8rem;
         line-height: 0.7;
     }
 
-    .player-stats {
-        display: flex;
-        gap: 2px;
-        align-items: center;
+    .lineup-section .player-stats {
+        display: inline-flex !important;
+        gap: 2px !important;
+        align-items: center !important;
+        margin-left: 2px !important;
     }
 
     .stat-badge {
         padding: 1px 3px;
         border-radius: 2px;
-        font-size: 0.5rem;
+        font-size: 0.4rem;
         font-weight: 600;
         text-transform: uppercase;
     }
@@ -786,16 +780,16 @@ const styles = `
     }
 
     .card-icon {
-        width: 8px;
-        height: 8px;
+        width: 0.4rem;
+        height: 0.4rem;
         margin-left: 3px;
         display: inline-block;
         vertical-align: middle;
     }
 
     .captain-icon {
-        width: 0.7rem;
-        height: 0.7rem;
+        width: 0.4rem;
+        height: 0.4rem;
         margin-left: 3px;
         display: inline-block;
         vertical-align: middle;
@@ -803,8 +797,8 @@ const styles = `
     }
 
     .ball-icon {
-        width: 0.7rem;
-        height: 0.7rem;
+        width: 0.4rem;
+        height: 0.4rem;
         margin-left: 3px;
         display: inline-block;
         vertical-align: middle;
@@ -1894,14 +1888,14 @@ const styles = `
         background: #00ff85;
     }
 
-    .player-item {
+    .squad-grid .player-item {
         padding: 8px 0;
         display: flex;
         align-items: center;
         gap: 15px;
     }
 
-    .player-number {
+    .squad-grid .player-number {
         color: #00ff85;
         width: 25px;
         font-weight: bold;
@@ -1923,7 +1917,7 @@ const styles = `
         width: 90px;
     }
 
-    .player-stats {
+    .squad-grid .player-stats {
         color: #00ff85;
         font-size: 0.8rem;
         font-weight: 600;
@@ -7196,14 +7190,17 @@ function generatePlayerItem(player, teamName) {
         substitutionArrow = `<span class="substitution-arrow down">↓</span>`;
     }
     
+    const hasManyEvents = stats.length >= 3;
+    const wrapClass = hasManyEvents ? ' player-item-wrap' : '';
+    
     return `
-        <div class="player-item${itemClass}">
+        <div class="player-item${itemClass}${wrapClass}">
             <div class="player-info">
-                <div class="player-number">${playerData.number}</div>
-                <div class="player-name">${playerData.name}${player.captain ? getCaptainSVG() : ''}${substitutionArrow}</div>
-            </div>
-            <div class="player-stats">
-                ${stats.join('')}
+                <div class="player-number" style="font-size: 0.55rem;">${playerData.number}</div>
+                <div class="player-name" style="font-size: 0.55rem;">${playerData.name}${player.captain ? getCaptainSVG() : ''}${substitutionArrow}</div>
+                <span class="player-stats">
+                    ${stats.join('')}
+                </span>
             </div>
         </div>
     `;
