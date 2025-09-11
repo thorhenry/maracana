@@ -1,4 +1,4 @@
-// CSS Styles embedded in JavaScript
+// CSS Styles embedded in JavaScript - Updated
 const styles = `
     * {
         margin: 0;
@@ -287,49 +287,6 @@ const styles = `
         border-bottom: 3px solid #00ff85;
     }
 
-    .search-btn {
-        background: transparent;
-        border: none;
-        color: rgba(255, 255, 255, 0.8);
-        padding: 10px;
-        border-radius: 8px;
-        cursor: pointer;
-        transition: all 0.3s ease;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
-
-    .search-btn:hover {
-        background: rgba(0, 255, 133, 0.1);
-        color: #00ff85;
-        transform: scale(1.05);
-    }
-
-    .search-btn:hover svg {
-        transform: scale(1.1);
-        filter: brightness(1.2);
-    }
-
-    .mobile-search-btn {
-        background: transparent;
-        border: none;
-        color: rgba(255, 255, 255, 0.8);
-        padding: 15px 20px;
-        cursor: pointer;
-        transition: all 0.3s ease;
-        display: flex;
-        align-items: center;
-        gap: 10px;
-        width: 100%;
-        text-align: left;
-        font-size: 1rem;
-    }
-
-    .mobile-search-btn:hover {
-        background: rgba(0, 255, 133, 0.1);
-        color: #00ff85;
-    }
 
     #content {
         background: transparent;
@@ -358,6 +315,54 @@ const styles = `
         text-shadow: 0 0 10px rgba(0, 255, 133, 0.3);
         position: relative;
         white-space: nowrap;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 15px;
+    }
+
+    .page-title .live-indicator {
+        margin-left: 15px;
+    }
+
+    .team-name-with-status {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+    }
+
+    .live-status-dot {
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        animation: pulse 2s infinite;
+        flex-shrink: 0;
+    }
+
+    .live-status-dot.win {
+        background-color: #00ff85;
+        box-shadow: 0 0 10px rgba(0, 255, 133, 0.5);
+    }
+
+    .live-status-dot.draw {
+        background-color: #ffa502;
+        box-shadow: 0 0 10px rgba(255, 165, 2, 0.5);
+    }
+
+    .live-status-dot.loss {
+        background-color: #ff4757;
+        box-shadow: 0 0 10px rgba(255, 71, 87, 0.5);
+    }
+
+    .live-score-display {
+        font-size: 12px;
+        color: #ff4757;
+        font-weight: bold;
+        margin-left: 8px;
+        background: rgba(255, 71, 87, 0.1);
+        padding: 2px 6px;
+        border-radius: 4px;
+        border: 1px solid rgba(255, 71, 87, 0.3);
     }
 
     .page-title::after {
@@ -1244,6 +1249,20 @@ const styles = `
         height: 18px;
     }
 
+    .form-pending {
+        color: #ff4757;
+        background: rgba(255, 71, 87, 0.2);
+        padding: 2px;
+        border-radius: 50%;
+        margin: 0 1px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 18px;
+        height: 18px;
+        font-weight: bold;
+    }
+
     .form-none {
         color: #666;
         background: rgba(102, 102, 102, 0.2);
@@ -1419,38 +1438,83 @@ const styles = `
     }
 
     .match-status-message {
-        background: rgba(0, 255, 133, 0.1);
+        background: linear-gradient(135deg, rgba(0, 255, 133, 0.05) 0%, rgba(55, 0, 60, 0.1) 100%);
         border: 1px solid rgba(0, 255, 133, 0.3);
-        border-radius: 12px;
-        padding: 20px;
-        margin: 20px 0;
+        border-radius: 20px;
+        padding: 40px 30px;
+        margin: 30px 0;
         text-align: center;
     }
 
     .status-message-content {
         display: flex;
+        flex-direction: column;
         align-items: center;
         justify-content: center;
-        gap: 15px;
+        gap: 20px;
     }
 
     .status-message-content svg {
         color: #00ff85;
         flex-shrink: 0;
+        opacity: 0.7;
+    }
+
+    .status-message-text {
+        max-width: 500px;
     }
 
     .status-message-text h4 {
         color: #00ff85;
-        margin: 0 0 8px 0;
-        font-size: 1.1rem;
-        font-weight: 600;
+        margin: 0 0 15px 0;
+        font-size: 1.5rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 1px;
     }
 
     .status-message-text p {
         color: rgba(255, 255, 255, 0.8);
+        margin: 0 0 20px 0;
+        font-size: 1.1rem;
+        line-height: 1.6;
+    }
+
+    .status-message-details {
+        background: rgba(0, 0, 0, 0.2);
+        border-radius: 10px;
+        padding: 20px;
+        border-left: 3px solid #00ff85;
+        text-align: left;
+    }
+
+    .status-message-details p {
+        color: #00ff85;
+        font-weight: 600;
+        margin-bottom: 10px;
+        font-size: 1rem;
+    }
+
+    .status-message-details ul {
+        list-style: none;
+        padding: 0;
         margin: 0;
-        font-size: 0.9rem;
-        line-height: 1.4;
+    }
+
+    .status-message-details li {
+        color: rgba(255, 255, 255, 0.7);
+        padding: 5px 0;
+        padding-left: 20px;
+        position: relative;
+        font-size: 0.95rem;
+    }
+
+    .status-message-details li:before {
+        content: "▶";
+        color: #00ff85;
+        position: absolute;
+        left: 0;
+        font-size: 0.8rem;
     }
 
     @keyframes pulse {
@@ -1625,11 +1689,134 @@ const styles = `
         margin: 20px 0;
     }
 
+    .stats-pending {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 400px;
+        padding: 40px 20px;
+    }
+
+    .stats-pending-content {
+        text-align: center;
+        max-width: 500px;
+        background: linear-gradient(135deg, rgba(0, 255, 133, 0.05) 0%, rgba(55, 0, 60, 0.1) 100%);
+        border: 1px solid rgba(0, 255, 133, 0.2);
+        border-radius: 20px;
+        padding: 40px 30px;
+    }
+
+    .stats-pending-icon {
+        margin-bottom: 20px;
+        opacity: 0.7;
+    }
+
+    .stats-pending-title {
+        color: #00ff85;
+        font-size: 1.8rem;
+        font-weight: 700;
+        margin-bottom: 15px;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+    }
+
+    .stats-pending-message {
+        color: rgba(255, 255, 255, 0.8);
+        font-size: 1.1rem;
+        line-height: 1.6;
+        margin-bottom: 25px;
+    }
+
+    .stats-pending-details {
+        text-align: left;
+        background: rgba(0, 0, 0, 0.2);
+        border-radius: 10px;
+        padding: 20px;
+        border-left: 3px solid #00ff85;
+    }
+
+    .stats-pending-details p {
+        color: #00ff85;
+        font-weight: 600;
+        margin-bottom: 10px;
+        font-size: 1rem;
+    }
+
+    .stats-pending-details ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+
+    .stats-pending-details li {
+        color: rgba(255, 255, 255, 0.7);
+        padding: 5px 0;
+        padding-left: 20px;
+        position: relative;
+        font-size: 0.95rem;
+    }
+
+    .stats-pending-details li:before {
+        content: "▶";
+        color: #00ff85;
+        position: absolute;
+        left: 0;
+        font-size: 0.8rem;
+    }
+
     @media (max-width: 768px) {
         .stats-grid {
             grid-template-columns: repeat(4, 1fr);
             gap: 8px;
             margin: 20px 0;
+        }
+
+        .stats-pending {
+            min-height: 300px;
+            padding: 20px 15px;
+        }
+
+        .stats-pending-content {
+            padding: 30px 20px;
+        }
+
+        .stats-pending-title {
+            font-size: 1.5rem;
+        }
+
+        .stats-pending-message {
+            font-size: 1rem;
+        }
+
+        .stats-pending-details {
+            padding: 15px;
+        }
+
+        .match-status-message {
+            padding: 30px 20px;
+            margin: 20px 0;
+        }
+
+        .status-message-content {
+            gap: 15px;
+        }
+
+        .status-message-content svg {
+            width: 50px;
+            height: 50px;
+        }
+
+        .status-message-text h4 {
+            font-size: 1.3rem;
+        }
+
+        .status-message-text p {
+            font-size: 1rem;
+        }
+
+        .status-message-details {
+            padding: 15px;
+        }
         }
         
         .stat-card {
@@ -1709,6 +1896,13 @@ const styles = `
         font-weight: 600;
     }
 
+    .team-basic-info .team-name-with-status {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        flex-wrap: wrap;
+    }
+
     .team-record {
         display: flex;
         gap: 12px;
@@ -1722,6 +1916,12 @@ const styles = `
 
     .team-record .record {
         color: rgba(255, 255, 255, 0.7);
+    }
+
+    .team-record .record.live-record {
+        color: #ff4757;
+        font-weight: bold;
+        text-transform: uppercase;
     }
 
     .team-record .goals {
@@ -2920,106 +3120,74 @@ const styles = `
         width: 100%;
     }
 
-    .overall-search-section {
-        padding: 30px 20px;
-        background: linear-gradient(135deg, rgba(0, 255, 133, 0.05) 0%, rgba(55, 0, 60, 0.1) 100%);
-        border-bottom: 1px solid rgba(0, 255, 133, 0.2);
-    }
 
-    .search-container {
-        position: relative;
-        max-width: 600px;
-        margin: 0 auto;
-    }
 
-    .overall-search-input {
-        width: 100%;
-        padding: 15px 50px 15px 20px;
-        font-size: 1.1rem;
-        border: 2px solid rgba(0, 255, 133, 0.3);
-        border-radius: 25px;
-        background: rgba(0, 0, 0, 0.3);
-        color: #ffffff;
-        outline: none;
-        transition: all 0.3s ease;
-    }
-
-    .overall-search-input:focus {
-        border-color: #00ff85;
-        box-shadow: 0 0 20px rgba(0, 255, 133, 0.3);
-        background: rgba(0, 0, 0, 0.5);
-    }
-
-    .overall-search-input::placeholder {
-        color: rgba(255, 255, 255, 0.6);
-    }
-
-    .search-container .search-icon {
-        position: absolute;
-        right: 15px;
-        top: 50%;
-        transform: translateY(-50%);
-        color: #00ff85;
-        font-size: 1.2rem;
-        pointer-events: none;
-    }
-
-    .search-results {
-        max-width: 600px;
-        margin: 20px auto 0;
-        display: none;
-    }
-
-    .search-results.show {
-        display: block;
-    }
-
-    .search-result-item {
-        padding: 15px;
-        margin-bottom: 10px;
-        background: rgba(0, 0, 0, 0.2);
-        border-radius: 10px;
-        border-left: 3px solid #00ff85;
-        cursor: pointer;
-        transition: all 0.3s ease;
-    }
-
-    .search-result-item:hover {
-        background: rgba(0, 255, 133, 0.1);
-        transform: translateX(5px);
-    }
-
-    .search-result-type {
-        font-size: 0.8rem;
-        color: #00ff85;
-        text-transform: uppercase;
-        font-weight: 600;
-        margin-bottom: 5px;
-    }
-
-    .search-result-title {
-        font-size: 1rem;
-        color: #ffffff;
-        font-weight: 500;
-        margin-bottom: 3px;
-    }
-
-    .search-result-details {
-        font-size: 0.9rem;
-        color: rgba(255, 255, 255, 0.7);
-    }
-
-    .search-page-container {
-        max-width: 800px;
-        margin: 0 auto;
-        padding: 40px 20px;
-    }
 
     .countdown-section {
         text-align: center;
         padding: 40px 20px;
         background: linear-gradient(135deg, rgba(0, 255, 133, 0.1) 0%, rgba(55, 0, 60, 0.3) 100%);
         border-bottom: 2px solid #00ff85;
+    }
+
+    .live-matches-section {
+        background: rgba(0, 0, 0, 0.2);
+        border-bottom: 2px solid #ff4757;
+        padding: 30px 20px;
+        margin: 0;
+    }
+
+    .live-matches-section .section-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 20px;
+    }
+
+    .live-matches-section .section-header h3 {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        color: #ff4757;
+        font-size: 1.5rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        margin: 0;
+    }
+
+    .live-icon {
+        width: 24px;
+        height: 24px;
+        color: #ff4757;
+        animation: pulse 2s infinite;
+    }
+
+    .live-indicator {
+        background: #ff4757;
+        color: white;
+        padding: 4px 8px;
+        border-radius: 12px;
+        font-size: 0.7rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        animation: pulse 2s infinite;
+    }
+
+    .live-matches-content {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    .live-matches-section .fixture {
+        border-color: rgba(255, 71, 87, 0.4);
+    }
+
+    .live-matches-section .fixture:hover {
+        border-color: rgba(255, 71, 87, 0.6);
+        box-shadow: 0 4px 20px rgba(255, 71, 87, 0.15);
     }
 
 
@@ -3081,6 +3249,14 @@ const styles = `
         
         .mobile-break {
             display: inline;
+        }
+
+        .live-matches-section {
+            padding: 20px 15px;
+        }
+
+        .live-matches-section .section-header h3 {
+            font-size: 1.3rem;
         }
     }
 
@@ -3237,18 +3413,24 @@ const styles = `
         margin-bottom: 5px;
     }
 
+    .match-teams .team-name-container {
+        display: flex;
+        align-items: center;
+        gap: 5px;
+    }
+
     .match-teams .team-name {
         font-weight: 500;
         color: #ffffff;
         font-size: 0.9rem;
     }
 
-    .match-teams .team-name:first-child {
-        text-align: right;
+    .match-teams .team-name-container:first-child {
+        justify-content: flex-end;
     }
 
-    .match-teams .team-name:last-child {
-        text-align: left;
+    .match-teams .team-name-container:last-child {
+        justify-content: flex-start;
     }
 
     .match-teams .vs {
@@ -3561,6 +3743,29 @@ const styles = `
             margin: 25px 0 20px 0;
             letter-spacing: 1px;
         }
+
+        .page-title .live-indicator {
+            margin-left: 10px;
+        }
+
+        .live-status-dot {
+            width: 6px;
+            height: 6px;
+        }
+
+        .team-name-with-status {
+            gap: 6px;
+        }
+
+        .live-score-display {
+            font-size: 10px;
+            margin-left: 6px;
+            padding: 1px 4px;
+        }
+
+        .team-basic-info .team-name-with-status {
+            gap: 8px;
+        }
         
         .fixture {
             flex-direction: column;
@@ -3616,17 +3821,24 @@ function getTeamForm(teamName) {
         const timeSlot = leagueData.fixturesData[i];
         for (let match of timeSlot.matches) {
             if ((match.homeTeam === teamName || match.awayTeam === teamName) && 
-                match.status === 'completed' && matchCount < 5) {
-                const isHome = match.homeTeam === teamName;
-                const teamScore = isHome ? match.homeScore : match.awayScore;
-                const opponentScore = isHome ? match.awayScore : match.homeScore;
+                (match.status === 'completed' || match.status === 'live') && matchCount < 5) {
                 
-                if (teamScore > opponentScore) {
-                    form.push('<span class="form-win"><svg class="form-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M9 12l2 2 4-4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>');
-                } else if (teamScore < opponentScore) {
-                    form.push('<span class="form-loss"><svg class="form-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M18 6L6 18M6 6l12 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>');
-                } else {
-                    form.push('<span class="form-draw"><svg class="form-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M5 12h14" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>');
+                if (match.status === 'live') {
+                    // Show "-" for live matches (pending)
+                    form.push('<span class="form-pending">-</span>');
+                } else if (match.status === 'completed') {
+                    // Show result for completed matches
+                    const isHome = match.homeTeam === teamName;
+                    const teamScore = isHome ? match.homeScore : match.awayScore;
+                    const opponentScore = isHome ? match.awayScore : match.homeScore;
+                    
+                    if (teamScore > opponentScore) {
+                        form.push('<span class="form-win"><svg class="form-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M9 12l2 2 4-4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>');
+                    } else if (teamScore < opponentScore) {
+                        form.push('<span class="form-loss"><svg class="form-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M18 6L6 18M6 6l12 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>');
+                    } else {
+                        form.push('<span class="form-draw"><svg class="form-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M5 12h14" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>');
+                    }
                 }
                 matchCount++;
             }
@@ -3666,10 +3878,10 @@ function calculateStandings() {
         };
     });
     
-    // Process all completed matches
+    // Process all completed and live matches
     leagueData.fixturesData.forEach(timeSlot => {
         timeSlot.matches.forEach(match => {
-            if (match.status === 'completed' && match.homeScore !== null && match.awayScore !== null) {
+            if ((match.status === 'completed' || match.status === 'live') && match.homeScore !== null && match.awayScore !== null) {
                 const homeTeam = match.homeTeam;
                 const awayTeam = match.awayTeam;
                 
@@ -3966,7 +4178,7 @@ const leagueData = {
                     homeTeam: 'Arua',
                     awayTeam: 'Mbarara',
                     venue: 'Maracanã Stadium',
-                    status: 'completed',
+                    status: 'live',
                     homeScore: 4,
                     awayScore: 0,
                     playerOfTheMatch: "arua-henry",
@@ -4019,7 +4231,7 @@ const leagueData = {
                     homeTeam: 'Masaka',
                     awayTeam: 'Jinja',
                     venue: 'Maracanã Stadium',
-                    status: 'live',
+                    status: 'upcoming',
                     homeScore: 1,
                     awayScore: 0
                 },
@@ -4293,7 +4505,7 @@ const leagueData = {
                 awayTeam: "Kabale", 
                 homeScore: 3, 
                 awayScore: 3, 
-                status: "completed",
+                status: "scheduled",
                 penalties: { home: 4, away: 5 },
                 playerOfTheMatch: "mbarara-davie",
                 home: {
@@ -4322,19 +4534,19 @@ const leagueData = {
                     ]
                 }
             },
-            { homeTeam: "Gulu", awayTeam: "Jinja", homeScore: 2, awayScore: 0, status: "live" },
+            { homeTeam: "Gulu", awayTeam: "Jinja", homeScore: 2, awayScore: 0, status: "scheduled" },
             { homeTeam: "Arua", awayTeam: "Wakiso", homeScore: 1, awayScore: 1, status: "scheduled" },
             { homeTeam: "Masaka", awayTeam: "Mbale", homeScore: 2, awayScore: 1, status: "scheduled" }
         ],
         semiFinals: [
-            { homeTeam: "Mbarara", awayTeam: "Gulu", homeScore: null, awayScore: null, status: "upcoming" },
-            { homeTeam: "Arua", awayTeam: "Masaka", homeScore: null, awayScore: null, status: "upcoming" }
+            { homeTeam: "Mbarara", awayTeam: "Gulu", homeScore: null, awayScore: null, status: "scheduled" },
+            { homeTeam: "Arua", awayTeam: "Masaka", homeScore: null, awayScore: null, status: "scheduled" }
         ],
         thirdPlace: [
-            { homeTeam: "TBD", awayTeam: "TBD", homeScore: null, awayScore: null, status: "upcoming" }
+            { homeTeam: "TBD", awayTeam: "TBD", homeScore: null, awayScore: null, status: "scheduled" }
         ],
         final: [
-            { homeTeam: "TBD", awayTeam: "TBD", homeScore: null, awayScore: null, status: "upcoming" }
+            { homeTeam: "TBD", awayTeam: "TBD", homeScore: null, awayScore: null, status: "scheduled" }
         ]
     },
     stats: {
@@ -4478,122 +4690,8 @@ async function loadMobileSponsors() {
     }
 }
 
-// Search page functions
-function openSearchPage() {
-    loadPage('search');
-    // Focus on search input after page loads
-    setTimeout(() => {
-        const searchInput = document.getElementById('search');
-        if (searchInput) {
-            searchInput.focus();
-        }
-    }, 100);
-}
 
-function generateSearchPage() {
-    return `
-        <h2 class="page-title">Search</h2>
-        
-        <div class="search-page-container">
-            <div class="search-container">
-                <input type="text" id="search" class="overall-search-input" placeholder="Search teams, players, matches, stats..." onkeyup="performOverallSearch(this.value)">
-                <div class="search-icon">⌕</div>
-            </div>
-            <div class="search-results" id="searchResults"></div>
-        </div>
-    `;
-}
 
-// Overall search function
-function performOverallSearch(query) {
-    const searchResults = document.getElementById('searchResults');
-    
-    if (!query || query.length < 2) {
-        searchResults.classList.remove('show');
-        return;
-    }
-    
-    const results = [];
-    const searchTerm = query.toLowerCase();
-    
-    // Search teams
-    leagueData.teams.forEach(team => {
-        if (team.name.toLowerCase().includes(searchTerm)) {
-            results.push({
-                type: 'Team',
-                title: team.name,
-                details: `View team details and squad`,
-                action: () => loadPage('teams')
-            });
-        }
-        
-        // Search players in team squad
-        if (team.squad) {
-            team.squad.forEach(player => {
-                if (player.name.toLowerCase().includes(searchTerm)) {
-                    results.push({
-                        type: 'Player',
-                        title: player.name,
-                        details: `${player.position} • ${team.name}`,
-                        action: () => loadPage('teams')
-                    });
-                }
-            });
-        }
-    });
-    
-    // Search fixtures
-    leagueData.fixturesData.forEach(match => {
-        if (match.homeTeam.toLowerCase().includes(searchTerm) || 
-            match.awayTeam.toLowerCase().includes(searchTerm)) {
-            results.push({
-                type: 'Match',
-                title: `${match.homeTeam} vs ${match.awayTeam}`,
-                details: `${match.time} • ${match.status}`,
-                action: () => loadPage('fixtures')
-            });
-        }
-    });
-    
-    // Search knockout matches
-    Object.values(leagueData.knockout).forEach(stage => {
-        if (Array.isArray(stage)) {
-            stage.forEach(match => {
-                if (match.homeTeam && match.awayTeam && 
-                    (match.homeTeam.toLowerCase().includes(searchTerm) || 
-                     match.awayTeam.toLowerCase().includes(searchTerm))) {
-                    results.push({
-                        type: 'Knockout Match',
-                        title: `${match.homeTeam} vs ${match.awayTeam}`,
-                        details: `${match.status}`,
-                        action: () => loadPage('knockout')
-                    });
-                }
-            });
-        }
-    });
-    
-    // Display results
-    if (results.length > 0) {
-        searchResults.innerHTML = results.slice(0, 8).map(result => `
-            <div class="search-result-item" onclick="${result.action.toString()}">
-                <div class="search-result-type">${result.type}</div>
-                <div class="search-result-title">${result.title}</div>
-                <div class="search-result-details">${result.details}</div>
-            </div>
-        `).join('');
-        searchResults.classList.add('show');
-    } else {
-        searchResults.innerHTML = `
-            <div class="search-result-item">
-                <div class="search-result-type">No Results</div>
-                <div class="search-result-title">No matches found for "${query}"</div>
-                <div class="search-result-details">Try searching for team names, player names, or match fixtures</div>
-            </div>
-        `;
-        searchResults.classList.add('show');
-    }
-}
 
 // Countdown timer function
 function startCountdown() {
@@ -4678,9 +4776,6 @@ async function loadPage(page) {
         case 'awards':
             content.innerHTML = generateAwardsPage();
             break;
-        case 'search':
-            content.innerHTML = generateSearchPage();
-            break;
         default:
             content.innerHTML = '<div class="loading">Page not found</div>';
     }
@@ -4715,6 +4810,7 @@ async function getSponsorLogos() {
 }
 
 async function generateHomePage() {
+    const liveMatches = getLiveMatches(4);
     const upcomingMatches = getUpcomingMatches(4);
     const latestResults = getLatestResults(4);
     const topTeams = calculateStandings().slice(0, 4);
@@ -4748,6 +4844,53 @@ async function generateHomePage() {
                     </div>
                 </div>
             </div>
+            
+            ${liveMatches.length > 0 ? `
+            <div class="live-matches-section">
+                <div class="section-header">
+                    <h3>
+                        <svg class="live-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2"/>
+                            <path d="M12 6v6l4 2" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                        </svg>
+                        Live Matches
+                        <span class="live-indicator">LIVE</span>
+                    </h3>
+                    <a href="#" class="view-more-link" onclick="loadPage('fixtures')">View all fixtures</a>
+                </div>
+                <div class="live-matches-content">
+                    ${liveMatches.map(match => `
+                        <section class="fixture" onclick="viewMatchDetails('${match.source === 'knockout' ? 'knockout' : match.time}', '${match.homeTeam}', '${match.awayTeam}')">
+                            <div class="teams">
+                                <div class="team-match">
+                                    <div class="team-name-container">
+                                        <span>${match.homeTeam}</span>
+                                        ${(match.status === 'live' || match.status === 'completed') && getTeamRedCards(match, match.homeTeam) > 0 ? `<span class="red-card-indicator">${getRedCardSVG()}</span>` : ''}
+                                    </div>
+                                    ${getTeamLogoElement(leagueData.teams.find(t => t.name === match.homeTeam)?.id || '', '40px')}
+                                </div>
+                                <div class="score-container">
+                                    <span class="vs-score">${match.homeScore} - ${match.awayScore}</span>
+                                    <div class="match-status live">LIVE</div>
+                                </div>
+                                <div class="team-match">
+                                    ${getTeamLogoElement(leagueData.teams.find(t => t.name === match.awayTeam)?.id || '', '40px')}
+                                    <div class="team-name-container">
+                                        <span>${match.awayTeam}</span>
+                                        ${(match.status === 'live' || match.status === 'completed') && getTeamRedCards(match, match.awayTeam) > 0 ? `<span class="red-card-indicator">${getRedCardSVG()}</span>` : ''}
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="fixture-details">
+                                <span class="match-status live">LIVE</span>
+                                ${match.venue ? `<span class="match-venue">${match.venue}</span>` : ''}
+                            </div>
+                        </section>
+                    `).join('')}
+                </div>
+            </div>
+            ` : ''}
+            
             <div class="home-preview-sections">
                 <div class="preview-section">
                     <div class="section-header">
@@ -4776,9 +4919,15 @@ async function generateHomePage() {
                                 ${latestResults.length > 0 ? latestResults.map(match => `
                                     <div class="match-item" onclick="viewMatchDetails('${match.time}', '${match.homeTeam}', '${match.awayTeam}')">
                                         <div class="match-teams">
+                                            <div class="team-name-container">
                                             <span class="team-name">${match.homeTeam}</span>
+                                                ${(match.status === 'live' || match.status === 'completed') && getTeamRedCards(match, match.homeTeam) > 0 ? `<span class="red-card-indicator">${getRedCardSVG()}</span>` : ''}
+                                            </div>
                                             <span class="score">${match.homeScore} - ${match.awayScore}</span>
+                                            <div class="team-name-container">
                                             <span class="team-name">${match.awayTeam}</span>
+                                                ${(match.status === 'live' || match.status === 'completed') && getTeamRedCards(match, match.awayTeam) > 0 ? `<span class="red-card-indicator">${getRedCardSVG()}</span>` : ''}
+                                            </div>
                                         </div>
                                         <div class="match-time">${match.time}</div>
                                     </div>
@@ -4812,7 +4961,21 @@ async function generateHomePage() {
                                             <td>
                                                 <div class="team-cell">
                                                     ${getTeamLogoElement(team.id, '20px')}
-                                                    <span>${team.name}</span>
+                                                    <span class="team-name-with-status">
+                                                        ${team.name}
+                                                        ${(() => {
+                                                            const liveStatus = getTeamLiveGameStatus(team.name);
+                                                            const liveScore = getTeamLiveScore(team.name);
+                                                            let display = '';
+                                                            if (liveStatus) {
+                                                                display += `<span class="live-status-dot ${liveStatus}"></span>`;
+                                                            }
+                                                            if (liveScore) {
+                                                                display += `<span class="live-score-display">${liveScore.teamScore}-${liveScore.opponentScore}</span>`;
+                                                            }
+                                                            return display;
+                                                        })()}
+                                                    </span>
                 </div>
                                             </td>
                                             <td>${team.played}</td>
@@ -5029,7 +5192,7 @@ function generateFixturesPage() {
                         <div class="team-match">
                             <div class="team-name-container">
                                 <span>${match.homeTeam}</span>
-                                ${getTeamRedCards(match, match.homeTeam) > 0 ? `<span class="red-card-indicator">${getRedCardSVG()}</span>` : ''}
+                                ${(match.status === 'live' || match.status === 'completed') && getTeamRedCards(match, match.homeTeam) > 0 ? `<span class="red-card-indicator">${getRedCardSVG()}</span>` : ''}
                             </div>
                             ${getTeamLogoElement(leagueData.teams.find(t => t.name === match.homeTeam)?.id || '', '40px')}
                     </div>
@@ -5043,7 +5206,7 @@ function generateFixturesPage() {
                             ${getTeamLogoElement(match.awayTeam === 'TBD' ? 'TBD' : (leagueData.teams.find(t => t.name === match.awayTeam)?.id || ''), '40px')}
                             <div class="team-name-container">
                                 <span>${match.awayTeam}</span>
-                                ${getTeamRedCards(match, match.awayTeam) > 0 ? `<span class="red-card-indicator">${getRedCardSVG()}</span>` : ''}
+                                ${(match.status === 'live' || match.status === 'completed') && getTeamRedCards(match, match.awayTeam) > 0 ? `<span class="red-card-indicator">${getRedCardSVG()}</span>` : ''}
                             </div>
                         </div>
                     </div>
@@ -5061,9 +5224,21 @@ function generateFixturesPage() {
 
 function generateTablePage() {
     const sortedTeams = calculateStandings();
+    const liveMatches = getLiveMatches();
+    const hasLiveMatches = liveMatches.length > 0;
     
     return `
-        <h2 class="page-title">League Table</h2>
+        <h2 class="page-title">
+            League Table
+            ${hasLiveMatches ? `
+                <span class="live-indicator">
+                    <svg class="live-icon" viewBox="0 0 24 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect x="2" y="2" width="20" height="12" rx="2" ry="2" fill="#ff4757"/>
+                        <text x="12" y="11" text-anchor="middle" fill="white" font-size="7" font-weight="bold">LIVE</text>
+                    </svg>
+                </span>
+            ` : ''}
+        </h2>
         <div class="table-tabs">
             <div class="tab-buttons">
                 <button class="tab-btn active" onclick="switchTableTab('short')">Short</button>
@@ -5081,7 +5256,6 @@ function generateTablePage() {
                         <th>Team</th>
                                     <th>Pl</th>
                         <th>W</th>
-                        <th>GD</th>
                         <th>Pts</th>
                     </tr>
                 </thead>
@@ -5092,12 +5266,25 @@ function generateTablePage() {
                                         <td>
                                             <div class="team-cell">
                                                 ${getTeamLogoElement(team.id, '25px')}
-                                                <span>${team.name}</span>
+                                                <span class="team-name-with-status">
+                                                    ${team.name}
+                                                    ${(() => {
+                                                        const liveStatus = getTeamLiveGameStatus(team.name);
+                                                        const liveScore = getTeamLiveScore(team.name);
+                                                        let display = '';
+                                                        if (liveStatus) {
+                                                            display += `<span class="live-status-dot ${liveStatus}"></span>`;
+                                                        }
+                                                        if (liveScore) {
+                                                            display += `<span class="live-score-display">${liveScore.teamScore}-${liveScore.opponentScore}</span>`;
+                                                        }
+                                                        return display;
+                                                    })()}
+                                                </span>
                                     </div>
                                         </td>
                                         <td>${team.played}</td>
                                         <td>${team.won}</td>
-                                        <td>${team.goalsFor - team.goalsAgainst}</td>
                                         <td><strong>${team.points}</strong></td>
                                     </tr>
                                 `).join('')}
@@ -5124,7 +5311,21 @@ function generateTablePage() {
                                                 <td>
                                                     <div class="team-cell">
                                                         ${getTeamLogoElement(team.id, '25px')}
-                                                        <span>${team.name}</span>
+                                                        <span class="team-name-with-status">
+                                                            ${team.name}
+                                                            ${(() => {
+                                                                const liveStatus = getTeamLiveGameStatus(team.name);
+                                                                const liveScore = getTeamLiveScore(team.name);
+                                                                let display = '';
+                                                                if (liveStatus) {
+                                                                    display += `<span class="live-status-dot ${liveStatus}"></span>`;
+                                                                }
+                                                                if (liveScore) {
+                                                                    display += `<span class="live-score-display">${liveScore.teamScore}-${liveScore.opponentScore}</span>`;
+                                                                }
+                                                                return display;
+                                                            })()}
+                                                        </span>
                                 </div>
                             </td>
                                             </tr>
@@ -5186,7 +5387,21 @@ function generateTablePage() {
                                         <td>
                                             <div class="team-cell">
                                                 ${getTeamLogoElement(team.id, '25px')}
-                                                <span>${team.name}</span>
+                                                <span class="team-name-with-status">
+                                                    ${team.name}
+                                                    ${(() => {
+                                                        const liveStatus = getTeamLiveGameStatus(team.name);
+                                                        const liveScore = getTeamLiveScore(team.name);
+                                                        let display = '';
+                                                        if (liveStatus) {
+                                                            display += `<span class="live-status-dot ${liveStatus}"></span>`;
+                                                        }
+                                                        if (liveScore) {
+                                                            display += `<span class="live-score-display">${liveScore.teamScore}-${liveScore.opponentScore}</span>`;
+                                                        }
+                                                        return display;
+                                                    })()}
+                                                </span>
                                             </div>
                                         </td>
                                         <td>${getTeamForm(team.name)}</td>
@@ -5236,10 +5451,30 @@ function generateTeamsPage() {
                         <div class="team-position">${index + 1}</div>
                         ${getTeamLogoElement(team.id, '50px')}
                         <div class="team-basic-info">
-                            <h3>${team.name}</h3>
+                            <h3 class="team-name-with-status">
+                                ${team.name}
+                                ${(() => {
+                                    const liveStatus = getTeamLiveGameStatus(team.name);
+                                    const liveScore = getTeamLiveScore(team.name);
+                                    let display = '';
+                                    if (liveStatus) {
+                                        display += `<span class="live-status-dot ${liveStatus}"></span>`;
+                                    }
+                                    if (liveScore) {
+                                        display += `<span class="live-score-display">${liveScore.teamScore}-${liveScore.opponentScore}</span>`;
+                                    }
+                                    return display;
+                                })()}
+                            </h3>
                             <div class="team-record">
                                 <span class="points">${team.points} pts</span>
-                                <span class="record">${team.played} played</span>
+                                <span class="record ${(() => {
+                                    const liveStatus = getTeamLiveGameStatus(team.name);
+                                    return liveStatus ? 'live-record' : '';
+                                })()}">${(() => {
+                                    const liveStatus = getTeamLiveGameStatus(team.name);
+                                    return liveStatus ? 'live' : `${team.played} played`;
+                                })()}</span>
                                 <span class="goals">${team.goalsFor}-${team.goalsAgainst}</span>
                             </div>
                         </div>
@@ -5281,27 +5516,15 @@ function generateTeamsPage() {
                                     <div class="club-info-grid">
                                 <div class="info-item">
                                             <span class="info-label">Founded</span>
-                                            <span class="info-value">${team.founded || 'N/A'}</span>
+                                            <span class="info-value">${team.founded}</span>
                                 </div>
                                 <div class="info-item">
                                             <span class="info-label">Stadium</span>
-                                            <span class="info-value">${team.stadium || 'N/A'}</span>
+                                            <span class="info-value">${team.stadium}</span>
                                 </div>
                                 <div class="info-item">
                                             <span class="info-label">Captain</span>
-                                            <span class="info-value">${team.captain || 'N/A'}</span>
-                                        </div>
-                                        <div class="info-item">
-                                            <span class="info-label">Manager</span>
-                                            <span class="info-value">${team.manager || 'N/A'}</span>
-                                        </div>
-                                        <div class="info-item">
-                                            <span class="info-label">City</span>
-                                            <span class="info-value">${team.city || 'N/A'}</span>
-                                        </div>
-                                        <div class="info-item">
-                                            <span class="info-label">Colors</span>
-                                            <span class="info-value">${team.colors || 'N/A'}</span>
+                                            <span class="info-value">${team.captain}</span>
                                         </div>
                                 </div>
                             </div>
@@ -5360,12 +5583,12 @@ function generateKnockoutPage() {
             <div class="bracket-round">
                 <h3>Quarter Finals</h3>
                 ${leagueData.knockout.quarterFinals.map(match => `
-                    <section class="fixture">
+                    <section class="fixture" onclick="viewMatchDetails('knockout', '${match.homeTeam}', '${match.awayTeam}')">
                         <div class="teams">
                             <div class="team-match">
                                 <div class="team-name-container">
                                     <span>${match.homeTeam}</span>
-                                    ${match.home && getTeamRedCards(match, match.homeTeam) > 0 ? `<span class="red-card-indicator">${getRedCardSVG()}</span>` : ''}
+                                    ${match.home && (match.status === 'live' || match.status === 'completed') && getTeamRedCards(match, match.homeTeam) > 0 ? `<span class="red-card-indicator">${getRedCardSVG()}</span>` : ''}
                                 </div>
                                 ${getTeamLogoElement(match.homeTeam === 'TBD' ? 'TBD' : (leagueData.teams.find(t => t.name === match.homeTeam)?.id || ''), '40px')}
                             </div>
@@ -5381,13 +5604,13 @@ function generateKnockoutPage() {
                                 ${getTeamLogoElement(match.awayTeam === 'TBD' ? 'TBD' : (leagueData.teams.find(t => t.name === match.awayTeam)?.id || ''), '40px')}
                                 <div class="team-name-container">
                                     <span>${match.awayTeam}</span>
-                                    ${match.away && getTeamRedCards(match, match.awayTeam) > 0 ? `<span class="red-card-indicator">${getRedCardSVG()}</span>` : ''}
+                                    ${match.away && (match.status === 'live' || match.status === 'completed') && getTeamRedCards(match, match.awayTeam) > 0 ? `<span class="red-card-indicator">${getRedCardSVG()}</span>` : ''}
                                 </div>
                             </div>
                         </div>
                         ${match.status === 'completed' || match.status === 'live' ? `
                         <div class="fixture-footer">
-                            <a href="#" class="overview-link" onclick="viewMatchDetails('knockout', '${match.homeTeam}', '${match.awayTeam}')">Overview</a>
+                            <span class="overview-link">Overview</span>
                         </div>
                         ` : ''}
                     </section>
@@ -5399,12 +5622,12 @@ function generateKnockoutPage() {
             <div class="bracket-round">
                 <h3>Semi Finals</h3>
                 ${leagueData.knockout.semiFinals.map(match => `
-                    <section class="fixture">
+                    <section class="fixture" onclick="viewMatchDetails('knockout', '${match.homeTeam}', '${match.awayTeam}')">
                         <div class="teams">
                             <div class="team-match">
                                 <div class="team-name-container">
                                     <span>${match.homeTeam}</span>
-                                    ${match.home && getTeamRedCards(match, match.homeTeam) > 0 ? `<span class="red-card-indicator">${getRedCardSVG()}</span>` : ''}
+                                    ${match.home && (match.status === 'live' || match.status === 'completed') && getTeamRedCards(match, match.homeTeam) > 0 ? `<span class="red-card-indicator">${getRedCardSVG()}</span>` : ''}
                                 </div>
                                 ${getTeamLogoElement(match.homeTeam === 'TBD' ? 'TBD' : (leagueData.teams.find(t => t.name === match.homeTeam)?.id || ''), '40px')}
                             </div>
@@ -5420,13 +5643,13 @@ function generateKnockoutPage() {
                                 ${getTeamLogoElement(match.awayTeam === 'TBD' ? 'TBD' : (leagueData.teams.find(t => t.name === match.awayTeam)?.id || ''), '40px')}
                                 <div class="team-name-container">
                                     <span>${match.awayTeam}</span>
-                                    ${match.away && getTeamRedCards(match, match.awayTeam) > 0 ? `<span class="red-card-indicator">${getRedCardSVG()}</span>` : ''}
+                                    ${match.away && (match.status === 'live' || match.status === 'completed') && getTeamRedCards(match, match.awayTeam) > 0 ? `<span class="red-card-indicator">${getRedCardSVG()}</span>` : ''}
                                 </div>
                             </div>
                         </div>
                         ${match.status === 'completed' || match.status === 'live' ? `
                         <div class="fixture-footer">
-                            <a href="#" class="overview-link" onclick="viewMatchDetails('knockout', '${match.homeTeam}', '${match.awayTeam}')">Overview</a>
+                            <span class="overview-link">Overview</span>
                         </div>
                         ` : ''}
                     </section>
@@ -5438,12 +5661,12 @@ function generateKnockoutPage() {
             <div class="bracket-round">
                 <h3>Third Place Playoff</h3>
                 ${leagueData.knockout.thirdPlace.map(match => `
-                    <section class="fixture">
+                    <section class="fixture" onclick="viewMatchDetails('knockout', '${match.homeTeam}', '${match.awayTeam}')">
                         <div class="teams">
                             <div class="team-match">
                                 <div class="team-name-container">
                                     <span>${match.homeTeam}</span>
-                                    ${match.home && getTeamRedCards(match, match.homeTeam) > 0 ? `<span class="red-card-indicator">${getRedCardSVG()}</span>` : ''}
+                                    ${match.home && (match.status === 'live' || match.status === 'completed') && getTeamRedCards(match, match.homeTeam) > 0 ? `<span class="red-card-indicator">${getRedCardSVG()}</span>` : ''}
                                 </div>
                                 ${getTeamLogoElement(match.homeTeam === 'TBD' ? 'TBD' : (leagueData.teams.find(t => t.name === match.homeTeam)?.id || ''), '40px')}
                             </div>
@@ -5459,13 +5682,13 @@ function generateKnockoutPage() {
                                 ${getTeamLogoElement(match.awayTeam === 'TBD' ? 'TBD' : (leagueData.teams.find(t => t.name === match.awayTeam)?.id || ''), '40px')}
                                 <div class="team-name-container">
                                     <span>${match.awayTeam}</span>
-                                    ${match.away && getTeamRedCards(match, match.awayTeam) > 0 ? `<span class="red-card-indicator">${getRedCardSVG()}</span>` : ''}
+                                    ${match.away && (match.status === 'live' || match.status === 'completed') && getTeamRedCards(match, match.awayTeam) > 0 ? `<span class="red-card-indicator">${getRedCardSVG()}</span>` : ''}
                                 </div>
                             </div>
                         </div>
                         ${match.status === 'completed' || match.status === 'live' ? `
                         <div class="fixture-footer">
-                            <a href="#" class="overview-link" onclick="viewMatchDetails('knockout', '${match.homeTeam}', '${match.awayTeam}')">Overview</a>
+                            <span class="overview-link">Overview</span>
                         </div>
                         ` : ''}
                     </section>
@@ -5477,12 +5700,12 @@ function generateKnockoutPage() {
             <div class="bracket-round">
                 <h3>Final</h3>
                 ${leagueData.knockout.final.map(match => `
-                    <section class="fixture">
+                    <section class="fixture" onclick="viewMatchDetails('knockout', '${match.homeTeam}', '${match.awayTeam}')">
                         <div class="teams">
                             <div class="team-match">
                                 <div class="team-name-container">
                                     <span>${match.homeTeam}</span>
-                                    ${match.home && getTeamRedCards(match, match.homeTeam) > 0 ? `<span class="red-card-indicator">${getRedCardSVG()}</span>` : ''}
+                                    ${match.home && (match.status === 'live' || match.status === 'completed') && getTeamRedCards(match, match.homeTeam) > 0 ? `<span class="red-card-indicator">${getRedCardSVG()}</span>` : ''}
                                 </div>
                                 ${getTeamLogoElement(match.homeTeam === 'TBD' ? 'TBD' : (leagueData.teams.find(t => t.name === match.homeTeam)?.id || ''), '40px')}
                             </div>
@@ -5498,13 +5721,13 @@ function generateKnockoutPage() {
                                 ${getTeamLogoElement(match.awayTeam === 'TBD' ? 'TBD' : (leagueData.teams.find(t => t.name === match.awayTeam)?.id || ''), '40px')}
                                 <div class="team-name-container">
                                     <span>${match.awayTeam}</span>
-                                    ${match.away && getTeamRedCards(match, match.awayTeam) > 0 ? `<span class="red-card-indicator">${getRedCardSVG()}</span>` : ''}
+                                    ${match.away && (match.status === 'live' || match.status === 'completed') && getTeamRedCards(match, match.awayTeam) > 0 ? `<span class="red-card-indicator">${getRedCardSVG()}</span>` : ''}
                                 </div>
                             </div>
                         </div>
                         ${match.status === 'completed' || match.status === 'live' ? `
                         <div class="fixture-footer">
-                            <a href="#" class="overview-link" onclick="viewMatchDetails('knockout', '${match.homeTeam}', '${match.awayTeam}')">Overview</a>
+                            <span class="overview-link">Overview</span>
                         </div>
                         ` : ''}
                     </section>
@@ -5521,7 +5744,7 @@ function calculatePlayerStats() {
     // Process fixtures data
     leagueData.fixturesData.forEach(timeSlot => {
         timeSlot.matches.forEach(match => {
-            if (match.status === 'completed' && match.home && match.away) {
+            if ((match.status === 'completed' || match.status === 'live') && match.home && match.away) {
                 processMatchPlayers(match, playerStats);
             }
         });
@@ -5536,7 +5759,7 @@ function calculatePlayerStats() {
     ];
     
     allKnockoutMatches.forEach(match => {
-        if (match.status === 'completed' && match.home && match.away) {
+        if ((match.status === 'completed' || match.status === 'live') && match.home && match.away) {
             processMatchPlayers(match, playerStats);
         }
     });
@@ -5621,7 +5844,7 @@ function calculateMatchStats() {
     leagueData.fixturesData.forEach(timeSlot => {
         timeSlot.matches.forEach(match => {
             totalMatches++;
-            if (match.status === 'completed' && match.homeScore !== null && match.awayScore !== null) {
+            if ((match.status === 'completed' || match.status === 'live') && match.homeScore !== null && match.awayScore !== null) {
                 completedMatches++;
                 totalGoals += match.homeScore + match.awayScore;
             }
@@ -5638,7 +5861,7 @@ function calculateMatchStats() {
     
     allKnockoutMatches.forEach(match => {
         totalMatches++;
-        if (match.status === 'completed' && match.homeScore !== null && match.awayScore !== null) {
+        if ((match.status === 'completed' || match.status === 'live') && match.homeScore !== null && match.awayScore !== null) {
             completedMatches++;
             totalGoals += match.homeScore + match.awayScore;
         }
@@ -5759,6 +5982,138 @@ function getUpcomingMatches(limit = 4) {
     return upcomingMatches.slice(0, limit);
 }
 
+function getLiveMatches(limit = 4) {
+    const liveMatches = [];
+    
+    // Get live matches from fixtures
+    leagueData.fixturesData.forEach(timeSlot => {
+        timeSlot.matches.forEach(match => {
+            if (match.status === 'live') {
+                liveMatches.push({
+                    ...match,
+                    time: timeSlot.time,
+                    source: 'fixtures'
+                });
+            }
+        });
+    });
+    
+    // Get live matches from knockout
+    const allKnockoutMatches = [
+        ...leagueData.knockout.quarterFinals,
+        ...leagueData.knockout.semiFinals,
+        ...leagueData.knockout.thirdPlace,
+        ...leagueData.knockout.final
+    ];
+    
+    allKnockoutMatches.forEach(match => {
+        if (match.status === 'live') {
+            liveMatches.push({
+                ...match,
+                time: 'Knockout Stage',
+                source: 'knockout'
+            });
+        }
+    });
+    
+    // Return limited results
+    return liveMatches.slice(0, limit);
+}
+
+function getTeamLiveGameStatus(teamName) {
+    // Check fixtures for live matches
+    for (let timeSlot of leagueData.fixturesData) {
+        for (let match of timeSlot.matches) {
+            if (match.status === 'live' && (match.homeTeam === teamName || match.awayTeam === teamName)) {
+                const isHomeTeam = match.homeTeam === teamName;
+                const teamScore = isHomeTeam ? match.homeScore : match.awayScore;
+                const opponentScore = isHomeTeam ? match.awayScore : match.homeScore;
+                
+                if (teamScore > opponentScore) {
+                    return 'win';
+                } else if (teamScore < opponentScore) {
+                    return 'loss';
+                } else {
+                    return 'draw';
+                }
+            }
+        }
+    }
+    
+    // Check knockout stages for live matches
+    const allKnockoutMatches = [
+        ...leagueData.knockout.quarterFinals,
+        ...leagueData.knockout.semiFinals,
+        ...leagueData.knockout.thirdPlace,
+        ...leagueData.knockout.final
+    ];
+    
+    for (let match of allKnockoutMatches) {
+        if (match.status === 'live' && (match.homeTeam === teamName || match.awayTeam === teamName)) {
+            const isHomeTeam = match.homeTeam === teamName;
+            const teamScore = isHomeTeam ? match.homeScore : match.awayScore;
+            const opponentScore = isHomeTeam ? match.awayScore : match.homeScore;
+            
+            if (teamScore > opponentScore) {
+                return 'win';
+            } else if (teamScore < opponentScore) {
+                return 'loss';
+            } else {
+                return 'draw';
+            }
+        }
+    }
+    
+    return null; // No live game
+}
+
+function getTeamLiveScore(teamName) {
+    // Check fixtures for live matches
+    for (let timeSlot of leagueData.fixturesData) {
+        for (let match of timeSlot.matches) {
+            if (match.status === 'live' && (match.homeTeam === teamName || match.awayTeam === teamName)) {
+                const isHomeTeam = match.homeTeam === teamName;
+                const teamScore = isHomeTeam ? match.homeScore : match.awayScore;
+                const opponentScore = isHomeTeam ? match.awayScore : match.homeScore;
+                const opponent = isHomeTeam ? match.awayTeam : match.homeTeam;
+                
+                return {
+                    teamScore: teamScore,
+                    opponentScore: opponentScore,
+                    opponent: opponent,
+                    isHome: isHomeTeam
+                };
+            }
+        }
+    }
+    
+    // Check knockout stages for live matches
+    const allKnockoutMatches = [
+        ...leagueData.knockout.quarterFinals,
+        ...leagueData.knockout.semiFinals,
+        ...leagueData.knockout.thirdPlace,
+        ...leagueData.knockout.final
+    ];
+    
+    for (let match of allKnockoutMatches) {
+        if (match.status === 'live' && (match.homeTeam === teamName || match.awayTeam === teamName)) {
+            const isHomeTeam = match.homeTeam === teamName;
+            const teamScore = isHomeTeam ? match.homeScore : match.awayScore;
+            const opponentScore = isHomeTeam ? match.awayScore : match.homeScore;
+            const opponent = isHomeTeam ? match.awayTeam : match.homeTeam;
+            
+            return {
+                teamScore: teamScore,
+                opponentScore: opponentScore,
+                opponent: opponent,
+                isHome: isHomeTeam
+            };
+        }
+    }
+    
+    return null;
+}
+
 function getLatestResults(limit = 4) {
     const completedMatches = [];
     
@@ -5800,10 +6155,10 @@ function getLatestResults(limit = 4) {
 function getTeamRecentForm(teamName) {
     const allMatches = [];
     
-    // Get all completed matches for the team
+    // Get all completed and live matches for the team
     leagueData.fixturesData.forEach(timeSlot => {
         timeSlot.matches.forEach(match => {
-            if (match.status === 'completed' && (match.homeTeam === teamName || match.awayTeam === teamName)) {
+            if ((match.status === 'completed' || match.status === 'live') && (match.homeTeam === teamName || match.awayTeam === teamName)) {
                 allMatches.push(match);
             }
         });
@@ -5818,7 +6173,7 @@ function getTeamRecentForm(teamName) {
     ];
     
     allKnockoutMatches.forEach(match => {
-        if (match.status === 'completed' && (match.homeTeam === teamName || match.awayTeam === teamName)) {
+        if ((match.status === 'completed' || match.status === 'live') && (match.homeTeam === teamName || match.awayTeam === teamName)) {
             allMatches.push(match);
         }
     });
@@ -5829,17 +6184,24 @@ function getTeamRecentForm(teamName) {
     if (recentMatches.length === 0) return 'No matches played';
     
     return recentMatches.map(match => {
-        const isHome = match.homeTeam === teamName;
-        const teamScore = isHome ? match.homeScore : match.awayScore;
-        const opponentScore = isHome ? match.awayScore : match.homeScore;
-        
-        if (teamScore > opponentScore) {
-            return '<span class="form-win"><svg class="form-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M9 12l2 2 4-4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>';
-        } else if (teamScore < opponentScore) {
-            return '<span class="form-loss"><svg class="form-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M18 6L6 18M6 6l12 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>';
-        } else {
-            return '<span class="form-draw"><svg class="form-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M5 12h14" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>';
+        if (match.status === 'live') {
+            // Show "-" for live matches (pending)
+            return '<span class="form-pending">-</span>';
+        } else if (match.status === 'completed') {
+            // Show result for completed matches
+            const isHome = match.homeTeam === teamName;
+            const teamScore = isHome ? match.homeScore : match.awayScore;
+            const opponentScore = isHome ? match.awayScore : match.homeScore;
+            
+            if (teamScore > opponentScore) {
+                return '<span class="form-win"><svg class="form-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M9 12l2 2 4-4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>';
+            } else if (teamScore < opponentScore) {
+                return '<span class="form-loss"><svg class="form-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M18 6L6 18M6 6l12 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>';
+            } else {
+                return '<span class="form-draw"><svg class="form-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M5 12h14" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>';
+            }
         }
+        return '';
     }).join('');
 }
 
@@ -6131,6 +6493,38 @@ function filterTeams() {
 function generateStatsPage() {
     const playerStats = calculatePlayerStats();
     const matchStats = calculateMatchStats();
+    
+    // Check if there are any completed matches
+    if (matchStats.completedMatches === 0) {
+    return `
+        <h2 class="page-title">Statistics</h2>
+        
+            <div class="stats-pending">
+                <div class="stats-pending-content">
+                    <div class="stats-pending-icon">
+                        <svg width="80" height="80" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="12" cy="12" r="10" stroke="rgba(0, 255, 133, 0.3)" stroke-width="2"/>
+                            <path d="M12 6v6l4 2" stroke="rgba(0, 255, 133, 0.5)" stroke-width="2" stroke-linecap="round"/>
+                        </svg>
+            </div>
+                    <h3 class="stats-pending-title">Statistics Coming Soon</h3>
+                    <p class="stats-pending-message">
+                        Player statistics and performance data will be available once matches begin and are completed.
+                    </p>
+                    <div class="stats-pending-details">
+                        <p>Check back after the first games to see:</p>
+                        <ul>
+                            <li>Top Scorers</li>
+                            <li>Assist Leaders</li>
+                            <li>Clean Sheet Records</li>
+                            <li>Disciplinary Records</li>
+                        </ul>
+            </div>
+            </div>
+            </div>
+        `;
+    }
+    
     const topScorers = getTopScorers(playerStats);
     const topAssists = getTopAssists(playerStats);
     const mostYellowCards = getMostYellowCards(playerStats);
@@ -6139,30 +6533,6 @@ function generateStatsPage() {
     
     return `
         <h2 class="page-title">Statistics</h2>
-        
-        <div class="stats-grid">
-            <div class="stat-card">
-                <div class="stat-number">${matchStats.totalGoals}</div>
-                <div>Total Goals</div>
-            </div>
-            
-            <div class="stat-card">
-                <div class="stat-number">${matchStats.completedMatches}</div>
-                <div>Completed Matches</div>
-            </div>
-            
-            <div class="stat-card">
-                <div class="stat-number">${matchStats.averageGoals}</div>
-                <div>Goals per Match</div>
-            </div>
-            
-            <div class="stat-card">
-                <div class="stat-number">${Object.keys(playerStats).length}</div>
-                <div>Players Featured</div>
-            </div>
-        </div>
-        
-        <hr class="section-divider">
 
         <div class="stats-sections">
             <div class="stats-section">
@@ -6674,13 +7044,13 @@ function applyFilters() {
                                 <div class="team-badge">
                                     ${getTeamLogoElement(leagueData.teams.find(t => t.name === match.homeTeam)?.id || match.homeTeam, '16px')}
                                     <span>${homeTeamBadge}</span>
-                                    ${(getTeamRedCards(match, match.homeTeam) || 0) > 0 ? `<span class="red-card-indicator">${getRedCardSVG()}</span>` : ''}
+                                    ${(match.status === 'live' || match.status === 'completed') && (getTeamRedCards(match, match.homeTeam) || 0) > 0 ? `<span class="red-card-indicator">${getRedCardSVG()}</span>` : ''}
                                 </div>
                                 <span class="vs-separator">${scoreDisplay}</span>
                                 <div class="team-badge">
                                     ${getTeamLogoElement(leagueData.teams.find(t => t.name === match.awayTeam)?.id || match.awayTeam, '16px')}
                                     <span>${awayTeamBadge}</span>
-                                    ${(getTeamRedCards(match, match.awayTeam) || 0) > 0 ? `<span class="red-card-indicator">${getRedCardSVG()}</span>` : ''}
+                                    ${(match.status === 'live' || match.status === 'completed') && (getTeamRedCards(match, match.awayTeam) || 0) > 0 ? `<span class="red-card-indicator">${getRedCardSVG()}</span>` : ''}
                                 </div>
                             </div>
                         </div>
@@ -6708,12 +7078,12 @@ function applyFilters() {
             }
             
             return `
-            <section class="fixture${resultClass}">
+            <section class="fixture${resultClass}" onclick="viewMatchDetails('${timeSlot.time}', '${match.homeTeam}', '${match.awayTeam}')">
                 <div class="teams">
                     <div class="team-match">
                         <div class="team-name-container">
                             <span>${match.homeTeam}</span>
-                            ${getTeamRedCards(match, match.homeTeam) > 0 ? `<span class="red-card-indicator">${getRedCardSVG()}</span>` : ''}
+                            ${(match.status === 'live' || match.status === 'completed') && getTeamRedCards(match, match.homeTeam) > 0 ? `<span class="red-card-indicator">${getRedCardSVG()}</span>` : ''}
                         </div>
                         ${getTeamLogoElement(leagueData.teams.find(t => t.name === match.homeTeam)?.id || '', '40px')}
                     </div>
@@ -6727,13 +7097,13 @@ function applyFilters() {
                         ${getTeamLogoElement(leagueData.teams.find(t => t.name === match.awayTeam)?.id || '', '40px')}
                         <div class="team-name-container">
                             <span>${match.awayTeam}</span>
-                            ${getTeamRedCards(match, match.awayTeam) > 0 ? `<span class="red-card-indicator">${getRedCardSVG()}</span>` : ''}
+                            ${(match.status === 'live' || match.status === 'completed') && getTeamRedCards(match, match.awayTeam) > 0 ? `<span class="red-card-indicator">${getRedCardSVG()}</span>` : ''}
                         </div>
                     </div>
                 </div>
                 ${match.status === 'completed' || match.status === 'live' ? `
                 <div class="fixture-footer">
-                    <a href="#" class="overview-link" onclick="viewMatchDetails('${timeSlot.time}', '${match.homeTeam}', '${match.awayTeam}')">Overview</a>
+                    <span class="overview-link">Overview</span>
                 </div>
                 ` : ''}
             </section>
@@ -7058,9 +7428,9 @@ function generateMatchDetailsPage(match, time) {
                 ${(match.status === 'scheduled' || match.status === 'upcoming' || match.status === 'pending' || match.status === 'postponed') ? `
                 <div class="match-status-message">
                     <div class="status-message-content">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2"/>
-                            <path d="M12 6v6l4 2" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                        <svg width="60" height="60" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="12" cy="12" r="10" stroke="rgba(0, 255, 133, 0.3)" stroke-width="2"/>
+                            <path d="M12 6v6l4 2" stroke="rgba(0, 255, 133, 0.5)" stroke-width="2" stroke-linecap="round"/>
                         </svg>
                         <div class="status-message-text">
                             <h4>${match.status === 'postponed' ? 'Match Postponed' : 
@@ -7070,12 +7440,17 @@ function generateMatchDetailsPage(match, time) {
                                match.status === 'scheduled' ? 'This match is scheduled to take place. Lineup and analysis will be available closer to kickoff.' :
                                match.status === 'upcoming' ? 'This match is coming up soon. Stay tuned for live updates and detailed analysis.' :
                                'This match is currently pending. More information will be available soon.'}</p>
+                            <div class="status-message-details">
+                                <p>Detailed match information will be available when the match is:</p>
+                                <ul>
+                                    <li>Live (real-time updates)</li>
+                                    <li>Completed (full analysis and statistics)</li>
+                                </ul>
                         </div>
                     </div>
                 </div>
-                ` : ''}
             </div>
-            
+                ` : `
             <div class="match-tabs">
                 <div class="match-tab-buttons">
                     <button class="match-tab-btn active" onclick="switchMatchTab('lineup')">Lineup</button>
@@ -7091,6 +7466,7 @@ function generateMatchDetailsPage(match, time) {
                     </div>
                 </div>
             </div>
+                `}
         </div>
     `;
 }
@@ -7288,3 +7664,5 @@ function switchMatchTab(tabName) {
 
 // Initialize the app when the page loads
 document.addEventListener('DOMContentLoaded', initApp);
+
+// Force browser reload - live status dots added
