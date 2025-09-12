@@ -166,7 +166,7 @@ const styles = `
         display: flex;
         justify-content: space-between;
         align-items: center;
-        padding: 15px 40px;
+        padding: 10px 25px;
         background: linear-gradient(135deg, #37003c 0%, #1a0033 50%, #0a001a 100%);
         border-bottom: 1px solid #00ff85;
         position: relative;
@@ -180,7 +180,7 @@ const styles = `
     }
 
     .website-logo {
-        height: 50px;
+        height: 70px;
         width: auto;
         filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
         transition: transform 0.3s ease;
@@ -205,6 +205,51 @@ const styles = `
         top: 50%;
         transform: translateY(-50%);
         z-index: 1001;
+    }
+
+    .home-icon-btn {
+        background: none;
+        border: none;
+        cursor: pointer;
+        padding: 8px;
+        border-radius: 8px;
+        transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .home-icon-btn:hover {
+        background: rgba(0, 255, 133, 0.1);
+        transform: scale(1.1);
+    }
+
+    .home-icon-btn:active,
+    .home-icon-btn:focus,
+    .home-icon-btn:focus-visible {
+        background: none !important;
+        transform: scale(0.95);
+        outline: none;
+    }
+
+    .home-icon-btn:active:not(:hover) {
+        background: none !important;
+    }
+
+    .home-icon {
+        width: 24px;
+        height: 24px;
+        filter: brightness(0) saturate(100%) invert(64%) sepia(100%) saturate(1000%) hue-rotate(90deg) brightness(1.2) contrast(1.2);
+        transition: all 0.3s ease;
+    }
+
+    .home-icon-btn:hover .home-icon {
+        filter: brightness(0) saturate(100%) invert(64%) sepia(100%) saturate(1000%) hue-rotate(90deg) brightness(1.4) contrast(1.4);
+    }
+
+    .home-icon-btn:active .home-icon,
+    .home-icon-btn:focus .home-icon {
+        filter: brightness(0) saturate(100%) invert(64%) sepia(100%) saturate(1000%) hue-rotate(90deg) brightness(1.2) contrast(1.2);
     }
 
     .hamburger {
@@ -3384,6 +3429,7 @@ const styles = `
         padding: 40px 20px;
         background: linear-gradient(135deg, rgba(0, 255, 133, 0.1) 0%, rgba(55, 0, 60, 0.3) 100%);
         border-bottom: 2px solid #00ff85;
+        transition: background 0.5s ease;
     }
 
     .live-matches-section {
@@ -4001,7 +4047,7 @@ const styles = `
 
     @media (max-width: 768px) {
         #navigation {
-            padding: 15px 20px;
+            padding: 10px 15px;
         }
 
         .nav-links {
@@ -4018,7 +4064,7 @@ const styles = `
     }
         
         .website-logo {
-            height: 45px;
+            height: 60px;
         }
 
         .page-title {
@@ -4200,15 +4246,23 @@ function calculateStandings() {
         });
     });
     
-    // Convert to array and sort by points (descending), then goal difference (descending)
+    // Convert to array and sort by points (descending), then goal difference (descending), then alphabetically
     return Object.values(standings).sort((a, b) => {
         const aGoalDiff = a.goalsFor - a.goalsAgainst;
         const bGoalDiff = b.goalsFor - b.goalsAgainst;
         
+        // First sort by points (descending)
         if (b.points !== a.points) {
             return b.points - a.points;
         }
-        return bGoalDiff - aGoalDiff;
+        
+        // If points are equal, sort by goal difference (descending)
+        if (bGoalDiff !== aGoalDiff) {
+            return bGoalDiff - aGoalDiff;
+        }
+        
+        // If points and goal difference are equal, sort alphabetically (ascending)
+        return a.name.localeCompare(b.name);
     });
 }
 
@@ -4927,6 +4981,32 @@ function setupNavigation() {
     });
 }
 
+// Navigate to home page function
+function navigateToHome() {
+    setActivePage('home');
+    loadPage('home');
+    currentPage = 'home';
+    
+    // Close mobile menu if it's open
+    const mobileMenu = document.getElementById('mobileMenu');
+    const hamburger = document.querySelector('.hamburger');
+    if (mobileMenu && mobileMenu.classList.contains('active')) {
+        mobileMenu.classList.remove('active');
+        hamburger.classList.remove('active');
+        document.body.style.overflow = '';
+    }
+    
+    // Remove any lingering active states from the home button
+    const homeBtn = document.querySelector('.home-icon-btn');
+    if (homeBtn) {
+        homeBtn.blur(); // Remove focus
+        homeBtn.style.background = 'none'; // Force remove background
+        setTimeout(() => {
+            homeBtn.style.background = '';
+        }, 100);
+    }
+}
+
 function setActivePage(page) {
     const navButtons = document.querySelectorAll('.nav-btn');
     const mobileNavButtons = document.querySelectorAll('.mobile-nav-btn');
@@ -4981,6 +5061,9 @@ function startCountdown() {
     const targetDate = new Date('October 5, 2025 09:00:00 GMT+0300').getTime();
     const countdownSection = document.querySelector('.countdown-section');
     
+    // Calculate total duration for gradient calculation (assuming ~30 days max)
+    const totalDuration = 30 * 24 * 60 * 60 * 1000; // 30 days in milliseconds
+    
     function updateCountdown() {
         const now = new Date().getTime();
         const distance = targetDate - now;
@@ -5002,6 +5085,45 @@ function startCountdown() {
         document.getElementById('hours').innerHTML = hours.toString().padStart(2, '0');
         document.getElementById('minutes').innerHTML = minutes.toString().padStart(2, '0');
         document.getElementById('seconds').innerHTML = seconds.toString().padStart(2, '0');
+        
+        // Calculate gradient progress (0 = far away, 1 = very close)
+        const progress = Math.min(1, Math.max(0, (totalDuration - distance) / totalDuration));
+        
+        // Dynamic gradient colors based on countdown progress
+        let gradientColors;
+        if (progress < 0.3) {
+            // Far away - calm green gradient
+            gradientColors = {
+                start: 'rgba(0, 255, 133, 0.1)',
+                end: 'rgba(55, 0, 60, 0.3)'
+            };
+        } else if (progress < 0.6) {
+            // Getting closer - orange/yellow gradient
+            const intensity = (progress - 0.3) / 0.3;
+            gradientColors = {
+                start: `rgba(${255}, ${165 + intensity * 90}, ${0}, 0.15)`,
+                end: `rgba(${55 + intensity * 200}, ${0}, ${60 + intensity * 40}, 0.4)`
+            };
+        } else if (progress < 0.8) {
+            // Very close - red/orange gradient
+            const intensity = (progress - 0.6) / 0.2;
+            gradientColors = {
+                start: `rgba(${255}, ${165 - intensity * 65}, ${0}, 0.2)`,
+                end: `rgba(${255 - intensity * 100}, ${0}, ${0}, 0.5)`
+            };
+        } else {
+            // Critical - intense red gradient
+            const intensity = (progress - 0.8) / 0.2;
+            gradientColors = {
+                start: `rgba(${255}, ${100 - intensity * 50}, ${0}, 0.25)`,
+                end: `rgba(${255}, ${0}, ${0}, 0.6)`
+            };
+        }
+        
+        // Apply dynamic gradient to countdown section
+        if (countdownSection) {
+            countdownSection.style.background = `linear-gradient(135deg, ${gradientColors.start} 0%, ${gradientColors.end} 100%)`;
+        }
     }
     
     updateCountdown();
