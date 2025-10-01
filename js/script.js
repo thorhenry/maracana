@@ -2949,6 +2949,443 @@ const styles = `
         font-size: 0.9rem;
     }
 
+    /* Player Profile Card Styles */
+    .player-results-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        gap: 20px;
+        margin-top: 20px;
+    }
+
+    .player-profile-card {
+        background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05));
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 16px;
+        padding: 25px;
+        transition: all 0.3s ease;
+        backdrop-filter: blur(10px);
+    }
+
+    .player-profile-card:hover {
+        border-color: rgba(0, 255, 133, 0.3);
+        background: linear-gradient(135deg, rgba(0, 255, 133, 0.1), rgba(0, 255, 133, 0.05));
+        transform: translateY(-2px);
+        box-shadow: 0 8px 25px rgba(0, 255, 133, 0.1);
+    }
+
+    .player-profile-header {
+        display: flex;
+        align-items: center;
+        gap: 20px;
+        margin-bottom: 25px;
+    }
+
+    .player-avatar {
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .player-number-large {
+        background: linear-gradient(135deg, #00ff85, #00cc6a);
+        color: #000;
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: bold;
+        font-size: 1.4rem;
+        box-shadow: 0 4px 15px rgba(0, 255, 133, 0.3);
+    }
+
+    .captain-badge {
+        position: absolute;
+        top: -5px;
+        right: -5px;
+        background: #ff6b35;
+        color: #fff;
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 0.7rem;
+        font-weight: bold;
+        border: 2px solid #fff;
+    }
+
+    .player-basic-info {
+        flex: 1;
+    }
+
+    .player-basic-info .player-name {
+        color: #fff;
+        font-size: 1.5rem;
+        margin-bottom: 5px;
+        font-weight: 700;
+    }
+
+    .player-basic-info .player-position {
+        color: #00ff85;
+        font-size: 1rem;
+        margin-bottom: 10px;
+        font-weight: 600;
+    }
+
+    .player-team-info {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+    }
+
+    .player-team-info .team-name {
+        color: rgba(255, 255, 255, 0.8);
+        font-size: 0.9rem;
+        font-weight: 500;
+    }
+
+    .player-team-info .team-position {
+        color: #00ff85;
+        font-size: 0.8rem;
+        font-weight: 600;
+        background: rgba(0, 255, 133, 0.1);
+        padding: 2px 8px;
+        border-radius: 10px;
+    }
+
+    .player-stats-section {
+        margin-bottom: 20px;
+    }
+
+    .player-stats-section h4 {
+        color: #00ff85;
+        font-size: 1.1rem;
+        margin-bottom: 15px;
+        font-weight: 600;
+    }
+
+    .stats-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
+        gap: 15px;
+    }
+
+    .stat-item {
+        text-align: center;
+        padding: 12px 8px;
+        background: rgba(255, 255, 255, 0.05);
+        border-radius: 8px;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .stat-item .stat-value {
+        display: block;
+        color: #00ff85;
+        font-size: 1.3rem;
+        font-weight: bold;
+        margin-bottom: 4px;
+    }
+
+    .stat-item .stat-label {
+        color: rgba(255, 255, 255, 0.7);
+        font-size: 0.8rem;
+        font-weight: 500;
+    }
+
+    .player-awards-section {
+        margin-bottom: 20px;
+    }
+
+    .player-awards-section h4 {
+        color: #00ff85;
+        font-size: 1.1rem;
+        margin-bottom: 15px;
+        font-weight: 600;
+    }
+
+    .awards-list {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+    }
+
+    .award-item {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        padding: 8px 12px;
+        background: rgba(255, 215, 0, 0.1);
+        border: 1px solid rgba(255, 215, 0, 0.3);
+        border-radius: 8px;
+    }
+
+    .award-icon {
+        font-size: 1.2rem;
+    }
+
+    .award-text {
+        color: #ffd700;
+        font-weight: 600;
+        font-size: 0.9rem;
+    }
+
+    .player-actions {
+        display: flex;
+        gap: 10px;
+        margin-top: 20px;
+    }
+
+    .view-team-btn, .view-stats-btn {
+        flex: 1;
+        padding: 10px 15px;
+        border: 1px solid rgba(0, 255, 133, 0.3);
+        background: rgba(0, 255, 133, 0.1);
+        color: #00ff85;
+        border-radius: 8px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s ease;
+    }
+
+    .view-team-btn:hover, .view-stats-btn:hover {
+        background: rgba(0, 255, 133, 0.2);
+        border-color: #00ff85;
+        transform: translateY(-1px);
+    }
+
+    /* Team Profile Card Styles */
+    .team-results-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        gap: 20px;
+        margin-top: 20px;
+    }
+
+    .team-profile-card {
+        background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05));
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 16px;
+        padding: 25px;
+        transition: all 0.3s ease;
+        backdrop-filter: blur(10px);
+    }
+
+    .team-profile-card:hover {
+        border-color: rgba(0, 255, 133, 0.3);
+        background: linear-gradient(135deg, rgba(0, 255, 133, 0.1), rgba(0, 255, 133, 0.05));
+        transform: translateY(-2px);
+        box-shadow: 0 8px 25px rgba(0, 255, 133, 0.1);
+    }
+
+    .team-profile-header {
+        display: flex;
+        align-items: center;
+        gap: 20px;
+        margin-bottom: 25px;
+    }
+
+    .team-logo-large {
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .team-position-badge {
+        position: absolute;
+        top: -8px;
+        right: -8px;
+        background: #00ff85;
+        color: #000;
+        width: 24px;
+        height: 24px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 0.7rem;
+        font-weight: bold;
+        border: 2px solid #fff;
+    }
+
+    .team-basic-info {
+        flex: 1;
+    }
+
+    .team-basic-info .team-name {
+        color: #fff;
+        font-size: 1.5rem;
+        margin-bottom: 5px;
+        font-weight: 700;
+    }
+
+    .team-basic-info .team-captain {
+        color: #00ff85;
+        font-size: 1rem;
+        margin-bottom: 10px;
+        font-weight: 600;
+    }
+
+    .team-details {
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+    }
+
+    .team-details .team-founded,
+    .team-details .team-stadium {
+        color: rgba(255, 255, 255, 0.8);
+        font-size: 0.85rem;
+        font-weight: 500;
+    }
+
+    .team-stats-section {
+        margin-bottom: 20px;
+    }
+
+    .team-stats-section h4 {
+        color: #00ff85;
+        font-size: 1.1rem;
+        margin-bottom: 15px;
+        font-weight: 600;
+    }
+
+    .team-stats-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
+        gap: 15px;
+    }
+
+    .team-stat-item {
+        text-align: center;
+        padding: 12px 8px;
+        background: rgba(255, 255, 255, 0.05);
+        border-radius: 8px;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .team-stat-item .team-stat-value {
+        display: block;
+        color: #00ff85;
+        font-size: 1.3rem;
+        font-weight: bold;
+        margin-bottom: 4px;
+    }
+
+    .team-stat-item .team-stat-label {
+        color: rgba(255, 255, 255, 0.7);
+        font-size: 0.8rem;
+        font-weight: 500;
+    }
+
+    .team-squad-section {
+        margin-bottom: 20px;
+    }
+
+    .team-squad-section h4 {
+        color: #00ff85;
+        font-size: 1.1rem;
+        margin-bottom: 15px;
+        font-weight: 600;
+    }
+
+    .squad-info {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+        gap: 12px;
+    }
+
+    .squad-stat {
+        text-align: center;
+        padding: 10px 8px;
+        background: rgba(255, 255, 255, 0.05);
+        border-radius: 8px;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .squad-stat .squad-value {
+        display: block;
+        color: #00ff85;
+        font-size: 1.2rem;
+        font-weight: bold;
+        margin-bottom: 4px;
+    }
+
+    .squad-stat .squad-label {
+        color: rgba(255, 255, 255, 0.7);
+        font-size: 0.75rem;
+        font-weight: 500;
+    }
+
+    .team-actions {
+        display: flex;
+        gap: 10px;
+        margin-top: 20px;
+    }
+
+    .view-squad-btn, .view-fixtures-btn {
+        flex: 1;
+        padding: 10px 15px;
+        border: 1px solid rgba(0, 255, 133, 0.3);
+        background: rgba(0, 255, 133, 0.1);
+        color: #00ff85;
+        border-radius: 8px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s ease;
+    }
+
+    .view-squad-btn:hover, .view-fixtures-btn:hover {
+        background: rgba(0, 255, 133, 0.2);
+        border-color: #00ff85;
+        transform: translateY(-1px);
+    }
+
+    /* Mobile Responsive Styles */
+    @media (max-width: 768px) {
+        .player-profile-header {
+            flex-direction: column;
+            text-align: center;
+            gap: 15px;
+        }
+
+        .stats-grid {
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+        }
+
+        .player-actions {
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        /* Team Profile Mobile Styles */
+        .team-profile-header {
+            flex-direction: column;
+            text-align: center;
+            gap: 15px;
+        }
+
+        .team-stats-grid {
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+        }
+
+        .squad-info {
+            grid-template-columns: repeat(2, 1fr);
+            gap: 8px;
+        }
+
+        .team-actions {
+            flex-direction: column;
+            gap: 8px;
+        }
+    }
+
     .team-divider {
         height: 1px;
         background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
@@ -7659,6 +8096,36 @@ function performMobileSearch(event) {
     }, 100);
 }
 
+function getPlayerAwards(playerName) {
+    const awards = [];
+    
+    // Check if player is Player of the Tournament
+    if (leagueData.tournamentAwards.playerOfTheTournament === playerName) {
+        awards.push("Player of the Tournament");
+    }
+    
+    // Check if player is in Team of the Tournament
+    if (leagueData.tournamentAwards.teamOfTheTournament && 
+        leagueData.tournamentAwards.teamOfTheTournament.includes(playerName)) {
+        awards.push("Team of the Tournament");
+    }
+    
+    // Check for top scorer
+    const playerStats = calculatePlayerStats();
+    const topScorers = getTopScorers(playerStats);
+    if (topScorers.length > 0 && topScorers[0].name === playerName) {
+        awards.push("Top Scorer");
+    }
+    
+    // Check for top assists
+    const topAssists = getTopAssists(playerStats);
+    if (topAssists.length > 0 && topAssists[0].name === playerName) {
+        awards.push("Top Assists");
+    }
+    
+    return awards;
+}
+
 function performGlobalSearch() {
     const searchInput = document.getElementById('globalSearch');
     const searchTerm = searchInput.value.toLowerCase().trim();
@@ -7785,18 +8252,115 @@ function displayGlobalSearchResults(teamResults, playerResults, matchResults, se
         resultsHTML += `
             <div class="results-section">
                 <h4 class="results-section-title">Teams (${teamResults.length})</h4>
-                <div class="results-grid">
-                    ${teamResults.map(result => `
-                        <div class="result-card team-result" onclick="loadPage('teams')">
-                            <div class="result-header">
-                                ${getTeamLogoElement(result.data.id, '40px')}
-                                <div class="result-info">
-                                    <h5>${result.data.name}</h5>
-                                    <p>Captain: ${result.data.captain}</p>
+                <div class="team-results-grid">
+                    ${teamResults.map(result => {
+                        const standings = calculateStandings();
+                        const teamStanding = standings.find(team => team.name === result.data.name);
+                        const teamPosition = teamStanding ? standings.indexOf(teamStanding) + 1 : null;
+                        const teamStats = teamStanding || {
+                            points: 0,
+                            played: 0,
+                            won: 0,
+                            drawn: 0,
+                            lost: 0,
+                            goalsFor: 0,
+                            goalsAgainst: 0
+                        };
+                        const goalDifference = teamStats.goalsFor - teamStats.goalsAgainst;
+                        const squadSize = result.data.squad ? result.data.squad.length : 0;
+                        
+                        return `
+                            <div class="team-profile-card">
+                                <div class="team-profile-header">
+                                    <div class="team-logo-large">
+                                        ${getTeamLogoElement(result.data.id, '60px')}
+                                        ${teamPosition ? `<div class="team-position-badge">#${teamPosition}</div>` : ''}
+                                    </div>
+                                    <div class="team-basic-info">
+                                        <h3 class="team-name">${result.data.name}</h3>
+                                        <p class="team-captain">Captain: ${result.data.captain}</p>
+                                        <div class="team-details">
+                                            <span class="team-founded">Founded: ${result.data.founded || 'N/A'}</span>
+                                            <span class="team-stadium">Stadium: ${result.data.stadium || 'N/A'}</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="team-stats-section">
+                                    <h4>Tournament Performance</h4>
+                                    <div class="team-stats-grid">
+                                        <div class="team-stat-item">
+                                            <span class="team-stat-value">${teamStats.points}</span>
+                                            <span class="team-stat-label">Points</span>
+                                        </div>
+                                        <div class="team-stat-item">
+                                            <span class="team-stat-value">${teamStats.played}</span>
+                                            <span class="team-stat-label">Matches</span>
+                                        </div>
+                                        <div class="team-stat-item">
+                                            <span class="team-stat-value">${teamStats.won}</span>
+                                            <span class="team-stat-label">Won</span>
+                                        </div>
+                                        <div class="team-stat-item">
+                                            <span class="team-stat-value">${teamStats.drawn}</span>
+                                            <span class="team-stat-label">Drawn</span>
+                                        </div>
+                                        <div class="team-stat-item">
+                                            <span class="team-stat-value">${teamStats.lost}</span>
+                                            <span class="team-stat-label">Lost</span>
+                                        </div>
+                                        <div class="team-stat-item">
+                                            <span class="team-stat-value">${teamStats.goalsFor}</span>
+                                            <span class="team-stat-label">Goals For</span>
+                                        </div>
+                                        <div class="team-stat-item">
+                                            <span class="team-stat-value">${teamStats.goalsAgainst}</span>
+                                            <span class="team-stat-label">Goals Against</span>
+                                        </div>
+                                        <div class="team-stat-item">
+                                            <span class="team-stat-value">${goalDifference >= 0 ? '+' : ''}${goalDifference}</span>
+                                            <span class="team-stat-label">Goal Diff</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="team-squad-section">
+                                    <h4>Squad Information</h4>
+                                    <div class="squad-info">
+                                        <div class="squad-stat">
+                                            <span class="squad-value">${squadSize}</span>
+                                            <span class="squad-label">Total Players</span>
+                                        </div>
+                                        <div class="squad-stat">
+                                            <span class="squad-value">${result.data.squad ? result.data.squad.filter(p => p.position === 'Goalkeeper').length : 0}</span>
+                                            <span class="squad-label">Goalkeepers</span>
+                                        </div>
+                                        <div class="squad-stat">
+                                            <span class="squad-value">${result.data.squad ? result.data.squad.filter(p => p.position === 'Defender').length : 0}</span>
+                                            <span class="squad-label">Defenders</span>
+                                        </div>
+                                        <div class="squad-stat">
+                                            <span class="squad-value">${result.data.squad ? result.data.squad.filter(p => p.position === 'Midfielder').length : 0}</span>
+                                            <span class="squad-label">Midfielders</span>
+                                        </div>
+                                        <div class="squad-stat">
+                                            <span class="squad-value">${result.data.squad ? result.data.squad.filter(p => p.position === 'Forward').length : 0}</span>
+                                            <span class="squad-label">Forwards</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="team-actions">
+                                    <button class="view-squad-btn" onclick="loadPage('teams')">
+                                        View Full Squad
+                                    </button>
+                                    <button class="view-fixtures-btn" onclick="loadPage('fixtures')">
+                                        View Fixtures
+                                    </button>
                                 </div>
                             </div>
-                        </div>
-                    `).join('')}
+                        `;
+                    }).join('')}
                 </div>
             </div>
         `;
@@ -7807,21 +8371,93 @@ function displayGlobalSearchResults(teamResults, playerResults, matchResults, se
         resultsHTML += `
             <div class="results-section">
                 <h4 class="results-section-title">Players (${playerResults.length})</h4>
-                <div class="results-grid">
+                <div class="player-results-grid">
                     ${playerResults.map(result => {
-                        const playerStat = calculatePlayerStats()[result.data.id] || { goals: 0, assists: 0 };
+                        const playerStat = calculatePlayerStats()[result.data.id] || { 
+                            goals: 0, 
+                            assists: 0, 
+                            yellowCards: 0, 
+                            redCards: 0, 
+                            cleanSheets: 0,
+                            matches: 0
+                        };
+                        const isCaptain = result.team.captain === result.data.name;
+                        const standings = calculateStandings();
+                        const teamStanding = standings.find(team => team.name === result.team.name);
+                        const teamPosition = teamStanding ? standings.indexOf(teamStanding) + 1 : null;
+                        const playerAwards = getPlayerAwards(result.data.name);
+                        
                         return `
-                            <div class="result-card player-result" onclick="loadPage('teams')">
-                                <div class="result-header">
-                                    <div class="player-number">${result.data.number}</div>
-                                    <div class="result-info">
-                                        <h5>${result.data.name}</h5>
-                                        <p>${result.data.position} • ${result.team.name}</p>
-                                        <div class="player-stats">
-                                            ${playerStat.goals > 0 ? `${playerStat.goals}G ` : ''}
-                                            ${playerStat.assists > 0 ? `${playerStat.assists}A` : ''}
+                            <div class="player-profile-card">
+                                <div class="player-profile-header">
+                                    <div class="player-avatar">
+                                        <div class="player-number-large">${result.data.number}</div>
+                                        ${isCaptain ? '<div class="captain-badge">C</div>' : ''}
+                                    </div>
+                                    <div class="player-basic-info">
+                                        <h3 class="player-name">${result.data.name}</h3>
+                                        <p class="player-position">${result.data.position}</p>
+                                        <div class="player-team-info">
+                                            ${getTeamLogoElement(result.team.id, '24px')}
+                                            <span class="team-name">${result.team.name}</span>
+                                            ${teamPosition ? `<span class="team-position">#${teamPosition}</span>` : ''}
                                         </div>
                                     </div>
+                                </div>
+                                
+                                <div class="player-stats-section">
+                                    <h4>Tournament Stats</h4>
+                                    <div class="stats-grid">
+                                        <div class="stat-item">
+                                            <span class="stat-value">${playerStat.goals}</span>
+                                            <span class="stat-label">Goals</span>
+                                        </div>
+                                        <div class="stat-item">
+                                            <span class="stat-value">${playerStat.assists}</span>
+                                            <span class="stat-label">Assists</span>
+                                        </div>
+                                        <div class="stat-item">
+                                            <span class="stat-value">${playerStat.matches}</span>
+                                            <span class="stat-label">Matches</span>
+                                        </div>
+                                        <div class="stat-item">
+                                            <span class="stat-value">${playerStat.yellowCards}</span>
+                                            <span class="stat-label">Yellow Cards</span>
+                                        </div>
+                                        <div class="stat-item">
+                                            <span class="stat-value">${playerStat.redCards}</span>
+                                            <span class="stat-label">Red Cards</span>
+                                        </div>
+                                        ${result.data.position === 'Goalkeeper' ? `
+                                        <div class="stat-item">
+                                            <span class="stat-value">${playerStat.cleanSheets}</span>
+                                            <span class="stat-label">Clean Sheets</span>
+                                        </div>
+                                        ` : ''}
+                                    </div>
+                                </div>
+                                
+                                ${playerAwards.length > 0 ? `
+                                <div class="player-awards-section">
+                                    <h4>Awards & Achievements</h4>
+                                    <div class="awards-list">
+                                        ${playerAwards.map(award => `
+                                            <div class="award-item">
+                                                <span class="award-icon">🏆</span>
+                                                <span class="award-text">${award}</span>
+                                            </div>
+                                        `).join('')}
+                                    </div>
+                                </div>
+                                ` : ''}
+                                
+                                <div class="player-actions">
+                                    <button class="view-team-btn" onclick="loadPage('teams')">
+                                        View Team
+                                    </button>
+                                    <button class="view-stats-btn" onclick="loadPage('stats')">
+                                        View All Stats
+                                    </button>
                                 </div>
                             </div>
                         `;
