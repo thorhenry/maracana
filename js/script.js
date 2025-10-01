@@ -3111,6 +3111,23 @@ const styles = `
         font-weight: 500;
     }
 
+    .points-highlight {
+        background: rgba(0, 255, 133, 0.1) !important;
+        border: 1px solid rgba(0, 255, 133, 0.3) !important;
+        border-radius: 8px !important;
+    }
+
+    .points-highlight .stat-value {
+        color: #00ff85 !important;
+        font-weight: bold !important;
+        font-size: 1.1rem !important;
+    }
+
+    .points-highlight .stat-label {
+        color: #00ff85 !important;
+        font-weight: 600 !important;
+    }
+
     .player-awards-section {
         margin-bottom: 20px;
     }
@@ -3453,6 +3470,114 @@ const styles = `
 
     /* Mobile Responsive Styles */
     @media (max-width: 768px) {
+        .stats-tabs {
+            flex-direction: column;
+            gap: 0;
+            margin: 20px 0;
+        }
+
+        .stats-tab {
+            padding: 12px 20px;
+            font-size: 0.9rem;
+            text-align: center;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .stats-tab.active {
+            border-bottom-color: #00ff85;
+            border-left: 4px solid #00ff85;
+        }
+
+        .points-breakdown {
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+        }
+
+        .points-item {
+            padding: 8px 12px;
+            flex-direction: column;
+            text-align: center;
+            gap: 5px;
+        }
+
+        .points-item .points-value {
+            font-size: 1rem;
+        }
+
+        .points-item .points-label {
+            font-size: 0.8rem;
+        }
+
+        /* Points Dialog Mobile Styles */
+        .points-dialog-overlay {
+            padding: 10px;
+        }
+
+        .points-dialog {
+            max-height: 90vh;
+        }
+
+        .points-dialog-header {
+            padding: 15px;
+        }
+
+        .points-dialog-header h3 {
+            font-size: 1.3rem;
+        }
+
+        .points-dialog-content {
+            padding: 15px;
+        }
+
+        .total-points {
+            font-size: 2.5rem;
+        }
+
+        /* Mobile Table Styles */
+        .breakdown-table,
+        .matches-table {
+            font-size: 0.85rem;
+        }
+
+        .breakdown-table th,
+        .matches-table th {
+            padding: 8px 6px;
+            font-size: 0.8rem;
+        }
+
+        .breakdown-table td,
+        .matches-table td {
+            padding: 8px 6px;
+        }
+
+        .action-total,
+        .match-score,
+        .match-result {
+            font-size: 0.8rem;
+        }
+
+        .match-time {
+            font-size: 0.75rem;
+        }
+
+        /* Hide extra columns on mobile - show only Rank, Player, Team, Points */
+        .points-table th:nth-child(5),
+        .points-table td:nth-child(5),
+        .points-table th:nth-child(6),
+        .points-table td:nth-child(6),
+        .points-table th:nth-child(7),
+        .points-table td:nth-child(7),
+        .points-table th:nth-child(8),
+        .points-table td:nth-child(8) {
+            display: none;
+        }
+
+        .points-table th,
+        .points-table td {
+            padding: 10px 8px;
+            font-size: 0.9rem;
+        }
+
         .player-profile-header {
             flex-direction: column;
             text-align: center;
@@ -3634,6 +3759,362 @@ const styles = `
     .stats-page-container {
         max-width: 1200px;
         margin: 0 auto;
+        padding: 20px;
+    }
+
+    /* Stats Tabs */
+    .stats-tabs {
+        display: flex;
+        gap: 0;
+        margin: 30px 0;
+        border-bottom: 2px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .stats-tab {
+        background: transparent;
+        border: none;
+        padding: 15px 30px;
+        color: rgba(255, 255, 255, 0.7);
+        font-size: 1rem;
+        font-weight: 600;
+        cursor: pointer;
+        border-bottom: 3px solid transparent;
+        transition: all 0.3s ease;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+    }
+
+    .stats-tab:hover {
+        color: rgba(255, 255, 255, 0.9);
+        background: rgba(255, 255, 255, 0.05);
+    }
+
+    .stats-tab.active {
+        color: #00ff85;
+        border-bottom-color: #00ff85;
+        background: rgba(0, 255, 133, 0.1);
+    }
+
+    .stats-tab-content {
+        margin-top: 20px;
+    }
+
+    /* Points System */
+    .points-system-info {
+        background: rgba(255, 255, 255, 0.05);
+        border-radius: 12px;
+        padding: 20px;
+        margin-bottom: 30px;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .points-breakdown {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+        gap: 15px;
+        margin-top: 15px;
+    }
+
+    .points-item {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        padding: 10px 15px;
+        border-radius: 8px;
+        background: rgba(255, 255, 255, 0.05);
+    }
+
+    .points-item.positive {
+        border-left: 4px solid #00ff85;
+    }
+
+    .points-item.negative {
+        border-left: 4px solid #ff4757;
+    }
+
+    .points-item .points-value {
+        font-weight: bold;
+        font-size: 1.1rem;
+        min-width: 40px;
+    }
+
+    .points-item.positive .points-value {
+        color: #00ff85;
+    }
+
+    .points-item.negative .points-value {
+        color: #ff4757;
+    }
+
+    .points-item .points-label {
+        color: rgba(255, 255, 255, 0.9);
+        font-size: 0.9rem;
+    }
+
+    /* Points Table */
+    .points-table .points-value {
+        color: #00ff85 !important;
+        font-weight: bold;
+        font-size: 1.1rem;
+    }
+
+    .points-table .team-name {
+        color: rgba(255, 255, 255, 0.8);
+        font-size: 0.9rem;
+    }
+
+    .yellow-cards {
+        color: #ffa502;
+        font-weight: bold;
+        margin-right: 5px;
+    }
+
+    .red-cards {
+        color: #ff4757;
+        font-weight: bold;
+    }
+
+    /* Clickable Player Names */
+    .clickable-player {
+        cursor: pointer;
+        transition: all 0.3s ease;
+        color: #00ff85;
+    }
+
+    .clickable-player:hover {
+        color: #00cc6a;
+        text-decoration: underline;
+    }
+
+    /* Points Dialog */
+    .points-dialog-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.8);
+        backdrop-filter: blur(5px);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 1000;
+        padding: 20px;
+        box-sizing: border-box;
+    }
+
+    .points-dialog {
+        background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05));
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        border-radius: 16px;
+        max-width: 600px;
+        width: 100%;
+        max-height: 80vh;
+        overflow-y: auto;
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+    }
+
+    .points-dialog-header {
+        padding: 20px;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        position: relative;
+    }
+
+    .points-dialog-header h3 {
+        color: #00ff85;
+        font-size: 1.5rem;
+        margin: 0 0 5px 0;
+        font-weight: 700;
+    }
+
+    .points-dialog-header p {
+        color: rgba(255, 255, 255, 0.8);
+        margin: 0;
+        font-size: 1rem;
+    }
+
+    .close-dialog-btn {
+        position: absolute;
+        top: 15px;
+        right: 20px;
+        background: none;
+        border: none;
+        color: rgba(255, 255, 255, 0.7);
+        font-size: 2rem;
+        cursor: pointer;
+        width: 40px;
+        height: 40px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
+        transition: all 0.3s ease;
+    }
+
+    .close-dialog-btn:hover {
+        background: rgba(255, 255, 255, 0.1);
+        color: #00ff85;
+    }
+
+    .points-dialog-content {
+        padding: 20px;
+    }
+
+    .total-points-display {
+        text-align: center;
+        margin-bottom: 30px;
+        padding: 20px;
+        background: rgba(0, 255, 133, 0.1);
+        border-radius: 12px;
+        border: 1px solid rgba(0, 255, 133, 0.2);
+    }
+
+    .total-points {
+        display: block;
+        font-size: 3rem;
+        font-weight: bold;
+        color: #00ff85;
+        line-height: 1;
+    }
+
+    .total-points-label {
+        color: rgba(255, 255, 255, 0.8);
+        font-size: 1rem;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+    }
+
+    .points-breakdown-section,
+    .matches-section {
+        margin-bottom: 25px;
+    }
+
+    .points-breakdown-section h4,
+    .matches-section h4 {
+        color: #00ff85;
+        font-size: 1.2rem;
+        margin: 0 0 15px 0;
+        font-weight: 600;
+    }
+
+    /* Clean Table Layout */
+    .breakdown-table,
+    .matches-table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 15px 0;
+        background: rgba(255, 255, 255, 0.05);
+        border-radius: 8px;
+        overflow: hidden;
+    }
+
+    .breakdown-table th,
+    .matches-table th {
+        background: rgba(0, 255, 133, 0.1);
+        color: #00ff85;
+        padding: 12px 8px;
+        text-align: left;
+        font-weight: 600;
+        font-size: 0.9rem;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        border-bottom: 2px solid rgba(0, 255, 133, 0.2);
+    }
+
+    .breakdown-table td,
+    .matches-table td {
+        padding: 10px 8px;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        color: rgba(255, 255, 255, 0.9);
+    }
+
+    .breakdown-table tr:hover,
+    .matches-table tr:hover {
+        background: rgba(0, 255, 133, 0.05);
+    }
+
+    .breakdown-table tr:last-child td,
+    .matches-table tr:last-child td {
+        border-bottom: none;
+    }
+
+    /* Breakdown Table Specific */
+    .action-name {
+        font-weight: 600;
+        text-transform: capitalize;
+    }
+
+    .action-count {
+        text-align: center;
+        font-weight: bold;
+        color: #ffffff;
+    }
+
+    .action-points {
+        text-align: center;
+        color: rgba(255, 255, 255, 0.7);
+    }
+
+    .action-total {
+        text-align: center;
+        font-weight: bold;
+    }
+
+    .action-total.positive {
+        color: #00ff85;
+    }
+
+    .action-total.negative {
+        color: #ff4757;
+    }
+
+    .positive-row {
+        border-left: 3px solid #00ff85;
+    }
+
+    .negative-row {
+        border-left: 3px solid #ff4757;
+    }
+
+    /* Matches Table Specific */
+    .match-opponent {
+        font-weight: 600;
+    }
+
+    .match-score {
+        text-align: center;
+        font-weight: bold;
+        color: #00ff85;
+    }
+
+    .match-result {
+        text-align: center;
+        font-weight: bold;
+        text-transform: uppercase;
+        font-size: 0.85rem;
+    }
+
+    .match-result.W {
+        color: #00ff85;
+    }
+
+    .match-result.L {
+        color: #ff4757;
+    }
+
+    .match-result.D {
+        color: #ffc107;
+    }
+
+    .match-time {
+        font-size: 0.85rem;
+        color: rgba(255, 255, 255, 0.7);
+    }
+
+    .no-matches {
+        text-align: center;
+        color: rgba(255, 255, 255, 0.6);
+        font-style: italic;
         padding: 20px;
     }
 
@@ -5593,33 +6074,54 @@ const leagueData = {
                     playerOfTheMatch: "arua-henry",
                     home: {
                         starting: [
-                            { playerId: "arua-emmanuel", captain: false, goals: 0, goalMinutes: [], assists: 0, assistMinutes: [], yellowCard: false, yellowCardMinutes: [], redCard: false, redCardMinutes: [], substituted: false, substitutionMinute: null, cleanSheet: true },
-                            { playerId: "arua-aaron", captain: false, goals: 0, goalMinutes: [], assists: 0, assistMinutes: [], yellowCard: false, yellowCardMinutes: [], redCard: true, redCardMinutes: [83], substituted: false, substitutionMinute: null, cleanSheet: true },
-                            { playerId: "arua-sharif", captain: false, goals: 0, goalMinutes: [], assists: 0, assistMinutes: [], yellowCard: false, yellowCardMinutes: [], redCard: false, redCardMinutes: [], substituted: false, substitutionMinute: null, cleanSheet: true },
-                            { playerId: "arua-okanya", captain: false, goals: 1, goalMinutes: [23], goalTypes: ["penalty"], assists: 2, assistMinutes: [69,"90+1"], yellowCard: false, yellowCardMinutes: [], redCard: false, redCardMinutes: [], substituted: false, substitutionMinute: null, cleanSheet: true },
-                            { playerId: "arua-emmy", captain: true, goals: 0, goalMinutes: [], assists: 0, assistMinutes: [], yellowCard: false, yellowCardMinutes: [], redCard: false, redCardMinutes: [], substituted: true, substitutionMinute: 55, cleanSheet: true },
-                            { playerId: "arua-millio", captain: false, goals: 1, goalMinutes: [56], goalTypes: ["own"], assists: 0, assistMinutes: [], yellowCard: false, yellowCardMinutes: [], redCard: false, redCardMinutes: [], substituted: true, substitutionMinute: 60, cleanSheet: true },
+                            { playerId: "arua-yusuf", captain: false, goals: 0, goalMinutes: [], goalTypes: [], assists: 0, assistMinutes: [], yellowCard: false, yellowCardMinutes: [], redCard: false, redCardMinutes: [], substituted: false, substitutionMinute: null, cleanSheet: true },
+                            { playerId: "arua-mykolo", captain: false, goals: 0, goalMinutes: [], goalTypes: [], assists: 0, assistMinutes: [], yellowCard: false, yellowCardMinutes: [], redCard: false, redCardMinutes: [], substituted: false, substitutionMinute: null, cleanSheet: true },
+                            { playerId: "arua-victor", captain: false, goals: 0, goalMinutes: [], goalTypes: [], assists: 0, assistMinutes: [], yellowCard: false, yellowCardMinutes: [], redCard: false, redCardMinutes: [], substituted: false, substitutionMinute: null, cleanSheet: true },
+                            { playerId: "arua-frebouy", captain: false, goals: 0, goalMinutes: [], goalTypes: [], assists: 0, assistMinutes: [], yellowCard: false, yellowCardMinutes: [], redCard: false, redCardMinutes: [], substituted: false, substitutionMinute: null, cleanSheet: true },
+                            { playerId: "arua-emmy", captain: false, goals: 0, goalMinutes: [], goalTypes: [], assists: 0, assistMinutes: [], yellowCard: false, yellowCardMinutes: [], redCard: false, redCardMinutes: [], substituted: false, substitutionMinute: null, cleanSheet: true },
+                            { playerId: "arua-millio", captain: false, goals: 0, goalMinutes: [], goalTypes: [], assists: 0, assistMinutes: [], yellowCard: false, yellowCardMinutes: [], redCard: false, redCardMinutes: [], substituted: true, substitutionMinute: 45, cleanSheet: true },
+                            { playerId: "arua-okanya", captain: true, goals: 1, goalMinutes: [13], goalTypes: ["penalty"], assists: 1, assistMinutes: [70], yellowCard: false, yellowCardMinutes: [], redCard: false, redCardMinutes: [], substituted: false, substitutionMinute: null, cleanSheet: true }
                         ],
                         substitutes: [
-                            { playerId: "arua-thorhenry", captain: false, goals: 2, goalMinutes: [69, "90+1"], goalTypes: ["open", "open"], assists: 0, assistMinutes: [], yellowCard: true, yellowCardMinutes: [67], redCard: false, redCardMinutes: [], substituted: true, substitutionMinute: 55, cameOnFor: "arua-emmy", cleanSheet: true },
-                            { playerId: "arua-arthur-o", captain: false, goals: 0, goalMinutes: [], assists: 0, assistMinutes: [], yellowCard: false, yellowCardMinutes: [], redCard: false, redCardMinutes: [], substituted: true, substitutionMinute: 45, cameOnFor: "arua-emo", cleanSheet: true },
-                            { playerId: "arua-mark-o", captain: false, goals: 0, goalMinutes: [], assists: 0, assistMinutes: [], yellowCard: true, yellowCardMinutes: [80], redCard: false, redCardMinutes: [], substituted: true, substitutionMinute: 60, cameOnFor: "arua-millio", cleanSheet: true },
-                            { playerId: "arua-victor", captain: false, goals: 0, goalMinutes: [], assists: 0, assistMinutes: [], yellowCard: false, yellowCardMinutes: [], redCard: false, redCardMinutes: [], substituted: true, substitutionMinute: 60, cameOnFor: "arua-aggrey", cleanSheet: true }
+                            { playerId: "arua-keno", captain: false, goals: 0, goalMinutes: [], goalTypes: [], assists: 0, assistMinutes: [], yellowCard: false, yellowCardMinutes: [], redCard: false, redCardMinutes: [], substituted: false, substitutionMinute: null, cleanSheet: true },
+                            { playerId: "arua-apedo", captain: false, goals: 0, goalMinutes: [], goalTypes: [], assists: 0, assistMinutes: [], yellowCard: false, yellowCardMinutes: [], redCard: false, redCardMinutes: [], substituted: false, substitutionMinute: null, cleanSheet: true },
+                            { playerId: "arua-franco", captain: false, goals: 0, goalMinutes: [], goalTypes: [], assists: 0, assistMinutes: [], yellowCard: false, yellowCardMinutes: [], redCard: false, redCardMinutes: [], substituted: false, substitutionMinute: null, cleanSheet: true },
+                            { playerId: "arua-obita", captain: false, goals: 0, goalMinutes: [], goalTypes: [], assists: 0, assistMinutes: [], yellowCard: false, yellowCardMinutes: [], redCard: false, redCardMinutes: [], substituted: false, substitutionMinute: null, cleanSheet: true },
+                            { playerId: "arua-aggrey", captain: false, goals: 0, goalMinutes: [], goalTypes: [], assists: 0, assistMinutes: [], yellowCard: false, yellowCardMinutes: [], redCard: false, redCardMinutes: [], substituted: false, substitutionMinute: null, cleanSheet: true },
+                            { playerId: "arua-delz", captain: false, goals: 0, goalMinutes: [], goalTypes: [], assists: 0, assistMinutes: [], yellowCard: false, yellowCardMinutes: [], redCard: false, redCardMinutes: [], substituted: false, substitutionMinute: null, cleanSheet: true },
+                            { playerId: "arua-mark", captain: false, goals: 0, goalMinutes: [], goalTypes: [], assists: 0, assistMinutes: [], yellowCard: false, yellowCardMinutes: [], redCard: false, redCardMinutes: [], substituted: false, substitutionMinute: null, cleanSheet: true },
+                            { playerId: "arua-oscar", captain: false, goals: 0, goalMinutes: [], goalTypes: [], assists: 0, assistMinutes: [], yellowCard: false, yellowCardMinutes: [], redCard: false, redCardMinutes: [], substituted: false, substitutionMinute: null, cleanSheet: true },
+                            { playerId: "arua-asaph", captain: false, goals: 0, goalMinutes: [], goalTypes: [], assists: 0, assistMinutes: [], yellowCard: false, yellowCardMinutes: [], redCard: false, redCardMinutes: [], substituted: false, substitutionMinute: null, cleanSheet: true },
+                            { playerId: "arua-christian", captain: false, goals: 0, goalMinutes: [], goalTypes: [], assists: 0, assistMinutes: [], yellowCard: false, yellowCardMinutes: [], redCard: false, redCardMinutes: [], substituted: false, substitutionMinute: null, cleanSheet: true },
+                            { playerId: "arua-thorhenry", captain: false, goals: 2, goalMinutes: [70,86], goalTypes: ["open"], assists: 0, assistMinutes: [], yellowCard: true, yellowCardMinutes: [80], redCard: false, redCardMinutes: [], substituted: true, substitutionMinute: 45, cameOnFor: "arua-millio", cleanSheet: true },
+                            { playerId: "arua-urban-jnr", captain: false, goals: 0, goalMinutes: [], goalTypes: [], assists: 0, assistMinutes: [], yellowCard: false, yellowCardMinutes: [], redCard: false, redCardMinutes: [], substituted: false, substitutionMinute: null, cleanSheet: true },
+                            { playerId: "arua-eddie", captain: false, goals: 0, goalMinutes: [], goalTypes: [], assists: 0, assistMinutes: [], yellowCard: false, yellowCardMinutes: [], redCard: false, redCardMinutes: [], substituted: false, substitutionMinute: null, cleanSheet: true },
+                            { playerId: "arua-stuart", captain: false, goals: 0, goalMinutes: [], goalTypes: [], assists: 0, assistMinutes: [], yellowCard: false, yellowCardMinutes: [], redCard: false, redCardMinutes: [], substituted: false, substitutionMinute: null, cleanSheet: true }
                         ]
                     },
                     away: {
                         starting: [
-                            { playerId: "mbarara-yasin", captain: false, goals: 0, goalMinutes: [], assists: 0, assistMinutes: [], yellowCard: false, yellowCardMinutes: [], redCard: false, redCardMinutes: [], substituted: false, substitutionMinute: null, cleanSheet: false },
-                            { playerId: "mbarara-benard", captain: false, goals: 0, goalMinutes: [], assists: 0, assistMinutes: [], yellowCard: false, yellowCardMinutes: [], redCard: false, redCardMinutes: [], substituted: true, substitutionMinute: 55 },
-                            { playerId: "mbarara-cliff", captain: false, goals: 0, goalMinutes: [], goalTypes: [], assists: 0, assistMinutes: [], yellowCard: false, yellowCardMinutes: [], redCard: false, redCardMinutes: [], substituted: true, substitutionMinute: 67 },
-                            { playerId: "mbarara-tony", captain: true, goals: 0, goalMinutes: [], assists: 0, assistMinutes: [], yellowCard: false, yellowCardMinutes: [], redCard: false, redCardMinutes: [], substituted: false, substitutionMinute: null },
-                            { playerId: "mbarara-davie", captain: false, goals: 2, goalMinutes: [13, 83], goalTypes: ["own", "penalty"], assists: 0, assistMinutes: [], yellowCard: true, yellowCardMinutes: [45], redCard: false, redCardMinutes: [], redCardFromTwoYellows: false, substituted: true, substitutionMinute: 70 },
-                            { playerId: "mbarara-kabagambe", captain: false, goals: 0, goalMinutes: [], assists: 0, assistMinutes: [], yellowCard: false, yellowCardMinutes: [], redCard: false, redCardMinutes: [], substituted: true, substitutionMinute: 70 }
+                            { playerId: "mbarara-van", captain: false, goals: 0, goalMinutes: [], assists: 0, assistMinutes: [], yellowCard: false, yellowCardMinutes: [], redCard: false, redCardMinutes: [], substituted: false, substitutionMinute: null, cleanSheet: false },
+                            { playerId: "mbarara-ken", captain: false, goals: 1, goalMinutes: [67], goalTypes: ["own"], assists: 0, assistMinutes: [], yellowCard: false, yellowCardMinutes: [], redCard: false, redCardMinutes: [], substituted: false, substitutionMinute: null, cleanSheet: false },
+                            { playerId: "mbarara-ivan", captain: false, goals: 0, goalMinutes: [], assists: 0, assistMinutes: [], yellowCard: false, yellowCardMinutes: [], redCard: false, redCardMinutes: [], substituted: false, substitutionMinute: null, cleanSheet: false },
+                            { playerId: "mbarara-elaisha", captain: false, goals: 0, goalMinutes: [], assists: 0, assistMinutes: [], yellowCard: false, yellowCardMinutes: [], redCard: true, redCardMinutes: [65], substituted: false, substitutionMinute: null, cleanSheet: false },
+                            { playerId: "mbarara-amoblaze", captain: false, goals: 0, goalMinutes: [], assists: 0, assistMinutes: [], yellowCard: false, yellowCardMinutes: [], redCard: false, redCardMinutes: [], substituted: false, substitutionMinute: null, cleanSheet: false },
+                            { playerId: "mbarara-benard", captain: false, goals: 0, goalMinutes: [], assists: 0, assistMinutes: [], yellowCard: false, yellowCardMinutes: [], redCard: false, redCardMinutes: [], substituted: false, substitutionMinute: null, cleanSheet: false },
+                            { playerId: "mbarara-afande", captain: true, goals: 0, goalMinutes: [], assists: 0, assistMinutes: [], yellowCard: false, yellowCardMinutes: [], redCard: false, redCardMinutes: [], substituted: false, substitutionMinute: null, cleanSheet: false }
                         ],
                         substitutes: [
-                            { playerId: "mbarara-martin", captain: false, goals: 1, goalMinutes: [76], goalTypes: ["penalty"], assists: 0, assistMinutes: [], yellowCard: false, yellowCardMinutes: [], redCard: false, redCardMinutes: [], substituted: true, substitutionMinute: 70, cameOnFor: "mbarara-kabagambe" },
-                            { playerId: "mbarara-latif", captain: false, goals: 0, goalMinutes: [], assists: 0, assistMinutes: [], yellowCard: false, yellowCardMinutes: [], redCard: false, redCardMinutes: [], substituted: true, substitutionMinute: 67, cameOnFor: "mbarara-cliff" },
-                            { playerId: "mbarara-muzoora", captain: false, goals: 0, goalMinutes: [], assists: 0, assistMinutes: [], yellowCard: false, yellowCardMinutes: [], redCard: true, redCardMinutes: [85], redCardFromTwoYellows: false, substituted: true, substitutionMinute: 70, cameOnFor: "mbarara-davie" }
+                            { playerId: "mbarara-cliff", captain: false, goals: 0, goalMinutes: [], assists: 0, assistMinutes: [], yellowCard: false, yellowCardMinutes: [], redCard: false, redCardMinutes: [], substituted: false, substitutionMinute: null, cleanSheet: false },
+                            { playerId: "mbarara-sharif", captain: false, goals: 0, goalMinutes: [], assists: 0, assistMinutes: [], yellowCard: false, yellowCardMinutes: [], redCard: false, redCardMinutes: [], substituted: false, substitutionMinute: null, cleanSheet: false },
+                            { playerId: "mbarara-tony", captain: false, goals: 0, goalMinutes: [], assists: 0, assistMinutes: [], yellowCard: false, yellowCardMinutes: [], redCard: false, redCardMinutes: [], substituted: false, substitutionMinute: null, cleanSheet: false },
+                            { playerId: "mbarara-seka-barack", captain: false, goals: 0, goalMinutes: [], assists: 0, assistMinutes: [], yellowCard: false, yellowCardMinutes: [], redCard: false, redCardMinutes: [], substituted: false, substitutionMinute: null, cleanSheet: false },
+                            { playerId: "mbarara-prokie", captain: false, goals: 0, goalMinutes: [], assists: 0, assistMinutes: [], yellowCard: false, yellowCardMinutes: [], redCard: false, redCardMinutes: [], substituted: false, substitutionMinute: null, cleanSheet: false },
+                            { playerId: "mbarara-tyron", captain: false, goals: 0, goalMinutes: [], assists: 0, assistMinutes: [], yellowCard: false, yellowCardMinutes: [], redCard: false, redCardMinutes: [], substituted: false, substitutionMinute: null, cleanSheet: false },
+                            { playerId: "mbarara-tiff", captain: false, goals: 0, goalMinutes: [], assists: 0, assistMinutes: [], yellowCard: false, yellowCardMinutes: [], redCard: false, redCardMinutes: [], substituted: false, substitutionMinute: null, cleanSheet: false },
+                            { playerId: "mbarara-yeta", captain: false, goals: 0, goalMinutes: [], assists: 0, assistMinutes: [], yellowCard: false, yellowCardMinutes: [], redCard: false, redCardMinutes: [], substituted: false, substitutionMinute: null, cleanSheet: false },
+                            { playerId: "mbarara-isaac-barunda", captain: false, goals: 0, goalMinutes: [], assists: 0, assistMinutes: [], yellowCard: false, yellowCardMinutes: [], redCard: false, redCardMinutes: [], substituted: false, substitutionMinute: null, cleanSheet: false },
+                            { playerId: "mbarara-ambrose", captain: false, goals: 0, goalMinutes: [], assists: 0, assistMinutes: [], yellowCard: false, yellowCardMinutes: [], redCard: false, redCardMinutes: [], substituted: false, substitutionMinute: null, cleanSheet: false },
+                            { playerId: "mbarara-musinguzi", captain: false, goals: 0, goalMinutes: [], assists: 0, assistMinutes: [], yellowCard: false, yellowCardMinutes: [], redCard: false, redCardMinutes: [], substituted: false, substitutionMinute: null, cleanSheet: false },
+                            { playerId: "mbarara-muzora", captain: false, goals: 0, goalMinutes: [], assists: 0, assistMinutes: [], yellowCard: false, yellowCardMinutes: [], redCard: false, redCardMinutes: [], substituted: false, substitutionMinute: null, cleanSheet: false }
                         ]
                     }
                 },
@@ -6153,10 +6655,16 @@ function startCountdown() {
         const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
         const seconds = Math.floor((distance % (1000 * 60)) / 1000);
         
-        document.getElementById('days').innerHTML = days.toString().padStart(2, '0');
-        document.getElementById('hours').innerHTML = hours.toString().padStart(2, '0');
-        document.getElementById('minutes').innerHTML = minutes.toString().padStart(2, '0');
-        document.getElementById('seconds').innerHTML = seconds.toString().padStart(2, '0');
+        // Safely update elements if they exist
+        const daysElement = document.getElementById('days');
+        const hoursElement = document.getElementById('hours');
+        const minutesElement = document.getElementById('minutes');
+        const secondsElement = document.getElementById('seconds');
+        
+        if (daysElement) daysElement.innerHTML = days.toString().padStart(2, '0');
+        if (hoursElement) hoursElement.innerHTML = hours.toString().padStart(2, '0');
+        if (minutesElement) minutesElement.innerHTML = minutes.toString().padStart(2, '0');
+        if (secondsElement) secondsElement.innerHTML = seconds.toString().padStart(2, '0');
         
         // Calculate gradient progress (0 = far away, 1 = very close)
         const progress = Math.min(1, Math.max(0, (totalDuration - distance) / totalDuration));
@@ -7347,12 +7855,27 @@ function processMatchPlayers(match, playerStats) {
         
         // Count only non-own goals
         const nonOwnGoals = (player.goals || 0) - (player.goalTypes ? player.goalTypes.filter(type => type === 'own').length : 0);
+        const ownGoals = player.goalTypes ? player.goalTypes.filter(type => type === 'own').length : 0;
+        
         playerStats[player.playerId].goals += nonOwnGoals;
+        // Track own goals separately
+        if (!playerStats[player.playerId].ownGoals) {
+            playerStats[player.playerId].ownGoals = 0;
+        }
+        playerStats[player.playerId].ownGoals += ownGoals;
+        
         playerStats[player.playerId].assists += player.assists || 0;
         playerStats[player.playerId].yellowCards += player.yellowCard ? 1 : 0;
         playerStats[player.playerId].redCards += player.redCard ? 1 : 0;
         playerStats[player.playerId].cleanSheets += player.cleanSheet ? 1 : 0;
-        playerStats[player.playerId].matches += 1;
+        
+        // Only count match if player was in starting lineup or came on as a substitute
+        const isStarting = match.home.starting.some(p => p.playerId === player.playerId);
+        const wasSubstitutedOn = match.home.substitutes.some(p => p.playerId === player.playerId && p.substitutionMinute !== null);
+        
+        if (isStarting || wasSubstitutedOn) {
+            playerStats[player.playerId].matches += 1;
+        }
     });
     
     // Process away team players
@@ -7374,12 +7897,27 @@ function processMatchPlayers(match, playerStats) {
         
         // Count only non-own goals
         const nonOwnGoals = (player.goals || 0) - (player.goalTypes ? player.goalTypes.filter(type => type === 'own').length : 0);
+        const ownGoals = player.goalTypes ? player.goalTypes.filter(type => type === 'own').length : 0;
+        
         playerStats[player.playerId].goals += nonOwnGoals;
+        // Track own goals separately
+        if (!playerStats[player.playerId].ownGoals) {
+            playerStats[player.playerId].ownGoals = 0;
+        }
+        playerStats[player.playerId].ownGoals += ownGoals;
+        
         playerStats[player.playerId].assists += player.assists || 0;
         playerStats[player.playerId].yellowCards += player.yellowCard ? 1 : 0;
         playerStats[player.playerId].redCards += player.redCard ? 1 : 0;
         playerStats[player.playerId].cleanSheets += player.cleanSheet ? 1 : 0;
-        playerStats[player.playerId].matches += 1;
+        
+        // Only count match if player was in starting lineup or came on as a substitute
+        const isStarting = match.away.starting.some(p => p.playerId === player.playerId);
+        const wasSubstitutedOn = match.away.substitutes.some(p => p.playerId === player.playerId && p.substitutionMinute !== null);
+        
+        if (isStarting || wasSubstitutedOn) {
+            playerStats[player.playerId].matches += 1;
+        }
     });
 }
 
@@ -8873,14 +9411,31 @@ function displayGlobalSearchResults(teamResults, playerResults, matchResults, se
                 <h4 class="results-section-title">Players (${playerResults.length})</h4>
                 <div class="player-results-grid">
                     ${playerResults.map(result => {
-                        const playerStat = calculatePlayerStats()[result.data.id] || { 
-                            goals: 0, 
-                            assists: 0, 
-                            yellowCards: 0, 
-                            redCards: 0, 
-                            cleanSheets: 0,
-                            matches: 0
-                        };
+                                    const playerStat = calculatePlayerStats()[result.data.id] || {
+                                        goals: 0,
+                                        assists: 0,
+                                        yellowCards: 0,
+                                        redCards: 0,
+                                        cleanSheets: 0,
+                                        matches: 0
+                                    };
+                                    
+                                    // Calculate player points
+                                    const position = result.data.position.toLowerCase();
+                                    let goalPoints = 0;
+                                    if (position === 'goalkeeper') goalPoints = 10;
+                                    else if (position === 'defender') goalPoints = 6;
+                                    else if (position === 'midfielder') goalPoints = 5;
+                                    else if (position === 'forward' || position === 'striker') goalPoints = 4;
+                                    else goalPoints = 4;
+                                    
+                                    const totalPoints = (playerStat.goals * goalPoints) + 
+                                                      (playerStat.assists * 3) + 
+                                                      ((position === 'goalkeeper' || position === 'defender') ? playerStat.cleanSheets * 4 : 0) + 
+                                                      (playerStat.matches * 1) + 
+                                                      (playerStat.yellowCards * -1) + 
+                                                      (playerStat.redCards * -2) +
+                                                      ((playerStat.ownGoals || 0) * -2); // Deduct 2 points for each own goal
                         const isCaptain = result.team.captain === result.data.name;
                         const standings = calculateStandings();
                         const teamStanding = standings.find(team => team.name === result.team.name);
@@ -8920,6 +9475,10 @@ function displayGlobalSearchResults(teamResults, playerResults, matchResults, se
                                             <span class="stat-value">${playerStat.matches}</span>
                                             <span class="stat-label">Matches</span>
                                         </div>
+                                        <div class="stat-item points-highlight">
+                                            <span class="stat-value">${totalPoints}</span>
+                                            <span class="stat-label">Points</span>
+                                        </div>
                                         <div class="stat-item">
                                             <span class="stat-value">${playerStat.yellowCards}</span>
                                             <span class="stat-label">Yellow Cards</span>
@@ -8927,6 +9486,10 @@ function displayGlobalSearchResults(teamResults, playerResults, matchResults, se
                                         <div class="stat-item">
                                             <span class="stat-value">${playerStat.redCards}</span>
                                             <span class="stat-label">Red Cards</span>
+                                        </div>
+                                        <div class="stat-item">
+                                            <span class="stat-value">${playerStat.ownGoals || 0}</span>
+                                            <span class="stat-label">Own Goals</span>
                                         </div>
                                         ${result.data.position === 'Goalkeeper' ? `
                                         <div class="stat-item">
@@ -9008,6 +9571,76 @@ function displayGlobalSearchResults(teamResults, playerResults, matchResults, se
     resultsContainer.innerHTML = resultsHTML;
 }
 
+function calculatePlayerPoints() {
+    const playerStats = calculatePlayerStats();
+    const points = [];
+    
+    // Updated Points system:
+    // Goals by position: Goalkeeper 10, Defender 6, Midfielder 5, Forward/Striker 4
+    // Assist: 3 points flat
+    // Clean Sheet: 4 points for Goalkeeper and Defender only
+    // Yellow Card: -1 point
+    // Red Card: -2 points
+    // Own Goal: -2 points
+    // Match Played: 1 point
+    
+    for (const [playerId, stats] of Object.entries(playerStats)) {
+        const player = leagueData.teams.flatMap(team => team.squad).find(p => p.id === playerId);
+        if (!player) continue;
+        
+        let totalPoints = 0;
+        
+        // Goals by position
+        const position = player.position.toLowerCase();
+        let goalPoints = 0;
+        if (position === 'goalkeeper') {
+            goalPoints = 10;
+        } else if (position === 'defender') {
+            goalPoints = 6;
+        } else if (position === 'midfielder') {
+            goalPoints = 5;
+        } else if (position === 'forward' || position === 'striker') {
+            goalPoints = 4;
+        } else {
+            goalPoints = 4; // Default for other positions
+        }
+        totalPoints += stats.goals * goalPoints;
+        
+        // Assists (3 points flat)
+        totalPoints += stats.assists * 3;
+        
+        // Clean Sheets (only for Goalkeeper and Defender)
+        if (position === 'goalkeeper' || position === 'defender') {
+            totalPoints += stats.cleanSheets * 4;
+        }
+        
+        // Cards
+        totalPoints -= stats.yellowCards * 1; // Yellow Cards
+        totalPoints -= stats.redCards * 2; // Red Cards (updated from -3 to -2)
+        
+        // Own Goals (-2 points each)
+        totalPoints -= (stats.ownGoals || 0) * 2; // Deduct 2 points for each own goal
+        
+        // Match Played
+        totalPoints += stats.matches * 1;
+        
+        points.push({
+            name: player.name,
+            team: leagueData.teams.find(team => team.squad.some(p => p.id === playerId))?.name || 'Unknown',
+            position: player.position,
+            points: totalPoints,
+            goals: stats.goals,
+            assists: stats.assists,
+            cleanSheets: stats.cleanSheets,
+            yellowCards: stats.yellowCards,
+            redCards: stats.redCards,
+            matches: stats.matches
+        });
+    }
+    
+    return points.sort((a, b) => b.points - a.points);
+}
+
 function generateStatsPage() {
     const playerStats = calculatePlayerStats();
     const matchStats = calculateMatchStats();
@@ -9050,10 +9683,18 @@ function generateStatsPage() {
     const mostYellowCards = getMostYellowCards(playerStats);
     const mostRedCards = getMostRedCards(playerStats);
     const topCleanSheets = getTopCleanSheets(playerStats);
+    const playerPoints = calculatePlayerPoints();
     
     return `
         <div class="stats-page-container">
             <h2 class="page-title">Statistics</h2>
+
+            <div class="stats-tabs">
+                <button class="stats-tab active" onclick="switchStatsTab('statistics')">Statistics</button>
+                <button class="stats-tab" onclick="switchStatsTab('points')">Player Points</button>
+                </div>
+            
+            <div class="stats-tab-content" id="statistics-tab">
 
             <h3 class="stats-section-title">Top Scorers</h3>
             <table class="stats-table goals-table">
@@ -9096,7 +9737,7 @@ function generateStatsPage() {
                             <path d="M6 9L12 15L18 9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                         </svg>
                     </button>
-                </div>
+            </div>
             ` : ''}
             
             <h3 class="stats-section-title">Top Assists</h3>
@@ -9228,7 +9869,7 @@ function generateStatsPage() {
                             <path d="M6 9L12 15L18 9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                         </svg>
                     </button>
-                </div>
+            </div>
             ` : ''}
             
             <h3 class="stats-section-title">Most Red Cards</h3>
@@ -9272,10 +9913,339 @@ function generateStatsPage() {
                             <path d="M6 9L12 15L18 9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                         </svg>
                     </button>
-                </div>
+            </div>
             ` : ''}
             </div>
+            
+            <div class="stats-tab-content" id="points-tab" style="display: none;">
+                <div class="points-system-info">
+                    <h3 class="stats-section-title">Points System</h3>
+                    <div class="points-breakdown">
+                        <div class="points-item positive">
+                            <span class="points-value">+10</span>
+                            <span class="points-label">Goal (GK)</span>
+                </div>
+                        <div class="points-item positive">
+                            <span class="points-value">+6</span>
+                            <span class="points-label">Goal (DEF)</span>
+                        </div>
+                        <div class="points-item positive">
+                            <span class="points-value">+5</span>
+                            <span class="points-label">Goal (MID)</span>
+                        </div>
+                        <div class="points-item positive">
+                            <span class="points-value">+4</span>
+                            <span class="points-label">Goal (FWD)</span>
+                        </div>
+                        <div class="points-item positive">
+                            <span class="points-value">+3</span>
+                            <span class="points-label">Assist</span>
+                        </div>
+                        <div class="points-item positive">
+                            <span class="points-value">+4</span>
+                            <span class="points-label">Clean Sheet (GK/DEF)</span>
+                        </div>
+                        <div class="points-item positive">
+                            <span class="points-value">+1</span>
+                            <span class="points-label">Match Played</span>
+                        </div>
+                        <div class="points-item negative">
+                            <span class="points-value">-1</span>
+                            <span class="points-label">Yellow Card</span>
+                        </div>
+                        <div class="points-item negative">
+                            <span class="points-value">-2</span>
+                            <span class="points-label">Red Card</span>
+                        </div>
+                        <div class="points-item negative">
+                            <span class="points-value">-2</span>
+                            <span class="points-label">Own Goal</span>
+                        </div>
+                    </div>
+            </div>
+            
+                <h3 class="stats-section-title">Player Points Leaderboard</h3>
+                <table class="stats-table points-table">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Player</th>
+                            <th>Team</th>
+                            <th>Points</th>
+                            <th>Goals</th>
+                            <th>Assists</th>
+                            <th>Clean Sheets</th>
+                            <th>Cards</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        ${playerPoints.slice(0, 10).map((player, index) => `
+                            <tr>
+                                <td><div class="rank-badge">${index + 1}</div></td>
+                                <td><div class="player-name clickable-player" onclick="showPlayerPointsDialog('${player.name}', '${player.team}', '${player.position}')">${player.name}</div></td>
+                                <td><div class="team-name">${player.team}</div></td>
+                                <td class="stat-value points-value">${player.points}</td>
+                                <td class="stat-value">${player.goals}</td>
+                                <td class="stat-value">${player.assists}</td>
+                                <td class="stat-value">${player.cleanSheets}</td>
+                                <td class="stat-value">
+                                    ${player.yellowCards > 0 ? `<span class="yellow-cards">${player.yellowCards}Y</span>` : ''}
+                                    ${player.redCards > 0 ? `<span class="red-cards">${player.redCards}R</span>` : ''}
+                                    ${player.yellowCards === 0 && player.redCards === 0 ? '0' : ''}
+                                </td>
+                            </tr>
+                        `).join('')}
+                        ${playerPoints.length > 10 ? `
+                            <tbody class="hidden-stats" id="points-more">
+                                ${playerPoints.slice(10).map((player, index) => `
+                                    <tr>
+                                        <td><div class="rank-badge">${index + 11}</div></td>
+                                        <td><div class="player-name clickable-player" onclick="showPlayerPointsDialog('${player.name}', '${player.team}', '${player.position}')">${player.name}</div></td>
+                                        <td><div class="team-name">${player.team}</div></td>
+                                        <td class="stat-value points-value">${player.points}</td>
+                                        <td class="stat-value">${player.goals}</td>
+                                        <td class="stat-value">${player.assists}</td>
+                                        <td class="stat-value">${player.cleanSheets}</td>
+                                        <td class="stat-value">
+                                            ${player.yellowCards > 0 ? `<span class="yellow-cards">${player.yellowCards}Y</span>` : ''}
+                                            ${player.redCards > 0 ? `<span class="red-cards">${player.redCards}R</span>` : ''}
+                                            ${player.yellowCards === 0 && player.redCards === 0 ? '0' : ''}
+                                        </td>
+                                    </tr>
+                                `).join('')}
+                            </tbody>
+                        ` : ''}
+                    </tbody>
+                </table>
+                ${playerPoints.length > 10 ? `
+                    <div class="read-more-container">
+                        <button class="read-more-btn" onclick="toggleStats('points-more', this)">
+                            <span>Read More</span>
+                            <svg class="read-more-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M6 9L12 15L18 9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </button>
+                </div>
+                ` : ''}
+            </div>
+        </div>
     `;
+}
+
+function getPlayerDetailedPoints(playerName, teamName, position) {
+    console.log('getPlayerDetailedPoints called with:', playerName, teamName, position);
+    const playerStats = calculatePlayerStats();
+    console.log('Available teams:', leagueData.teams.map(t => t.name));
+    const player = leagueData.teams.flatMap(team => team.squad.map(p => ({...p, teamName: team.name}))).find(p => p.name === playerName && p.teamName === teamName);
+    console.log('Found player:', player);
+    if (!player) {
+        console.log('Player not found, trying alternative search...');
+        // Try to find player by name only
+        const altPlayer = leagueData.teams.flatMap(team => team.squad.map(p => ({...p, teamName: team.name}))).find(p => p.name === playerName);
+        console.log('Alternative player found:', altPlayer);
+        if (altPlayer) {
+            console.log('Alternative team found:', altPlayer.teamName);
+            return getPlayerDetailedPoints(playerName, altPlayer.teamName, position);
+        }
+        return null;
+    }
+    
+    const stats = playerStats[player.id] || {
+        goals: 0, assists: 0, cleanSheets: 0, yellowCards: 0, redCards: 0, matches: 0
+    };
+    
+    // Get match details for this player
+    const matchDetails = [];
+    const actualTeamName = player.teamName || teamName;
+    leagueData.fixturesData.forEach(timeSlot => {
+        timeSlot.matches.forEach(match => {
+            if (match.status === 'completed' && (match.homeTeam === actualTeamName || match.awayTeam === actualTeamName)) {
+                const isHome = match.homeTeam === actualTeamName;
+                const opponent = isHome ? match.awayTeam : match.homeTeam;
+                const score = isHome ? `${match.homeScore}-${match.awayScore}` : `${match.awayScore}-${match.homeScore}`;
+                const result = isHome ? 
+                    (match.homeScore > match.awayScore ? 'W' : match.homeScore < match.awayScore ? 'L' : 'D') :
+                    (match.awayScore > match.homeScore ? 'W' : match.awayScore < match.homeScore ? 'L' : 'D');
+                
+                matchDetails.push({
+                    opponent,
+                    score,
+                    result,
+                    date: timeSlot.date,
+                    time: timeSlot.time
+                });
+            }
+        });
+    });
+    
+    // Calculate points breakdown
+    const positionLower = position.toLowerCase();
+    let goalPoints = 0;
+    if (positionLower === 'goalkeeper') goalPoints = 10;
+    else if (positionLower === 'defender') goalPoints = 6;
+    else if (positionLower === 'midfielder') goalPoints = 5;
+    else if (positionLower === 'forward' || positionLower === 'striker') goalPoints = 4;
+    else goalPoints = 4;
+    
+    const breakdown = {
+        goals: {
+            count: stats.goals,
+            pointsPer: goalPoints,
+            total: stats.goals * goalPoints
+        },
+        assists: {
+            count: stats.assists,
+            pointsPer: 3,
+            total: stats.assists * 3
+        },
+        cleanSheets: {
+            count: stats.cleanSheets,
+            pointsPer: (positionLower === 'goalkeeper' || positionLower === 'defender') ? 4 : 0,
+            total: (positionLower === 'goalkeeper' || positionLower === 'defender') ? stats.cleanSheets * 4 : 0
+        },
+        matches: {
+            count: stats.matches,
+            pointsPer: 1,
+            total: stats.matches * 1
+        },
+        yellowCards: {
+            count: stats.yellowCards,
+            pointsPer: -1,
+            total: stats.yellowCards * -1
+        },
+        redCards: {
+            count: stats.redCards,
+            pointsPer: -2,
+            total: stats.redCards * -2
+        }
+    };
+    
+    return {
+        player: { name: playerName, team: actualTeamName, position },
+        stats,
+        breakdown,
+        matchDetails,
+        totalPoints: Object.values(breakdown).reduce((sum, item) => sum + item.total, 0)
+    };
+}
+
+function showPlayerPointsDialog(playerName, teamName, position) {
+    console.log('showPlayerPointsDialog called with:', playerName, teamName, position);
+    const details = getPlayerDetailedPoints(playerName, teamName, position);
+    console.log('Player details:', details);
+    if (!details) {
+        console.log('No details found for player');
+        return;
+    }
+    
+    const dialogHTML = `
+        <div class="points-dialog-overlay" onclick="closePlayerPointsDialog()">
+            <div class="points-dialog" onclick="event.stopPropagation()">
+                <div class="points-dialog-header">
+                    <h3>${details.player.name}</h3>
+                    <p>${details.player.team} • ${details.player.position}</p>
+                    <button class="close-dialog-btn" onclick="closePlayerPointsDialog()">×</button>
+                </div>
+                
+                <div class="points-dialog-content">
+                    <div class="total-points-display">
+                        <span class="total-points">${details.totalPoints}</span>
+                        <span class="total-points-label">Total Points</span>
+            </div>
+            
+                    <div class="points-breakdown-section">
+                        <h4>Points Breakdown</h4>
+                        <table class="breakdown-table">
+                            <thead>
+                                <tr>
+                                    <th>Action</th>
+                                    <th>Count</th>
+                                    <th>Points Each</th>
+                                    <th>Total</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                ${Object.entries(details.breakdown).map(([key, item]) => `
+                                    <tr class="${item.total < 0 ? 'negative-row' : 'positive-row'}">
+                                        <td class="action-name">${key.charAt(0).toUpperCase() + key.slice(1).replace(/([A-Z])/g, ' $1')}</td>
+                                        <td class="action-count">${item.count}</td>
+                                        <td class="action-points">${item.pointsPer}</td>
+                                        <td class="action-total ${item.total < 0 ? 'negative' : 'positive'}">${item.total}</td>
+                                    </tr>
+                                `).join('')}
+                            </tbody>
+                        </table>
+                    </div>
+                    
+                    <div class="matches-section">
+                        <h4>Matches Played (${details.matchDetails.length})</h4>
+                        <table class="matches-table">
+                            <thead>
+                                <tr>
+                                    <th>Opponent</th>
+                                    <th>Score</th>
+                                    <th>Result</th>
+                                    <th>Time</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                ${details.matchDetails.length > 0 ? 
+                                    details.matchDetails.map(match => `
+                                        <tr>
+                                            <td class="match-opponent">${match.opponent}</td>
+                                            <td class="match-score">${match.score}</td>
+                                            <td class="match-result ${match.result}">${match.result}</td>
+                                            <td class="match-time">${match.time || 'N/A'}</td>
+                                        </tr>
+                                    `).join('') :
+                                    '<tr><td colspan="4" class="no-matches">No completed matches yet</td></tr>'
+                                }
+                            </tbody>
+                        </table>
+                </div>
+                </div>
+            </div>
+        </div>
+    `;
+    
+    console.log('Adding dialog to DOM...');
+    document.body.insertAdjacentHTML('beforeend', dialogHTML);
+    document.body.style.overflow = 'hidden';
+    console.log('Dialog added, checking if it exists...');
+    const dialog = document.querySelector('.points-dialog-overlay');
+    console.log('Dialog element found:', dialog);
+}
+
+function closePlayerPointsDialog() {
+    const dialog = document.querySelector('.points-dialog-overlay');
+    if (dialog) {
+        dialog.remove();
+        document.body.style.overflow = '';
+    }
+}
+
+function switchStatsTab(tabName) {
+    // Hide all tab contents
+    const tabContents = document.querySelectorAll('.stats-tab-content');
+    tabContents.forEach(content => {
+        content.style.display = 'none';
+    });
+    
+    // Remove active class from all tabs
+    const tabs = document.querySelectorAll('.stats-tab');
+    tabs.forEach(tab => {
+        tab.classList.remove('active');
+    });
+    
+    // Show selected tab content
+    const selectedTab = document.getElementById(tabName + '-tab');
+    if (selectedTab) {
+        selectedTab.style.display = 'block';
+    }
+    
+    // Add active class to clicked tab
+    const clickedTab = event.target;
+    clickedTab.classList.add('active');
 }
 
 function toggleStats(elementId, button) {
@@ -9303,7 +10273,7 @@ function generateSearchPage() {
                     <input type="text" id="globalSearch" class="global-search-input" placeholder="Search teams, players, positions, matches..." onkeyup="performGlobalSearch()">
                     <div class="search-icon">⌕</div>
                 </div>
-            </div>
+                            </div>
             
             <div class="search-results-container" id="searchResultsContainer">
                 <div class="search-placeholder">
