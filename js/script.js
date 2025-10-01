@@ -196,6 +196,58 @@ const styles = `
         align-items: center;
     }
 
+    .desktop-search-container {
+        margin-left: 20px;
+        margin-right: 20px;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+    }
+
+    .search-icon-svg {
+        width: 18px;
+        height: 18px;
+        color: rgba(255, 255, 255, 0.6);
+        transition: all 0.3s ease;
+        cursor: pointer;
+    }
+
+    .search-icon-svg:hover {
+        color: rgba(0, 255, 133, 0.7);
+        transform: scale(1.1);
+    }
+
+    .desktop-search-input {
+        background: rgba(255, 255, 255, 0.1);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        border-radius: 20px;
+        padding: 8px 15px;
+        color: #fff;
+        font-size: 0.9rem;
+        width: 150px;
+        transition: all 0.3s ease;
+        backdrop-filter: blur(10px);
+        cursor: pointer;
+    }
+
+    .desktop-search-input:hover {
+        border-color: rgba(0, 255, 133, 0.3);
+        background: rgba(255, 255, 255, 0.15);
+    }
+
+    .desktop-search-input:focus {
+        outline: none;
+        border-color: #00ff85;
+        background: rgba(0, 255, 133, 0.1);
+        width: 200px;
+        cursor: text;
+    }
+
+    .desktop-search-input::placeholder {
+        color: rgba(255, 255, 255, 0.6);
+        font-size: 0.85rem;
+    }
+
     .mobile-controls {
         display: none;
         align-items: center;
@@ -205,6 +257,43 @@ const styles = `
         top: 50%;
         transform: translateY(-50%);
         z-index: 1001;
+    }
+
+    .mobile-search-container {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+    }
+
+    .mobile-search-input {
+        background: rgba(255, 255, 255, 0.1);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        border-radius: 20px;
+        padding: 8px 15px;
+        color: #fff;
+        font-size: 0.9rem;
+        width: 120px;
+        transition: all 0.3s ease;
+        backdrop-filter: blur(10px);
+        cursor: pointer;
+    }
+
+    .mobile-search-input:hover {
+        border-color: rgba(0, 255, 133, 0.3);
+        background: rgba(255, 255, 255, 0.15);
+    }
+
+    .mobile-search-input:focus {
+        outline: none;
+        border-color: #00ff85;
+        background: rgba(0, 255, 133, 0.1);
+        width: 150px;
+        cursor: text;
+    }
+
+    .mobile-search-input::placeholder {
+        color: rgba(255, 255, 255, 0.6);
+        font-size: 0.85rem;
     }
 
     .home-icon-btn {
@@ -2326,10 +2415,11 @@ const styles = `
         flex-direction: column;
         max-height: 300px;
         overflow-y: auto;
+        overflow-x: hidden; /* Hide horizontal scrollbar */
     }
 
     .squad-grid::-webkit-scrollbar {
-        width: 4px;
+        width: 4px; /* Keep vertical scrollbar visible */
     }
 
     .squad-grid::-webkit-scrollbar-track {
@@ -2345,6 +2435,32 @@ const styles = `
         display: flex;
         align-items: center;
         gap: 15px;
+        transition: all 0.3s ease;
+    }
+
+    .squad-grid .player-item.search-highlight {
+        background: linear-gradient(135deg, rgba(0, 255, 133, 0.2), rgba(0, 255, 133, 0.1));
+        border-radius: 8px;
+        padding: 8px 12px;
+        border: 1px solid rgba(0, 255, 133, 0.3);
+        box-shadow: 0 2px 8px rgba(0, 255, 133, 0.15);
+        transform: scale(1.02);
+    }
+
+    .squad-grid .player-item.search-highlight .player-name {
+        color: #00ff85;
+        font-weight: 700;
+    }
+
+    .squad-grid .player-item.search-highlight .player-number {
+        color: #00ff85;
+        font-weight: bold;
+        font-size: 1rem;
+    }
+
+    .squad-grid .player-item.search-highlight .player-position {
+        color: #00ff85;
+        font-weight: 600;
     }
 
     .squad-grid .player-number {
@@ -2594,6 +2710,243 @@ const styles = `
 
     .team-card-blended.hidden {
         display: none;
+    }
+
+    /* Global Search Page Styles */
+    .search-page-container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 20px;
+    }
+
+    .global-search-container {
+        display: flex;
+        justify-content: center;
+        margin-bottom: 40px;
+    }
+
+    .global-search-container .search-input-wrapper {
+        width: 80%;
+        max-width: 600px;
+    }
+
+    .global-search-input {
+        background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05));
+        border: 2px solid rgba(255, 255, 255, 0.1);
+        border-radius: 25px;
+        padding: 20px 30px 20px 60px;
+        color: #fff;
+        font-size: 1.2rem;
+        font-weight: 500;
+        width: 100%;
+        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        backdrop-filter: blur(10px);
+    }
+
+    .global-search-input:focus {
+        outline: none;
+        border-color: #00ff85;
+        background: linear-gradient(135deg, rgba(0, 255, 133, 0.15), rgba(0, 255, 133, 0.05));
+        box-shadow: 0 0 0 4px rgba(0, 255, 133, 0.2), 0 12px 40px rgba(0, 255, 133, 0.1);
+        transform: translateY(-2px);
+    }
+
+    .global-search-input:hover {
+        border-color: rgba(0, 255, 133, 0.3);
+        background: linear-gradient(135deg, rgba(255, 255, 255, 0.15), rgba(255, 255, 255, 0.08));
+        transform: translateY(-1px);
+    }
+
+    .global-search-input::placeholder {
+        color: rgba(255, 255, 255, 0.6);
+        font-weight: 400;
+        transition: all 0.3s ease;
+    }
+
+    .global-search-input:focus::placeholder {
+        color: rgba(0, 255, 133, 0.7);
+        transform: translateX(5px);
+    }
+
+    .global-search-container .search-icon {
+        position: absolute;
+        left: 22px;
+        top: 50%;
+        transform: translateY(-50%);
+        font-size: 1.4rem;
+        color: rgba(255, 255, 255, 0.4);
+        pointer-events: none;
+        transition: all 0.3s ease;
+        z-index: 2;
+    }
+
+    .global-search-input:focus + .search-icon {
+        color: #00ff85;
+        transform: translateY(-50%) scale(1.1);
+    }
+
+    .global-search-input:not(:placeholder-shown) + .search-icon {
+        color: rgba(0, 255, 133, 0.7);
+    }
+
+    .search-results-container {
+        min-height: 400px;
+    }
+
+    .search-placeholder {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 400px;
+    }
+
+    .search-placeholder-content {
+        text-align: center;
+        max-width: 600px;
+    }
+
+    .search-placeholder-content h3 {
+        color: #fff;
+        font-size: 2rem;
+        margin-bottom: 15px;
+        font-weight: 600;
+    }
+
+    .search-placeholder-content p {
+        color: rgba(255, 255, 255, 0.7);
+        font-size: 1.1rem;
+        margin-bottom: 40px;
+        line-height: 1.6;
+    }
+
+    .search-suggestions {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 30px;
+        margin-top: 30px;
+    }
+
+    .suggestion-category h4 {
+        color: #00ff85;
+        font-size: 1.1rem;
+        margin-bottom: 15px;
+        font-weight: 600;
+    }
+
+    .suggestion-tag {
+        display: inline-block;
+        background: rgba(0, 255, 133, 0.1);
+        border: 1px solid rgba(0, 255, 133, 0.3);
+        color: #00ff85;
+        padding: 8px 16px;
+        border-radius: 20px;
+        margin: 5px;
+        font-size: 0.9rem;
+        cursor: pointer;
+        transition: all 0.3s ease;
+    }
+
+    .suggestion-tag:hover {
+        background: rgba(0, 255, 133, 0.2);
+        border-color: #00ff85;
+        transform: translateY(-2px);
+    }
+
+    /* Search Results Styles */
+    .search-results {
+        max-width: 1000px;
+        margin: 0 auto;
+    }
+
+    .search-results-header {
+        text-align: center;
+        margin-bottom: 40px;
+    }
+
+    .search-results-header h3 {
+        color: #fff;
+        font-size: 1.8rem;
+        margin-bottom: 10px;
+        font-weight: 600;
+    }
+
+    .search-results-header p {
+        color: rgba(255, 255, 255, 0.7);
+        font-size: 1rem;
+    }
+
+    .results-section {
+        margin-bottom: 40px;
+    }
+
+    .results-section-title {
+        color: #00ff85;
+        font-size: 1.3rem;
+        margin-bottom: 20px;
+        font-weight: 600;
+        border-bottom: 2px solid rgba(0, 255, 133, 0.3);
+        padding-bottom: 10px;
+    }
+
+    .results-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        gap: 20px;
+    }
+
+    .result-card {
+        background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05));
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 12px;
+        padding: 20px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        backdrop-filter: blur(10px);
+    }
+
+    .result-card:hover {
+        border-color: rgba(0, 255, 133, 0.3);
+        background: linear-gradient(135deg, rgba(0, 255, 133, 0.1), rgba(0, 255, 133, 0.05));
+        transform: translateY(-2px);
+        box-shadow: 0 8px 25px rgba(0, 255, 133, 0.1);
+    }
+
+    .result-header {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+    }
+
+    .result-info h5 {
+        color: #fff;
+        font-size: 1.1rem;
+        margin-bottom: 5px;
+        font-weight: 600;
+    }
+
+    .result-info p {
+        color: rgba(255, 255, 255, 0.7);
+        font-size: 0.9rem;
+        margin-bottom: 5px;
+    }
+
+    .player-stats {
+        color: #00ff85;
+        font-size: 0.8rem;
+        font-weight: 600;
+    }
+
+    .player-result .player-number {
+        background: linear-gradient(135deg, #00ff85, #00cc6a);
+        color: #000;
+        width: 35px;
+        height: 35px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: bold;
+        font-size: 0.9rem;
     }
 
     .team-divider {
@@ -4054,6 +4407,10 @@ const styles = `
             display: none;
         }
 
+        .desktop-search-container {
+            display: none;
+        }
+
         .mobile-controls {
             display: flex;
         }
@@ -4370,6 +4727,7 @@ const leagueData = {
             stadium: "Masaka Stadium", 
             captain: "Kagame",
             squad: [
+                { id: 'masaka-roy', number: 1, name: 'Roy', position: 'Goalkeeper' },
                 { id: 'masaka-kagame', number: 6, name: 'Kagame', position: 'Midfielder' },
                 { id: 'masaka-ken', number: 14, name: 'Ken', position: 'Forward' },
                 { id: 'masaka-barney', number: 3, name: 'Barney', position: 'Defender' },
@@ -4501,24 +4859,25 @@ const leagueData = {
             stadium: "Kabale Stadium", 
             captain: "Jemmy",
             squad: [
-                { id: 'kabale-jemmy', number: 1, name: 'Jemmy', position: 'Forward' },
-                { id: 'kabale-isaac-m', number: 2, name: 'Isaac M', position: 'Midfielder' },
-                { id: 'kabale-aziz', number: 3, name: 'Aziz', position: 'Defender' },
-                { id: 'kabale-chairman', number: 4, name: 'Chairman', position: 'Midfielder' },
-                { id: 'kabale-fafa', number: 5, name: 'Fafa', position: 'Defender' },
-                { id: 'kabale-stephen', number: 6, name: 'Stephen', position: 'Midfielder' },
-                { id: 'kabale-david', number: 7, name: 'David', position: 'Forward' },
+                { id: 'kabale-onana', number: 1, name: 'Onana', position: 'Goalkeeper' },
+                { id: 'kabale-jemmy', number: 8, name: 'Jemmy', position: 'Midfielder' },
+                { id: 'kabale-isaac', number: 88, name: 'Isaac', position: 'Midfielder' },
+                { id: 'kabale-aziz', number: 40, name: 'Aziz', position: 'Defender' },
+                { id: 'kabale-kipson', number: 1, name: 'Kipson', position: 'Forward' },
+                { id: 'kabale-francis', number: 2, name: 'Francis', position: 'Defender' },
+                { id: 'kabale-stephen', number: 15, name: 'Stephen', position: 'Midfielder' },
+                { id: 'kabale-david', number: 12, name: 'David', position: 'Midfielder' },
                 { id: 'kabale-josh-muzaaya', number: 8, name: 'Josh Muzaaya', position: 'Midfielder' },
-                { id: 'kabale-brian-h', number: 9, name: 'Brian H', position: 'Forward' },
-                { id: 'kabale-russel', number: 10, name: 'Russel', position: 'Midfielder' },
-                { id: 'kabale-myles', number: 11, name: 'Myles', position: 'Forward' },
-                { id: 'kabale-timo-m', number: 12, name: 'Timo M', position: 'Defender' },
-                { id: 'kabale-kibalama', number: 13, name: 'Kibalama', position: 'Midfielder' },
-                { id: 'kabale-stuart', number: 14, name: 'Stuart', position: 'Defender' },
-                { id: 'kabale-kabox', number: 15, name: 'Kabox', position: 'Midfielder' },
-                { id: 'kabale-marvin-b', number: 16, name: 'Marvin B', position: 'Forward' },
-                { id: 'kabale-justus', number: 17, name: 'Justus', position: 'Midfielder' },
-                { id: 'kabale-duglus', number: 18, name: 'Duglus', position: 'Defender' }
+                { id: 'kabale-fafa', number: 17, name: 'Fafa', position: 'Midfielder' },
+                { id: 'kabale-russel', number: 16, name: 'Russel', position: 'Midfielder' },
+                { id: 'kabale-myles', number: 69, name: 'Myles', position: 'Defender' },
+                { id: 'kabale-timo', number: 30, name: 'Timo', position: 'Midfielder' },
+                { id: 'kabale-kibalama', number: 5, name: 'Kibalama', position: 'Defender' },
+                { id: 'kabale-tony', number: 11, name: 'Tony', position: 'Forward' },
+                { id: 'kabale-kabox', number: 18, name: 'Kabox', position: 'Midfielder' },
+                { id: 'kabale-marvin', number: 6, name: 'Marvin', position: 'Midfielder' },
+                { id: 'kabale-brian', number: 3, name: 'Brian', position: 'Defender' },
+                { id: 'kabale-ken-lato', number: 42, name: 'Ken Lato', position: 'Defender' }
             ]
         }
     ],
@@ -5192,6 +5551,9 @@ async function loadPage(page) {
             break;
         case 'stats':
             content.innerHTML = generateStatsPage();
+            break;
+        case 'search':
+            content.innerHTML = generateSearchPage();
             break;
         case 'awards':
             content.innerHTML = generateAwardsPage();
@@ -5894,7 +6256,7 @@ function generateTeamsPage() {
         
         <div class="team-search-container">
             <div class="search-input-wrapper">
-                <input type="text" id="teamSearch" class="team-search-input" placeholder="Search teams..." onkeyup="filterTeams()">
+                <input type="text" id="teamSearch" class="team-search-input" placeholder="Search teams, players, positions..." onkeyup="filterTeams()">
                 <div class="search-icon">⌕</div>
             </div>
         </div>
@@ -7111,7 +7473,76 @@ function filterTeams() {
         const teamId = card.id.replace('team-', '');
         
         // Search by team name or team ID
-        if (teamName.includes(searchTerm) || teamId.includes(searchTerm)) {
+        let teamMatches = teamName.includes(searchTerm) || teamId.includes(searchTerm);
+        
+        // Also search through players in the squad
+        let playerMatches = false;
+        const playerItems = card.querySelectorAll('.player-item');
+        
+        // Clear all highlights first
+        playerItems.forEach(playerItem => {
+            playerItem.classList.remove('search-highlight');
+        });
+        
+        if (searchTerm.length > 0) {
+            playerItems.forEach(playerItem => {
+                const playerName = playerItem.querySelector('.player-name')?.textContent.toLowerCase() || '';
+                const playerPosition = playerItem.querySelector('.player-position')?.textContent.toLowerCase() || '';
+                const playerNumber = playerItem.querySelector('.player-number')?.textContent.toLowerCase() || '';
+                
+                if (playerName.includes(searchTerm) || 
+                    playerPosition.includes(searchTerm) || 
+                    playerNumber.includes(searchTerm)) {
+                    playerMatches = true;
+                    playerItem.classList.add('search-highlight');
+                }
+            });
+            
+            // Auto-expand team card and switch to squad tab if players match
+            if (playerMatches) {
+                const teamId = card.id.replace('team-', '');
+                const details = document.getElementById(`details-${teamId}`);
+                const button = details?.nextElementSibling;
+                
+                // Expand the team details if not already expanded
+                if (details && !details.classList.contains('expanded')) {
+                    details.classList.add('expanded');
+                    if (button) {
+                        const text = button.querySelector('.read-more-text');
+                        const icon = button.querySelector('.read-more-icon');
+                        if (text) text.textContent = 'Read Less';
+                        if (icon) icon.textContent = '▲';
+                    }
+                }
+                
+                // Switch to squad tab
+                switchTab(teamId, 'squad');
+                
+                // Auto-scroll to the first highlighted player after a short delay
+                setTimeout(() => {
+                    // First, ensure the team card is visible
+                    card.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start',
+                        inline: 'nearest'
+                    });
+                    
+                    // Then scroll to the first highlighted player
+                    setTimeout(() => {
+                        const firstHighlightedPlayer = card.querySelector('.player-item.search-highlight');
+                        if (firstHighlightedPlayer) {
+                            firstHighlightedPlayer.scrollIntoView({
+                                behavior: 'smooth',
+                                block: 'center',
+                                inline: 'nearest'
+                            });
+                        }
+                    }, 200); // Additional delay to let team card scroll complete
+                }, 100); // Small delay to ensure tab switch and expansion are complete
+            }
+        }
+        
+        if (teamMatches || playerMatches) {
             card.classList.remove('hidden');
             visibleCount++;
             
@@ -7135,6 +7566,25 @@ function filterTeams() {
         }
     });
     
+    // If search is cleared, collapse all expanded team cards
+    if (searchTerm.length === 0) {
+        teamCards.forEach(card => {
+            const teamId = card.id.replace('team-', '');
+            const details = document.getElementById(`details-${teamId}`);
+            const button = details?.nextElementSibling;
+            
+            if (details && details.classList.contains('expanded')) {
+                details.classList.remove('expanded');
+                if (button) {
+                    const text = button.querySelector('.read-more-text');
+                    const icon = button.querySelector('.read-more-icon');
+                    if (text) text.textContent = 'Read More';
+                    if (icon) icon.textContent = '▼';
+                }
+            }
+        });
+    }
+    
     // Remove existing no-results message if it exists
     const existingMessage = teamsContainer.querySelector('.no-results-message');
     if (existingMessage) {
@@ -7149,11 +7599,261 @@ function filterTeams() {
             <div class="no-results-content">
                 <h3>No teams found</h3>
                 <p>No teams match your search for "<strong>${searchInput.value}</strong>"</p>
-                <p class="no-results-suggestion">Try searching by team name or city</p>
+                <p class="no-results-suggestion">Try searching by team name, player name, position, or jersey number</p>
             </div>
         `;
         teamsContainer.appendChild(noResultsMessage);
     }
+}
+
+function navigateToSearchPage() {
+    // Navigate to search page immediately when tapped/focused
+    loadPage('search');
+    
+    // Wait for page to load, then focus the search input
+    setTimeout(() => {
+        const globalSearchInput = document.getElementById('globalSearch');
+        if (globalSearchInput) {
+            globalSearchInput.focus();
+        }
+    }, 100);
+}
+
+function performDesktopSearch(event) {
+    const searchTerm = event.target.value.toLowerCase().trim();
+    
+    if (searchTerm.length === 0) {
+        return;
+    }
+    
+    // Navigate to search page and perform search
+    loadPage('search');
+    
+    // Wait for page to load, then set the search term and perform search
+    setTimeout(() => {
+        const globalSearchInput = document.getElementById('globalSearch');
+        if (globalSearchInput) {
+            globalSearchInput.value = searchTerm;
+            performGlobalSearch();
+        }
+    }, 100);
+}
+
+function performMobileSearch(event) {
+    const searchTerm = event.target.value.toLowerCase().trim();
+    
+    if (searchTerm.length === 0) {
+        return;
+    }
+    
+    // Navigate to search page and perform search
+    loadPage('search');
+    
+    // Wait for page to load, then set the search term and perform search
+    setTimeout(() => {
+        const globalSearchInput = document.getElementById('globalSearch');
+        if (globalSearchInput) {
+            globalSearchInput.value = searchTerm;
+            performGlobalSearch();
+        }
+    }, 100);
+}
+
+function performGlobalSearch() {
+    const searchInput = document.getElementById('globalSearch');
+    const searchTerm = searchInput.value.toLowerCase().trim();
+    const resultsContainer = document.getElementById('searchResultsContainer');
+    
+    if (searchTerm.length === 0) {
+        // Show placeholder when search is empty
+        resultsContainer.innerHTML = `
+            <div class="search-placeholder">
+                <div class="search-placeholder-content">
+                    <h3>Search Everything</h3>
+                    <p>Search across all teams, players, positions, and matches in the tournament</p>
+                    <div class="search-suggestions">
+                        <div class="suggestion-category">
+                            <h4>Teams</h4>
+                            <span class="suggestion-tag">Mbarara</span>
+                            <span class="suggestion-tag">Gulu</span>
+                            <span class="suggestion-tag">Arua</span>
+                        </div>
+                        <div class="suggestion-category">
+                            <h4>Players</h4>
+                            <span class="suggestion-tag">Van</span>
+                            <span class="suggestion-tag">Afande</span>
+                            <span class="suggestion-tag">Salam</span>
+                        </div>
+                        <div class="suggestion-category">
+                            <h4>Positions</h4>
+                            <span class="suggestion-tag">Forward</span>
+                            <span class="suggestion-tag">Midfielder</span>
+                            <span class="suggestion-tag">Goalkeeper</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        `;
+        return;
+    }
+    
+    // Collect all teams data
+    const teams = leagueData.teams;
+    const playerStats = calculatePlayerStats();
+    const standings = calculateStandings();
+    
+    // Search results
+    const teamResults = [];
+    const playerResults = [];
+    const matchResults = [];
+    
+    // Search teams
+    teams.forEach(team => {
+        if (team.name.toLowerCase().includes(searchTerm) || 
+            team.id.toLowerCase().includes(searchTerm) ||
+            team.captain.toLowerCase().includes(searchTerm)) {
+            teamResults.push({
+                type: 'team',
+                data: team,
+                matchType: 'name'
+            });
+        }
+        
+        // Search players in team
+        if (team.squad) {
+            team.squad.forEach(player => {
+                if (player.name.toLowerCase().includes(searchTerm) ||
+                    player.position.toLowerCase().includes(searchTerm) ||
+                    player.number.toString().includes(searchTerm)) {
+                    playerResults.push({
+                        type: 'player',
+                        data: player,
+                        team: team,
+                        matchType: player.name.toLowerCase().includes(searchTerm) ? 'name' : 
+                                  player.position.toLowerCase().includes(searchTerm) ? 'position' : 'number'
+                    });
+                }
+            });
+        }
+    });
+    
+    // Search matches
+    leagueData.fixturesData.forEach(timeSlot => {
+        timeSlot.matches.forEach(match => {
+            if (match.homeTeam.toLowerCase().includes(searchTerm) ||
+                match.awayTeam.toLowerCase().includes(searchTerm)) {
+                matchResults.push({
+                    type: 'match',
+                    data: match,
+                    timeSlot: timeSlot.time
+                });
+            }
+        });
+    });
+    
+    // Display results
+    displayGlobalSearchResults(teamResults, playerResults, matchResults, searchTerm);
+}
+
+function displayGlobalSearchResults(teamResults, playerResults, matchResults, searchTerm) {
+    const resultsContainer = document.getElementById('searchResultsContainer');
+    const totalResults = teamResults.length + playerResults.length + matchResults.length;
+    
+    if (totalResults === 0) {
+        resultsContainer.innerHTML = `
+            <div class="search-placeholder">
+                <div class="search-placeholder-content">
+                    <h3>No Results Found</h3>
+                    <p>No matches found for "<strong>${searchTerm}</strong>"</p>
+                    <p>Try searching for team names, player names, positions, or jersey numbers</p>
+                </div>
+            </div>
+        `;
+        return;
+    }
+    
+    let resultsHTML = `
+        <div class="search-results">
+            <div class="search-results-header">
+                <h3>Search Results for "${searchTerm}"</h3>
+                <p>Found ${totalResults} result${totalResults !== 1 ? 's' : ''}</p>
+            </div>
+    `;
+    
+    // Display team results
+    if (teamResults.length > 0) {
+        resultsHTML += `
+            <div class="results-section">
+                <h4 class="results-section-title">Teams (${teamResults.length})</h4>
+                <div class="results-grid">
+                    ${teamResults.map(result => `
+                        <div class="result-card team-result" onclick="loadPage('teams')">
+                            <div class="result-header">
+                                ${getTeamLogoElement(result.data.id, '40px')}
+                                <div class="result-info">
+                                    <h5>${result.data.name}</h5>
+                                    <p>Captain: ${result.data.captain}</p>
+                                </div>
+                            </div>
+                        </div>
+                    `).join('')}
+                </div>
+            </div>
+        `;
+    }
+    
+    // Display player results
+    if (playerResults.length > 0) {
+        resultsHTML += `
+            <div class="results-section">
+                <h4 class="results-section-title">Players (${playerResults.length})</h4>
+                <div class="results-grid">
+                    ${playerResults.map(result => {
+                        const playerStat = calculatePlayerStats()[result.data.id] || { goals: 0, assists: 0 };
+                        return `
+                            <div class="result-card player-result" onclick="loadPage('teams')">
+                                <div class="result-header">
+                                    <div class="player-number">${result.data.number}</div>
+                                    <div class="result-info">
+                                        <h5>${result.data.name}</h5>
+                                        <p>${result.data.position} • ${result.team.name}</p>
+                                        <div class="player-stats">
+                                            ${playerStat.goals > 0 ? `${playerStat.goals}G ` : ''}
+                                            ${playerStat.assists > 0 ? `${playerStat.assists}A` : ''}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        `;
+                    }).join('')}
+                </div>
+            </div>
+        `;
+    }
+    
+    // Display match results
+    if (matchResults.length > 0) {
+        resultsHTML += `
+            <div class="results-section">
+                <h4 class="results-section-title">Matches (${matchResults.length})</h4>
+                <div class="results-grid">
+                    ${matchResults.map(result => `
+                        <div class="result-card match-result" onclick="loadPage('fixtures')">
+                            <div class="result-header">
+                                <div class="result-info">
+                                    <h5>${result.data.homeTeam} vs ${result.data.awayTeam}</h5>
+                                    <p>${result.timeSlot}</p>
+                                </div>
+                            </div>
+                        </div>
+                    `).join('')}
+                </div>
+            </div>
+        `;
+    }
+    
+    resultsHTML += `</div>`;
+    resultsContainer.innerHTML = resultsHTML;
 }
 
 function generateStatsPage() {
@@ -7260,6 +7960,50 @@ function generateStatsPage() {
                     <span>Red Cards</span>
                 </div>
                 ${generateStatsList(mostRedCards, 'redCards', 'redCards', '🟥')}
+                            </div>
+            </div>
+        </div>
+    `;
+}
+
+function generateSearchPage() {
+    return `
+        <h2 class="page-title">Search</h2>
+        
+        <div class="search-page-container">
+            <div class="global-search-container">
+                <div class="search-input-wrapper">
+                    <input type="text" id="globalSearch" class="global-search-input" placeholder="Search teams, players, positions, matches..." onkeyup="performGlobalSearch()">
+                    <div class="search-icon">⌕</div>
+                </div>
+            </div>
+            
+            <div class="search-results-container" id="searchResultsContainer">
+                <div class="search-placeholder">
+                    <div class="search-placeholder-content">
+                        <h3>Search Everything</h3>
+                        <p>Search across all teams, players, positions, and matches in the tournament</p>
+                        <div class="search-suggestions">
+                            <div class="suggestion-category">
+                                <h4>Teams</h4>
+                                <span class="suggestion-tag">Mbarara</span>
+                                <span class="suggestion-tag">Gulu</span>
+                                <span class="suggestion-tag">Arua</span>
+                            </div>
+                            <div class="suggestion-category">
+                                <h4>Players</h4>
+                                <span class="suggestion-tag">Van</span>
+                                <span class="suggestion-tag">Afande</span>
+                                <span class="suggestion-tag">Salam</span>
+                            </div>
+                            <div class="suggestion-category">
+                                <h4>Positions</h4>
+                                <span class="suggestion-tag">Forward</span>
+                                <span class="suggestion-tag">Midfielder</span>
+                                <span class="suggestion-tag">Goalkeeper</span>
+                            </div>
+                        </div>
+                    </div>
                             </div>
             </div>
         </div>

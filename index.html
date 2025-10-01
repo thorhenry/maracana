@@ -30,6 +30,13 @@
                     <img src="assets/logo/paul.svg" alt="Maracana Football League Cup" class="website-logo">
                 </div>
                 
+                <div class="desktop-search-container">
+                    <svg class="search-icon-svg" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" onclick="navigateToSearchPage()">
+                        <path d="M21 21L16.514 16.506L21 21ZM19 10.5C19 15.194 15.194 19 10.5 19C5.806 19 2 15.194 2 10.5C2 5.806 5.806 2 10.5 2C15.194 2 19 5.806 19 10.5Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    <input type="text" class="desktop-search-input" placeholder="Search..." onfocus="navigateToSearchPage()" onkeyup="performDesktopSearch(event)">
+                </div>
+                
                 <div class="nav-links">
                     <button class="nav-btn active" data-page="home">Home</button>
                     <button class="nav-btn" data-page="fixtures">Fixtures</button>
@@ -41,6 +48,12 @@
                 </div>
                 
                 <div class="mobile-controls">
+                    <div class="mobile-search-container">
+                        <svg class="search-icon-svg" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" onclick="navigateToSearchPage()">
+                            <path d="M21 21L16.514 16.506L21 21ZM19 10.5C19 15.194 15.194 19 10.5 19C5.806 19 2 15.194 2 10.5C2 5.806 5.806 2 10.5 2C15.194 2 19 5.806 19 10.5Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                        <input type="text" class="mobile-search-input" placeholder="Search..." onfocus="navigateToSearchPage()" onkeyup="performMobileSearch(event)">
+                    </div>
                     <button class="home-icon-btn" onclick="navigateToHome()" title="Go to Home">
                         <img src="assets/home.svg" alt="Home" class="home-icon">
                     </button>
@@ -58,6 +71,7 @@
                     <button class="mobile-nav-btn" data-page="teams">Teams</button>
                     <button class="mobile-nav-btn" data-page="knockout">Knockout</button>
                     <button class="mobile-nav-btn" data-page="stats">Stats</button>
+                    <button class="mobile-nav-btn" data-page="search">Search</button>
                     <button class="mobile-nav-btn" data-page="awards">Awards</button>
                     
                     <div class="mobile-sponsors-section">
