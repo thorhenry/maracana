@@ -2952,9 +2952,14 @@ const styles = `
     /* Player Profile Card Styles */
     .player-results-grid {
         display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
         gap: 20px;
         margin-top: 20px;
+    }
+    
+    .player-results-grid:has(.player-profile-card:only-child) {
+        grid-template-columns: 1fr;
+        margin: 20px 0 0;
     }
 
     .player-profile-card {
@@ -3040,12 +3045,16 @@ const styles = `
         display: flex;
         align-items: center;
         gap: 8px;
+        flex-wrap: wrap;
     }
 
     .player-team-info .team-name {
         color: rgba(255, 255, 255, 0.8);
         font-size: 0.9rem;
         font-weight: 500;
+        margin-bottom: 0;
+        text-align: left;
+        display: inline;
     }
 
     .player-team-info .team-position {
@@ -3070,16 +3079,22 @@ const styles = `
 
     .stats-grid {
         display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
-        gap: 15px;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px;
+        margin: 0;
     }
 
     .stat-item {
         text-align: center;
-        padding: 12px 8px;
+        padding: 10px 6px;
         background: rgba(255, 255, 255, 0.05);
-        border-radius: 8px;
+        border-radius: 6px;
         border: 1px solid rgba(255, 255, 255, 0.1);
+        min-height: 60px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
     }
 
     .stat-item .stat-value {
@@ -3105,6 +3120,86 @@ const styles = `
         font-size: 1.1rem;
         margin-bottom: 15px;
         font-weight: 600;
+    }
+
+    .player-news-section {
+        margin-bottom: 20px;
+    }
+
+    .player-news-section h4 {
+        color: #00ff85;
+        font-size: 1.1rem;
+        margin-bottom: 15px;
+        font-weight: 600;
+    }
+
+    .news-item {
+        display: flex;
+        align-items: flex-start;
+        gap: 12px;
+        padding: 12px;
+        background: rgba(255, 255, 255, 0.05);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 8px;
+        margin-bottom: 10px;
+    }
+
+    .news-item:last-child {
+        margin-bottom: 0;
+    }
+
+    .news-icon {
+        width: 24px;
+        height: 24px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 0.8rem;
+        flex-shrink: 0;
+    }
+
+    .news-icon.goal {
+        background: linear-gradient(135deg, #00ff85, #00cc6a);
+        color: #000;
+    }
+
+    .news-icon.award {
+        background: linear-gradient(135deg, #ffd700, #ffed4e);
+        color: #000;
+    }
+
+    .news-icon.match {
+        background: linear-gradient(135deg, #4a90e2, #357abd);
+        color: #fff;
+    }
+
+    .news-icon.form {
+        background: linear-gradient(135deg, #ff6b35, #e55a2b);
+        color: #fff;
+    }
+
+    .news-content {
+        flex: 1;
+    }
+
+    .news-title {
+        color: #fff;
+        font-size: 0.9rem;
+        font-weight: 600;
+        margin-bottom: 4px;
+    }
+
+    .news-description {
+        color: rgba(255, 255, 255, 0.8);
+        font-size: 0.8rem;
+        line-height: 1.4;
+    }
+
+    .news-time {
+        color: rgba(255, 255, 255, 0.6);
+        font-size: 0.75rem;
+        margin-top: 4px;
     }
 
     .awards-list {
@@ -3160,9 +3255,14 @@ const styles = `
     /* Team Profile Card Styles */
     .team-results-grid {
         display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
         gap: 20px;
         margin-top: 20px;
+    }
+    
+    .team-results-grid:has(.team-profile-card:only-child) {
+        grid-template-columns: 1fr;
+        margin: 20px 0 0;
     }
 
     .team-profile-card {
@@ -3256,16 +3356,22 @@ const styles = `
 
     .team-stats-grid {
         display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
-        gap: 15px;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 12px;
+        margin: 0;
     }
 
     .team-stat-item {
         text-align: center;
-        padding: 12px 8px;
+        padding: 10px 6px;
         background: rgba(255, 255, 255, 0.05);
-        border-radius: 8px;
+        border-radius: 6px;
         border: 1px solid rgba(255, 255, 255, 0.1);
+        min-height: 60px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
     }
 
     .team-stat-item .team-stat-value {
@@ -3353,9 +3459,19 @@ const styles = `
             gap: 15px;
         }
 
+        .player-team-info {
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
         .stats-grid {
             grid-template-columns: repeat(2, 1fr);
-            gap: 12px;
+            gap: 10px;
+        }
+
+        .stat-item {
+            min-height: 55px;
+            padding: 8px 4px;
         }
 
         .player-actions {
@@ -3373,6 +3489,11 @@ const styles = `
         .team-stats-grid {
             grid-template-columns: repeat(2, 1fr);
             gap: 10px;
+        }
+
+        .team-stat-item {
+            min-height: 55px;
+            padding: 8px 4px;
         }
 
         .squad-info {
@@ -3511,16 +3632,156 @@ const styles = `
     }
 
     .stats-page-container {
-        margin: 0 2%;
-        width: 96%;
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 20px;
     }
 
-    .stats-sections {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-        gap: 30px;
-        margin: 30px 0;
+    .stats-table {
         width: 100%;
+        border-collapse: collapse;
+        margin: 20px 0;
+        background: rgba(255, 255, 255, 0.05);
+        border-radius: 12px;
+        overflow: hidden;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    }
+
+    .stats-table th {
+        background: rgba(0, 255, 133, 0.1);
+        color: #00ff85;
+        padding: 15px 12px;
+        text-align: left;
+        font-weight: 600;
+        font-size: 0.9rem;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        border-bottom: 2px solid rgba(0, 255, 133, 0.2);
+    }
+
+    .stats-table th:first-child {
+        width: 50px;
+        text-align: center;
+    }
+
+    .stats-table th:nth-child(2) {
+        flex: 1;
+    }
+
+    .stats-table th:nth-child(3),
+    .stats-table th:nth-child(4) {
+        width: 100px;
+        text-align: center;
+    }
+
+    .stats-table td {
+        padding: 12px;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        color: rgba(255, 255, 255, 0.9);
+    }
+
+    .stats-table tr:hover {
+        background: rgba(0, 255, 133, 0.05);
+    }
+
+    .stats-table tr:last-child td {
+        border-bottom: none;
+    }
+
+    .rank-badge {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 30px;
+        height: 30px;
+        background: linear-gradient(135deg, #00ff85, #00cc6a);
+        color: white;
+        border-radius: 50%;
+        font-weight: bold;
+        font-size: 0.9rem;
+    }
+
+    .player-name {
+        font-weight: 600;
+        color: #ffffff;
+        font-size: 1rem;
+    }
+
+    .stat-value {
+        text-align: center;
+        font-weight: 600;
+        color: #00ff85 !important;
+        font-size: 1rem;
+    }
+
+    /* Ensure all stat values are green regardless of table class */
+    .stats-table .stat-value {
+        color: #00ff85 !important;
+    }
+
+    /* Make matches column white */
+    .stats-table td:nth-child(3) {
+        color: #ffffff !important;
+    }
+
+    .stats-section-title {
+        color: #00ff85;
+        font-size: 1.5rem;
+        font-weight: 700;
+        margin: 40px 0 20px 0;
+        text-align: center;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+    }
+
+    .stats-section-title:first-child {
+        margin-top: 0;
+    }
+
+    .read-more-container {
+        text-align: center;
+        margin: 20px 0;
+        padding: 15px 0;
+    }
+
+    .read-more-btn {
+        background: rgba(0, 255, 133, 0.1);
+        border: 1px solid rgba(0, 255, 133, 0.3);
+        color: #00ff85;
+        padding: 10px 20px;
+        border-radius: 6px;
+        cursor: pointer;
+        font-size: 0.9rem;
+        font-weight: 500;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        transition: all 0.3s ease;
+        margin: 0 auto;
+    }
+
+    .read-more-btn:hover {
+        background: rgba(0, 255, 133, 0.2);
+        border-color: rgba(0, 255, 133, 0.5);
+        transform: translateY(-1px);
+    }
+
+    .read-more-icon {
+        width: 16px;
+        height: 16px;
+        transition: transform 0.3s ease;
+    }
+
+    .read-more-btn.expanded .read-more-icon {
+        transform: rotate(180deg);
+    }
+
+    .hidden-stats {
+        display: none;
+    }
+
+    .hidden-stats.show {
+        display: table-row-group;
     }
 
     .view-more-container {
@@ -5335,12 +5596,12 @@ const leagueData = {
                             { playerId: "arua-emmanuel", captain: false, goals: 0, goalMinutes: [], assists: 0, assistMinutes: [], yellowCard: false, yellowCardMinutes: [], redCard: false, redCardMinutes: [], substituted: false, substitutionMinute: null, cleanSheet: true },
                             { playerId: "arua-aaron", captain: false, goals: 0, goalMinutes: [], assists: 0, assistMinutes: [], yellowCard: false, yellowCardMinutes: [], redCard: true, redCardMinutes: [83], substituted: false, substitutionMinute: null, cleanSheet: true },
                             { playerId: "arua-sharif", captain: false, goals: 0, goalMinutes: [], assists: 0, assistMinutes: [], yellowCard: false, yellowCardMinutes: [], redCard: false, redCardMinutes: [], substituted: false, substitutionMinute: null, cleanSheet: true },
-                            { playerId: "arua-denis", captain: false, goals: 1, goalMinutes: [23], goalTypes: ["penalty"], assists: 2, assistMinutes: [69,"90+1"], yellowCard: false, yellowCardMinutes: [], redCard: false, redCardMinutes: [], substituted: false, substitutionMinute: null, cleanSheet: true },
+                            { playerId: "arua-okanya", captain: false, goals: 1, goalMinutes: [23], goalTypes: ["penalty"], assists: 2, assistMinutes: [69,"90+1"], yellowCard: false, yellowCardMinutes: [], redCard: false, redCardMinutes: [], substituted: false, substitutionMinute: null, cleanSheet: true },
                             { playerId: "arua-emmy", captain: true, goals: 0, goalMinutes: [], assists: 0, assistMinutes: [], yellowCard: false, yellowCardMinutes: [], redCard: false, redCardMinutes: [], substituted: true, substitutionMinute: 55, cleanSheet: true },
                             { playerId: "arua-millio", captain: false, goals: 1, goalMinutes: [56], goalTypes: ["own"], assists: 0, assistMinutes: [], yellowCard: false, yellowCardMinutes: [], redCard: false, redCardMinutes: [], substituted: true, substitutionMinute: 60, cleanSheet: true },
                         ],
                         substitutes: [
-                            { playerId: "arua-henry", captain: false, goals: 2, goalMinutes: [69, "90+1"], goalTypes: ["open", "open"], assists: 0, assistMinutes: [], yellowCard: true, yellowCardMinutes: [67], redCard: false, redCardMinutes: [], substituted: true, substitutionMinute: 55, cameOnFor: "arua-emmy", cleanSheet: true },
+                            { playerId: "arua-thorhenry", captain: false, goals: 2, goalMinutes: [69, "90+1"], goalTypes: ["open", "open"], assists: 0, assistMinutes: [], yellowCard: true, yellowCardMinutes: [67], redCard: false, redCardMinutes: [], substituted: true, substitutionMinute: 55, cameOnFor: "arua-emmy", cleanSheet: true },
                             { playerId: "arua-arthur-o", captain: false, goals: 0, goalMinutes: [], assists: 0, assistMinutes: [], yellowCard: false, yellowCardMinutes: [], redCard: false, redCardMinutes: [], substituted: true, substitutionMinute: 45, cameOnFor: "arua-emo", cleanSheet: true },
                             { playerId: "arua-mark-o", captain: false, goals: 0, goalMinutes: [], assists: 0, assistMinutes: [], yellowCard: true, yellowCardMinutes: [80], redCard: false, redCardMinutes: [], substituted: true, substitutionMinute: 60, cameOnFor: "arua-millio", cleanSheet: true },
                             { playerId: "arua-victor", captain: false, goals: 0, goalMinutes: [], assists: 0, assistMinutes: [], yellowCard: false, yellowCardMinutes: [], redCard: false, redCardMinutes: [], substituted: true, substitutionMinute: 60, cameOnFor: "arua-aggrey", cleanSheet: true }
@@ -6284,53 +6545,49 @@ async function generateHomePage() {
                         <a href="#" class="view-more-link" onclick="loadPage('stats')">View all stats</a>
                     </div>
                     <div class="preview-content">
-                        <div class="stats-sections">
-                            <div class="stats-section">
-                                <h3>Top Scorers</h3>
-                                <div class="stats-semi-title">
-                                    <span>Player</span>
-                                    <span>Matches</span>
-                                    <span>Goals</span>
-                                </div>
-                                <div class="stats-list">
-                                    ${topScorers.map((player, index) => `
-                                        <div class="stat-item">
-                                            <div class="stat-rank">${index + 1}</div>
-                                            <div class="stat-player">
-                                                <div class="player-name">${player.name}</div>
-                                                <div class="player-team">${player.team}</div>
-                                            </div>
-                                            <div class="stat-matches">${player.matches}</div>
-                                            <div class="stat-value">${player.goals} goals</div>
-                                        </div>
+                        <h3 class="stats-section-title">Top Scorers</h3>
+                        <table class="stats-table goals-table">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Players</th>
+                                    <th>Matches</th>
+                                    <th>Goals</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                ${topScorers.slice(0, 5).map((player, index) => `
+                                    <tr>
+                                        <td><div class="rank-badge">${index + 1}</div></td>
+                                        <td><div class="player-name">${player.name}</div></td>
+                                        <td class="stat-value">${player.matches}</td>
+                                        <td class="stat-value">${player.goals}</td>
+                                    </tr>
                                     `).join('')}
-                                </div>
-                            </div>
-                            
-                            <hr class="horizontal-divider">
-                            
-                            <div class="stats-section">
-                                <h3>Top Assists</h3>
-                                <div class="stats-semi-title">
-                                    <span>Player</span>
-                                    <span>Matches</span>
-                                    <span>Assists</span>
-                                </div>
-                                <div class="stats-list">
-                                    ${topAssists.map((player, index) => `
-                                        <div class="stat-item">
-                                            <div class="stat-rank">${index + 1}</div>
-                                            <div class="stat-player">
-                                                <div class="player-name">${player.name}</div>
-                                                <div class="player-team">${player.team}</div>
-                                            </div>
-                                            <div class="stat-matches">${player.matches}</div>
-                                            <div class="stat-value">${player.assists} assists</div>
-                                        </div>
+                            </tbody>
+                        </table>
+                        
+                        <h3 class="stats-section-title">Top Assists</h3>
+                        <table class="stats-table assists-table">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Players</th>
+                                    <th>Matches</th>
+                                    <th>Assists</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                ${topAssists.slice(0, 5).map((player, index) => `
+                                    <tr>
+                                        <td><div class="rank-badge">${index + 1}</div></td>
+                                        <td><div class="player-name">${player.name}</div></td>
+                                        <td class="stat-value">${player.matches}</td>
+                                        <td class="stat-value">${player.assists}</td>
+                                    </tr>
                                     `).join('')}
-                                </div>
-                            </div>
-                        </div>
+                            </tbody>
+                        </table>
                     </div>
                 </div>
                 ` : ''}
@@ -8075,6 +8332,214 @@ function searchSuggestion(searchTerm) {
     }, 100);
 }
 
+function getPlayerNews(playerName, playerStat, teamName, isCaptain) {
+    const news = [];
+    
+    // Check if the player's team has played any matches (completed or live)
+    const teamHasPlayedMatches = leagueData.fixturesData.some(timeSlot => 
+        timeSlot.matches.some(match => 
+            (match.homeTeam === teamName || match.awayTeam === teamName) && 
+            (match.status === 'completed' || match.status === 'live')
+        )
+    );
+    
+    // If team hasn't played any matches yet, show tournament status message
+    if (!teamHasPlayedMatches) {
+        news.push({
+            icon: 'form',
+            iconText: 'T',
+            title: 'Tournament Status',
+            description: `${teamName} hasn't played any matches yet. Updates will appear here once the team's matches begin.`,
+            time: 'Tournament info'
+        });
+        
+        // Still show captain status if applicable
+        if (isCaptain) {
+            news.push({
+                icon: 'award',
+                iconText: 'C',
+                title: 'Team Captain',
+                description: `Leading ${teamName} as captain, bringing experience and leadership to the squad.`,
+                time: 'Current role'
+            });
+        }
+        
+        return news;
+    }
+    
+    // Recent form based on stats
+    if (playerStat.goals > 0) {
+        news.push({
+            icon: 'goal',
+            iconText: 'G',
+            title: 'Goal Scorer',
+            description: `Scored ${playerStat.goals} goal${playerStat.goals > 1 ? 's' : ''} this tournament, showing excellent finishing ability.`,
+            time: 'Recent form'
+        });
+    }
+    
+    if (playerStat.assists > 0) {
+        news.push({
+            icon: 'match',
+            iconText: 'A',
+            title: 'Creative Playmaker',
+            description: `Provided ${playerStat.assists} assist${playerStat.assists > 1 ? 's' : ''}, demonstrating great vision and passing ability.`,
+            time: 'Recent form'
+        });
+    }
+    
+    // Captain status
+    if (isCaptain) {
+        news.push({
+            icon: 'award',
+            iconText: 'C',
+            title: 'Team Captain',
+            description: `Leading ${teamName} as captain, bringing experience and leadership to the squad.`,
+            time: 'Current role'
+        });
+    }
+    
+    // Match appearances
+    if (playerStat.matches > 0) {
+        const matchText = playerStat.matches === 1 ? 'match' : 'matches';
+        news.push({
+            icon: 'match',
+            iconText: 'M',
+            title: 'Active Player',
+            description: `Featured in ${playerStat.matches} ${matchText} this tournament, showing consistent availability.`,
+            time: 'Tournament record'
+        });
+    }
+    
+    // Discipline record
+    if (playerStat.yellowCards === 0 && playerStat.redCards === 0) {
+        news.push({
+            icon: 'form',
+            iconText: '✓',
+            title: 'Clean Record',
+            description: 'Maintained excellent discipline with no cards received this tournament.',
+            time: 'Discipline'
+        });
+    } else if (playerStat.yellowCards > 0) {
+        news.push({
+            icon: 'form',
+            iconText: '!',
+            title: 'Discipline Note',
+            description: `Received ${playerStat.yellowCards} yellow card${playerStat.yellowCards > 1 ? 's' : ''} this tournament.`,
+            time: 'Discipline'
+        });
+    }
+    
+    // Goalkeeper specific news
+    if (playerStat.cleanSheets > 0) {
+        news.push({
+            icon: 'award',
+            iconText: 'S',
+            title: 'Defensive Wall',
+            description: `Kept ${playerStat.cleanSheets} clean sheet${playerStat.cleanSheets > 1 ? 's' : ''}, showing excellent goalkeeping skills.`,
+            time: 'Recent form'
+        });
+    }
+    
+    // Return top 3 most relevant news items
+    return news.slice(0, 3);
+}
+
+function getTeamNews(teamName, teamStats, teamPosition) {
+    const news = [];
+    
+    // Check if the team has played any matches (completed or live)
+    const teamHasPlayedMatches = leagueData.fixturesData.some(timeSlot => 
+        timeSlot.matches.some(match => 
+            (match.homeTeam === teamName || match.awayTeam === teamName) && 
+            (match.status === 'completed' || match.status === 'live')
+        )
+    );
+    
+    // If team hasn't played any matches yet, show tournament status message
+    if (!teamHasPlayedMatches) {
+        news.push({
+            icon: 'form',
+            iconText: 'T',
+            title: 'Tournament Status',
+            description: `${teamName} hasn't played any matches yet. Updates will appear here once the team's matches begin.`,
+            time: 'Tournament info'
+        });
+        
+        return news;
+    }
+    
+    // League position
+    if (teamPosition) {
+        const positionText = teamPosition === 1 ? '1st' : teamPosition === 2 ? '2nd' : teamPosition === 3 ? '3rd' : `${teamPosition}th`;
+        news.push({
+            icon: 'award',
+            iconText: 'P',
+            title: 'League Position',
+            description: `Currently in ${positionText} place with ${teamStats.points} points from ${teamStats.played} matches.`,
+            time: 'Current standing'
+        });
+    }
+    
+    // Recent form based on results
+    if (teamStats.won > 0) {
+        news.push({
+            icon: 'goal',
+            iconText: 'W',
+            title: 'Winning Form',
+            description: `Won ${teamStats.won} match${teamStats.won > 1 ? 'es' : ''} this tournament, showing strong competitive spirit.`,
+            time: 'Recent form'
+        });
+    }
+    
+    // Goal scoring ability
+    if (teamStats.goalsFor > 0) {
+        news.push({
+            icon: 'match',
+            iconText: 'G',
+            title: 'Attacking Threat',
+            description: `Scored ${teamStats.goalsFor} goal${teamStats.goalsFor > 1 ? 's' : ''} this tournament, demonstrating good attacking play.`,
+            time: 'Attacking stats'
+        });
+    }
+    
+    // Defensive record
+    if (teamStats.goalsAgainst === 0 && teamStats.played > 0) {
+        news.push({
+            icon: 'form',
+            iconText: 'D',
+            title: 'Solid Defense',
+            description: 'Conceded no goals so far, showing excellent defensive organization.',
+            time: 'Defensive record'
+        });
+    } else if (teamStats.goalsAgainst > 0) {
+        const goalDiff = teamStats.goalsFor - teamStats.goalsAgainst;
+        if (goalDiff > 0) {
+            news.push({
+                icon: 'form',
+                iconText: '+',
+                title: 'Positive Goal Difference',
+                description: `Goal difference of +${goalDiff}, showing good balance between attack and defense.`,
+                time: 'Team balance'
+            });
+        }
+    }
+    
+    // Match consistency
+    if (teamStats.played > 0) {
+        news.push({
+            icon: 'match',
+            iconText: 'M',
+            title: 'Active Participation',
+            description: `Played ${teamStats.played} match${teamStats.played > 1 ? 'es' : ''} this tournament, showing consistent participation.`,
+            time: 'Tournament record'
+        });
+    }
+    
+    // Return top 3 most relevant news items
+    return news.slice(0, 3);
+}
+
 function performDesktopSearch(event) {
     const searchTerm = event.target.value.toLowerCase().trim();
     
@@ -8369,6 +8834,22 @@ function displayGlobalSearchResults(teamResults, playerResults, matchResults, se
                                     </div>
                                 </div>
                                 
+                                <div class="team-news-section">
+                                    <h4>Latest Updates</h4>
+                                    <div class="news-list">
+                                        ${getTeamNews(result.data.name, teamStats, teamPosition).map(newsItem => `
+                                            <div class="news-item">
+                                                <div class="news-icon ${newsItem.icon}">${newsItem.iconText}</div>
+                                                <div class="news-content">
+                                                    <div class="news-title">${newsItem.title}</div>
+                                                    <div class="news-description">${newsItem.description}</div>
+                                                    <div class="news-time">${newsItem.time}</div>
+                                                </div>
+                                            </div>
+                                        `).join('')}
+                                    </div>
+                                </div>
+                                
                                 <div class="team-actions">
                                     <button class="view-squad-btn" onclick="loadPage('teams')">
                                         View Full Squad
@@ -8470,6 +8951,22 @@ function displayGlobalSearchResults(teamResults, playerResults, matchResults, se
                                 </div>
                                 ` : ''}
                                 
+                                <div class="player-news-section">
+                                    <h4>Recent Updates</h4>
+                                    <div class="news-list">
+                                        ${getPlayerNews(result.data.name, playerStat, result.team.name, isCaptain).map(newsItem => `
+                                            <div class="news-item">
+                                                <div class="news-icon ${newsItem.icon}">${newsItem.iconText}</div>
+                                                <div class="news-content">
+                                                    <div class="news-title">${newsItem.title}</div>
+                                                    <div class="news-description">${newsItem.description}</div>
+                                                    <div class="news-time">${newsItem.time}</div>
+                                                </div>
+                                            </div>
+                                        `).join('')}
+                                    </div>
+                                </div>
+                                
                                 <div class="player-actions">
                                     <button class="view-team-btn" onclick="loadPage('teams')">
                                         View Team
@@ -8558,67 +9055,242 @@ function generateStatsPage() {
         <div class="stats-page-container">
             <h2 class="page-title">Statistics</h2>
 
-        <div class="stats-sections">
-            <div class="stats-section">
-                <h3>Top Scorers</h3>
-                <div class="stats-semi-title">
-                    <span>Player</span>
-                    <span>Matches</span>
-                    <span>Goals</span>
+            <h3 class="stats-section-title">Top Scorers</h3>
+            <table class="stats-table goals-table">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Players</th>
+                        <th>Matches</th>
+                        <th>Goals</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    ${topScorers.slice(0, 5).map((player, index) => `
+                        <tr>
+                            <td><div class="rank-badge">${index + 1}</div></td>
+                            <td><div class="player-name">${player.name}</div></td>
+                            <td class="stat-value">${player.matches}</td>
+                            <td class="stat-value">${player.goals}</td>
+                        </tr>
+                    `).join('')}
+                    ${topScorers.length > 5 ? `
+                        <tbody class="hidden-stats" id="scorers-more">
+                            ${topScorers.slice(5).map((player, index) => `
+                                <tr>
+                                    <td><div class="rank-badge">${index + 6}</div></td>
+                                    <td><div class="player-name">${player.name}</div></td>
+                                    <td class="stat-value">${player.matches}</td>
+                                    <td class="stat-value">${player.goals}</td>
+                                </tr>
+                            `).join('')}
+                        </tbody>
+                    ` : ''}
+                </tbody>
+            </table>
+            ${topScorers.length > 5 ? `
+                <div class="read-more-container">
+                    <button class="read-more-btn" onclick="toggleStats('scorers-more', this)">
+                        <span>Read More</span>
+                        <svg class="read-more-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M6 9L12 15L18 9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </button>
                 </div>
-                ${generateStatsList(topScorers, 'scorers', 'goals', 'goals')}
-            </div>
+            ` : ''}
             
-            <hr class="horizontal-divider">
-
-            <div class="stats-section">
-                <h3>Top Assists</h3>
-                <div class="stats-semi-title">
-                    <span>Player</span>
-                    <span>Matches</span>
-                    <span>Assists</span>
-                </div>
-                ${generateStatsList(topAssists, 'assists', 'assists', 'assists')}
+            <h3 class="stats-section-title">Top Assists</h3>
+            <table class="stats-table assists-table">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Players</th>
+                        <th>Matches</th>
+                        <th>Assists</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    ${topAssists.slice(0, 5).map((player, index) => `
+                        <tr>
+                            <td><div class="rank-badge">${index + 1}</div></td>
+                            <td><div class="player-name">${player.name}</div></td>
+                            <td class="stat-value">${player.matches}</td>
+                            <td class="stat-value">${player.assists}</td>
+                        </tr>
+                    `).join('')}
+                    ${topAssists.length > 5 ? `
+                        <tbody class="hidden-stats" id="assists-more">
+                            ${topAssists.slice(5).map((player, index) => `
+                                <tr>
+                                    <td><div class="rank-badge">${index + 6}</div></td>
+                                    <td><div class="player-name">${player.name}</div></td>
+                                    <td class="stat-value">${player.matches}</td>
+                                    <td class="stat-value">${player.assists}</td>
+                                </tr>
+                            `).join('')}
+                        </tbody>
+                    ` : ''}
+                </tbody>
+            </table>
+            ${topAssists.length > 5 ? `
+                <div class="read-more-container">
+                    <button class="read-more-btn" onclick="toggleStats('assists-more', this)">
+                        <span>Read More</span>
+                        <svg class="read-more-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M6 9L12 15L18 9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </button>
             </div>
+            ` : ''}
             
-            <hr class="horizontal-divider">
-
-            <div class="stats-section">
-                <h3>Most Clean Sheets</h3>
-                <div class="stats-semi-title">
-                    <span>Player</span>
-                    <span>Matches</span>
-                    <span>Clean Sheets</span>
+            <h3 class="stats-section-title">Most Clean Sheets</h3>
+            <table class="stats-table cleanSheets-table">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Players</th>
+                        <th>Matches</th>
+                        <th>Clean Sheets</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    ${topCleanSheets.slice(0, 5).map((player, index) => `
+                        <tr>
+                            <td><div class="rank-badge">${index + 1}</div></td>
+                            <td><div class="player-name">${player.name}</div></td>
+                            <td class="stat-value">${player.matches}</td>
+                            <td class="stat-value">${player.cleanSheets}</td>
+                        </tr>
+                    `).join('')}
+                    ${topCleanSheets.length > 5 ? `
+                        <tbody class="hidden-stats" id="cleanSheets-more">
+                            ${topCleanSheets.slice(5).map((player, index) => `
+                                <tr>
+                                    <td><div class="rank-badge">${index + 6}</div></td>
+                                    <td><div class="player-name">${player.name}</div></td>
+                                    <td class="stat-value">${player.matches}</td>
+                                    <td class="stat-value">${player.cleanSheets}</td>
+                                </tr>
+                            `).join('')}
+                        </tbody>
+                    ` : ''}
+                </tbody>
+            </table>
+            ${topCleanSheets.length > 5 ? `
+                <div class="read-more-container">
+                    <button class="read-more-btn" onclick="toggleStats('cleanSheets-more', this)">
+                        <span>Read More</span>
+                        <svg class="read-more-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M6 9L12 15L18 9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </button>
                 </div>
-                ${generateStatsList(topCleanSheets, 'cleanSheets', 'cleanSheets', 'clean sheets')}
-            </div>
+            ` : ''}
             
-            <hr class="horizontal-divider">
-
-            <div class="stats-section">
-                <h3>Most Yellow Cards</h3>
-                <div class="stats-semi-title">
-                    <span>Player</span>
-                    <span>Matches</span>
-                    <span>Yellow Cards</span>
+            <h3 class="stats-section-title">Most Yellow Cards</h3>
+            <table class="stats-table yellowCards-table">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Players</th>
+                        <th>Matches</th>
+                        <th>Yellow Cards</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    ${mostYellowCards.slice(0, 5).map((player, index) => `
+                        <tr>
+                            <td><div class="rank-badge">${index + 1}</div></td>
+                            <td><div class="player-name">${player.name}</div></td>
+                            <td class="stat-value">${player.matches}</td>
+                            <td class="stat-value">${player.yellowCards}</td>
+                        </tr>
+                    `).join('')}
+                    ${mostYellowCards.length > 5 ? `
+                        <tbody class="hidden-stats" id="yellowCards-more">
+                            ${mostYellowCards.slice(5).map((player, index) => `
+                                <tr>
+                                    <td><div class="rank-badge">${index + 6}</div></td>
+                                    <td><div class="player-name">${player.name}</div></td>
+                                    <td class="stat-value">${player.matches}</td>
+                                    <td class="stat-value">${player.yellowCards}</td>
+                                </tr>
+                            `).join('')}
+                        </tbody>
+                    ` : ''}
+                </tbody>
+            </table>
+            ${mostYellowCards.length > 5 ? `
+                <div class="read-more-container">
+                    <button class="read-more-btn" onclick="toggleStats('yellowCards-more', this)">
+                        <span>Read More</span>
+                        <svg class="read-more-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M6 9L12 15L18 9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </button>
                 </div>
-                ${generateStatsList(mostYellowCards, 'yellowCards', 'yellowCards', '🟨')}
-            </div>
+            ` : ''}
             
-            <hr class="horizontal-divider">
-
-            <div class="stats-section">
-                <h3>Most Red Cards</h3>
-                <div class="stats-semi-title">
-                    <span>Player</span>
-                    <span>Matches</span>
-                    <span>Red Cards</span>
+            <h3 class="stats-section-title">Most Red Cards</h3>
+            <table class="stats-table redCards-table">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Players</th>
+                        <th>Matches</th>
+                        <th>Red Cards</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    ${mostRedCards.slice(0, 5).map((player, index) => `
+                        <tr>
+                            <td><div class="rank-badge">${index + 1}</div></td>
+                            <td><div class="player-name">${player.name}</div></td>
+                            <td class="stat-value">${player.matches}</td>
+                            <td class="stat-value">${player.redCards}</td>
+                        </tr>
+                    `).join('')}
+                    ${mostRedCards.length > 5 ? `
+                        <tbody class="hidden-stats" id="redCards-more">
+                            ${mostRedCards.slice(5).map((player, index) => `
+                                <tr>
+                                    <td><div class="rank-badge">${index + 6}</div></td>
+                                    <td><div class="player-name">${player.name}</div></td>
+                                    <td class="stat-value">${player.matches}</td>
+                                    <td class="stat-value">${player.redCards}</td>
+                                </tr>
+                            `).join('')}
+                        </tbody>
+                    ` : ''}
+                </tbody>
+            </table>
+            ${mostRedCards.length > 5 ? `
+                <div class="read-more-container">
+                    <button class="read-more-btn" onclick="toggleStats('redCards-more', this)">
+                        <span>Read More</span>
+                        <svg class="read-more-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M6 9L12 15L18 9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </button>
                 </div>
-                ${generateStatsList(mostRedCards, 'redCards', 'redCards', '🟥')}
-                            </div>
+            ` : ''}
             </div>
-        </div>
     `;
+}
+
+function toggleStats(elementId, button) {
+    const hiddenStats = document.getElementById(elementId);
+    const span = button.querySelector('span');
+    
+    if (hiddenStats.classList.contains('show')) {
+        hiddenStats.classList.remove('show');
+        span.textContent = 'Read More';
+        button.classList.remove('expanded');
+    } else {
+        hiddenStats.classList.add('show');
+        span.textContent = 'Read Less';
+        button.classList.add('expanded');
+    }
 }
 
 function generateSearchPage() {
@@ -8644,19 +9316,19 @@ function generateSearchPage() {
                                 <span class="suggestion-tag" onclick="searchSuggestion('Mbarara')">Mbarara</span>
                                 <span class="suggestion-tag" onclick="searchSuggestion('Gulu')">Gulu</span>
                                 <span class="suggestion-tag" onclick="searchSuggestion('Arua')">Arua</span>
-                            </div>
+                </div>
                             <div class="suggestion-category">
                                 <h4>Players</h4>
                                 <span class="suggestion-tag" onclick="searchSuggestion('Van')">Van</span>
                                 <span class="suggestion-tag" onclick="searchSuggestion('Afande')">Afande</span>
                                 <span class="suggestion-tag" onclick="searchSuggestion('Salam')">Salam</span>
-                            </div>
+            </div>
                             <div class="suggestion-category">
                                 <h4>Positions</h4>
                                 <span class="suggestion-tag" onclick="searchSuggestion('Forward')">Forward</span>
                                 <span class="suggestion-tag" onclick="searchSuggestion('Midfielder')">Midfielder</span>
                                 <span class="suggestion-tag" onclick="searchSuggestion('Goalkeeper')">Goalkeeper</span>
-                            </div>
+                </div>
                         </div>
                     </div>
                             </div>
