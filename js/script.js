@@ -8056,6 +8056,25 @@ function navigateToSearchPage() {
     }, 100);
 }
 
+function searchSuggestion(searchTerm) {
+    // Navigate to search page if not already there
+    if (currentPage !== 'search') {
+        loadPage('search');
+    }
+    
+    // Wait for page to load, then populate search and trigger results
+    setTimeout(() => {
+        const globalSearchInput = document.getElementById('globalSearch');
+        if (globalSearchInput) {
+            // Set the search term
+            globalSearchInput.value = searchTerm;
+            
+            // Trigger the search
+            performGlobalSearch();
+        }
+    }, 100);
+}
+
 function performDesktopSearch(event) {
     const searchTerm = event.target.value.toLowerCase().trim();
     
@@ -8141,21 +8160,21 @@ function performGlobalSearch() {
                     <div class="search-suggestions">
                         <div class="suggestion-category">
                             <h4>Teams</h4>
-                            <span class="suggestion-tag">Mbarara</span>
-                            <span class="suggestion-tag">Gulu</span>
-                            <span class="suggestion-tag">Arua</span>
+                            <span class="suggestion-tag" onclick="searchSuggestion('Mbarara')">Mbarara</span>
+                            <span class="suggestion-tag" onclick="searchSuggestion('Gulu')">Gulu</span>
+                            <span class="suggestion-tag" onclick="searchSuggestion('Arua')">Arua</span>
                         </div>
                         <div class="suggestion-category">
                             <h4>Players</h4>
-                            <span class="suggestion-tag">Van</span>
-                            <span class="suggestion-tag">Afande</span>
-                            <span class="suggestion-tag">Salam</span>
+                            <span class="suggestion-tag" onclick="searchSuggestion('Van')">Van</span>
+                            <span class="suggestion-tag" onclick="searchSuggestion('Afande')">Afande</span>
+                            <span class="suggestion-tag" onclick="searchSuggestion('Salam')">Salam</span>
                         </div>
                         <div class="suggestion-category">
                             <h4>Positions</h4>
-                            <span class="suggestion-tag">Forward</span>
-                            <span class="suggestion-tag">Midfielder</span>
-                            <span class="suggestion-tag">Goalkeeper</span>
+                            <span class="suggestion-tag" onclick="searchSuggestion('Forward')">Forward</span>
+                            <span class="suggestion-tag" onclick="searchSuggestion('Midfielder')">Midfielder</span>
+                            <span class="suggestion-tag" onclick="searchSuggestion('Goalkeeper')">Goalkeeper</span>
                         </div>
                     </div>
                 </div>
@@ -8622,21 +8641,21 @@ function generateSearchPage() {
                         <div class="search-suggestions">
                             <div class="suggestion-category">
                                 <h4>Teams</h4>
-                                <span class="suggestion-tag">Mbarara</span>
-                                <span class="suggestion-tag">Gulu</span>
-                                <span class="suggestion-tag">Arua</span>
+                                <span class="suggestion-tag" onclick="searchSuggestion('Mbarara')">Mbarara</span>
+                                <span class="suggestion-tag" onclick="searchSuggestion('Gulu')">Gulu</span>
+                                <span class="suggestion-tag" onclick="searchSuggestion('Arua')">Arua</span>
                             </div>
                             <div class="suggestion-category">
                                 <h4>Players</h4>
-                                <span class="suggestion-tag">Van</span>
-                                <span class="suggestion-tag">Afande</span>
-                                <span class="suggestion-tag">Salam</span>
+                                <span class="suggestion-tag" onclick="searchSuggestion('Van')">Van</span>
+                                <span class="suggestion-tag" onclick="searchSuggestion('Afande')">Afande</span>
+                                <span class="suggestion-tag" onclick="searchSuggestion('Salam')">Salam</span>
                             </div>
                             <div class="suggestion-category">
                                 <h4>Positions</h4>
-                                <span class="suggestion-tag">Forward</span>
-                                <span class="suggestion-tag">Midfielder</span>
-                                <span class="suggestion-tag">Goalkeeper</span>
+                                <span class="suggestion-tag" onclick="searchSuggestion('Forward')">Forward</span>
+                                <span class="suggestion-tag" onclick="searchSuggestion('Midfielder')">Midfielder</span>
+                                <span class="suggestion-tag" onclick="searchSuggestion('Goalkeeper')">Goalkeeper</span>
                             </div>
                         </div>
                     </div>
