@@ -6129,7 +6129,7 @@ const leagueData = {
                     homeTeam: 'Mbale',
                     awayTeam: 'Gulu',
                     venue: 'Maracanã Stadium',
-                    status: 'live',
+                    status: 'completed',
                     homeScore: 1,
                     awayScore: 0,
                     playerOfTheMatch: "",
