@@ -6070,7 +6070,7 @@ const leagueData = {
                     venue: 'Maracanã Stadium',
                     status: 'live',
                     homeScore: 0,
-                    awayScore: 0,
+                    awayScore: 1,
                     playerOfTheMatch: "",
                     home: {
                         starting: [
