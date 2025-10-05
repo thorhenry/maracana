@@ -6214,17 +6214,17 @@ const leagueData = {
                     homeTeam: 'Arua',
                     awayTeam: 'Mbale',
                     venue: 'Maracanã Stadium',
-                    status: 'scheduled',
-                    homeScore: null,
-                    awayScore: null
+                    status: 'live',
+                    homeScore: 0,
+                    awayScore: 1
                 },
                 {
                     homeTeam: 'Gulu',
                     awayTeam: 'Mbarara',
                     venue: 'Maracanã Stadium',
-                    status: 'scheduled',
-                    homeScore: null,
-                    awayScore: null
+                    status: 'live',
+                    homeScore: 1,
+                    awayScore: 0
                 }
             ]
         },
