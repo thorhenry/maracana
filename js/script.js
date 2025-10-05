@@ -6140,8 +6140,8 @@ const leagueData = {
                             { playerId: "mbale-peter", captain: false, goals: 0, goalMinutes: [], assists: 0, assistMinutes: [], yellowCard: false, yellowCardMinutes: [], redCard: false, redCardMinutes: [], substituted: false, substitutionMinute: null, cleanSheet: true },
                             { playerId: "mbale-dee", captain: false, goals: 0, goalMinutes: [], assists: 0, assistMinutes: [], yellowCard: false, yellowCardMinutes: [], redCard: false, redCardMinutes: [], substituted: false, substitutionMinute: null, cleanSheet: true },
                             { playerId: "mbale-musisi", captain: false, goals: 0, goalMinutes: [], assists: 0, assistMinutes: [], yellowCard: false, yellowCardMinutes: [], redCard: false, redCardMinutes: [], substituted: false, substitutionMinute: null, cleanSheet: true },
-                            { playerId: "mbale-ivan", captain: false, goals: 0, goalMinutes: [], assists: 0, assistMinutes: [], yellowCard: false, yellowCardMinutes: [], redCard: false, redCardMinutes: [], substituted: false, substitutionMinute: null, cleanSheet: true },
-                            { playerId: "mbale-dejango", captain: true, goals: 0, goalMinutes: [], assists: 0, assistMinutes: [], yellowCard: false, yellowCardMinutes: [], redCard: false, redCardMinutes: [], substituted: false, substitutionMinute: null, cleanSheet: true }
+                            { playerId: "mbale-ivan", captain: false, goals: 1, goalMinutes: [67], goalTypes: ["open"], assists: 0, assistMinutes: [], yellowCard: false, yellowCardMinutes: [], redCard: false, redCardMinutes: [], substituted: false, substitutionMinute: null, cleanSheet: true },
+                            { playerId: "mbale-dejango", captain: true, goals: 0, goalMinutes: [], assists: 1, assistMinutes: [67], yellowCard: false, yellowCardMinutes: [], redCard: false, redCardMinutes: [], substituted: false, substitutionMinute: null, cleanSheet: true }
                         ],
                         substitutes: [
                             { playerId: "mbale-aldeine", captain: false, goals: 0, goalMinutes: [], assists: 0, assistMinutes: [], yellowCard: false, yellowCardMinutes: [], redCard: false, redCardMinutes: [], substituted: false, substitutionMinute: null, cleanSheet: true },
@@ -6330,7 +6330,7 @@ const leagueData = {
                     venue: 'Maracanã Stadium',
                     status: 'live',
                     homeScore: 0,
-                    awayScore: 0
+                    awayScore: 1
                 },
                 {
                     homeTeam: 'Kabale',
