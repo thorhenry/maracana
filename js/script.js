@@ -7492,7 +7492,7 @@ const leagueData = {
             { homeTeam: "Mbarara", awayTeam: "Mbale", homeScore: 1, awayScore: 0, status: "completed" }
         ],
         thirdPlace: [
-            { homeTeam: "Mbale", awayTeam: "Jinja", homeScore: null, awayScore: null, status: "scheduled" }
+            { homeTeam: "Mbale", awayTeam: "Jinja", homeScore: 0, awayScore: 0, status: "live" }
         ],
         final: [
             { homeTeam: "Mbarara", awayTeam: "Masaka", homeScore: null, awayScore: null, status: "scheduled" }
