@@ -5848,7 +5848,7 @@ const leagueData = {
                 { id: 'gulu-solomon', number: 2, name: 'Solomon', position: 'Defender' },
                 { id: 'gulu-sebastien', number: 20, name: 'Sebastien', position: 'Midfielder' },
                 { id: 'gulu-allano', number: 9, name: 'Allano', position: 'Forward' },
-                { id: 'gulu-lucky', number: 11, name: 'Lucky', position: 'Midfielder' },
+                { id: 'gulu-francis', number: 11, name: 'Lucky', position: 'Midfielder' },
                 { id: 'gulu-walash', number: 7, name: 'Walash', position: 'Forward' },
                 { id: 'gulu-jaguar', number: 100, name: 'Jaguar', position: 'Forward' },
                 { id: 'gulu-trevor', number: 19, name: 'Trevor', position: 'Forward' },
@@ -6233,8 +6233,8 @@ const leagueData = {
                             { playerId: "gulu-kityo", captain: false, goals: 0, goalMinutes: [], assists: 0, assistMinutes: [], yellowCard: false, yellowCardMinutes: [], redCard: false, redCardMinutes: [], substituted: false, substitutionMinute: null, cleanSheet: false },
                             { playerId: "gulu-george", captain: false, goals: 0, goalMinutes: [], assists: 0, assistMinutes: [], yellowCard: false, yellowCardMinutes: [], redCard: false, redCardMinutes: [], substituted: false, substitutionMinute: null, cleanSheet: false },
                             { playerId: "gulu-sebastien", captain: false, goals: 0, goalMinutes: [], assists: 0, assistMinutes: [], yellowCard: true, yellowCardMinutes: [55], redCard: false, redCardMinutes: [], substituted: false, substitutionMinute: null, cleanSheet: false },
-                            { playerId: "gulu-lucky", captain: false, goals: 0, goalMinutes: [], assists: 0, assistMinutes: [], yellowCard: false, yellowCardMinutes: [], redCard: false, redCardMinutes: [], substituted: false, substitutionMinute: null, cleanSheet: false },
-                            { playerId: "gulu-allano", captain: true, goals: 0, goalMinutes: [], assists: 0, assistMinutes: [], yellowCard: false, yellowCardMinutes: [], redCard: false, redCardMinutes: [], substituted: false, substitutionMinute: null, cleanSheet: false }
+                            { playerId: "gulu-francis", captain: false, goals: 0, goalMinutes: [], assists: 0, assistMinutes: [], yellowCard: false, yellowCardMinutes: [], redCard: false, redCardMinutes: [], substituted: false, substitutionMinute: null, cleanSheet: false },
+                            { playerId: "gulu-allano", captain: true, goals: 0, goalMinutes: [], assists: 1, assistMinutes: [23], yellowCard: false, yellowCardMinutes: [], redCard: false, redCardMinutes: [], substituted: false, substitutionMinute: null, cleanSheet: false }
                         ],
                         substitutes: [
                             { playerId: "gulu-walash", captain: false, goals: 0, goalMinutes: [], assists: 0, assistMinutes: [], yellowCard: false, yellowCardMinutes: [], redCard: false, redCardMinutes: [], substituted: false, substitutionMinute: null, cleanSheet: false },
@@ -6349,17 +6349,17 @@ const leagueData = {
                     homeTeam: 'Mbale',
                     awayTeam: 'Kabale',
                     venue: 'Maracanã Stadium',
-                    status: 'scheduled',
-                    homeScore: null,
-                    awayScore: null
+                    status: 'live',
+                    homeScore: 0,
+                    awayScore: 0
                 },
                 {
                     homeTeam: 'Arua',
                     awayTeam: 'Wakiso',
                     venue: 'Maracanã Stadium',
-                    status: 'scheduled',
-                    homeScore: null,
-                    awayScore: null
+                    status: 'live',
+                    homeScore: 0,
+                    awayScore: 0
                 }
             ]
         },
