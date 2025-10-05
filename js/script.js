@@ -6254,9 +6254,9 @@ const leagueData = {
                     away: {
                         starting: [
                             { playerId: "mbarara-van", captain: false, goals: 0, goalMinutes: [], assists: 0, assistMinutes: [], yellowCard: false, yellowCardMinutes: [], redCard: false, redCardMinutes: [], substituted: false, substitutionMinute: null, cleanSheet: false },
-                            { playerId: "mbarara-ken", captain: false, goals: 0, goalMinutes: [], goalTypes: [], assists: 0, assistMinutes: [], yellowCard: false, yellowCardMinutes: [], redCard: false, redCardMinutes: [], substituted: false, substitutionMinute: null, cleanSheet: false },
+                            { playerId: "mbarara-ken", captain: false, goals: 0, goalMinutes: [], goalTypes: [], assists: 0, assistMinutes: [], yellowCard: false, yellowCardMinutes: [], redCard: false, redCardMinutes: [], substituted: true, substitutionMinute: 45, cleanSheet: false },
                             { playerId: "mbarara-ivan", captain: false, goals: 0, goalMinutes: [], assists: 0, assistMinutes: [], yellowCard: false, yellowCardMinutes: [], redCard: false, redCardMinutes: [], substituted: false, substitutionMinute: null, cleanSheet: false },
-                            { playerId: "mbarara-elaisha", captain: false, goals: 0, goalMinutes: [], assists: 0, assistMinutes: [], yellowCard: false, yellowCardMinutes: [], redCard: false, redCardMinutes: [], substituted: false, substitutionMinute: null, cleanSheet: false },
+                            { playerId: "mbarara-elaisha", captain: false, goals: 0, goalMinutes: [], assists: 0, assistMinutes: [], yellowCard: false, yellowCardMinutes: [], redCard: false, redCardMinutes: [], substituted: true, substitutionMinute: 45, cleanSheet: false },
                             { playerId: "mbarara-amoblaze", captain: false, goals: 0, goalMinutes: [], assists: 0, assistMinutes: [], yellowCard: false, yellowCardMinutes: [], redCard: false, redCardMinutes: [], substituted: false, substitutionMinute: null, cleanSheet: false },
                             { playerId: "mbarara-benard", captain: false, goals: 0, goalMinutes: [], assists: 0, assistMinutes: [], yellowCard: false, yellowCardMinutes: [], redCard: false, redCardMinutes: [], substituted: false, substitutionMinute: null, cleanSheet: false },
                             { playerId: "mbarara-tony", captain: true, goals: 0, goalMinutes: [], assists: 0, assistMinutes: [], yellowCard: false, yellowCardMinutes: [], redCard: false, redCardMinutes: [], substituted: false, substitutionMinute: null, cleanSheet: false }
@@ -6265,13 +6265,13 @@ const leagueData = {
                             { playerId: "mbarara-cliff", captain: false, goals: 0, goalMinutes: [], assists: 0, assistMinutes: [], yellowCard: false, yellowCardMinutes: [], redCard: false, redCardMinutes: [], substituted: false, substitutionMinute: null, cleanSheet: false },
                             { playerId: "mbarara-sharif", captain: false, goals: 0, goalMinutes: [], assists: 0, assistMinutes: [], yellowCard: false, yellowCardMinutes: [], redCard: false, redCardMinutes: [], substituted: false, substitutionMinute: null, cleanSheet: false },
                             { playerId: "mbarara-afande", captain: false, goals: 0, goalMinutes: [], assists: 0, assistMinutes: [], yellowCard: false, yellowCardMinutes: [], redCard: false, redCardMinutes: [], substituted: false, substitutionMinute: null, cleanSheet: false },
-                            { playerId: "mbarara-seka-barack", captain: false, goals: 1, goalMinutes: [70], goalTypes: ["open"], assists: 0, assistMinutes: [], yellowCard: false, yellowCardMinutes: [], redCard: false, redCardMinutes: [], substituted: false, substitutionMinute: null, cleanSheet: false },
+                            { playerId: "mbarara-seka-barack", captain: false, goals: 1, goalMinutes: [70], goalTypes: ["open"], assists: 0, assistMinutes: [], yellowCard: false, yellowCardMinutes: [], redCard: false, redCardMinutes: [], substituted: true, substitutionMinute: 45, cameOnFor: "mbarara-elaisha", cleanSheet: false },
                             { playerId: "mbarara-prokie", captain: false, goals: 0, goalMinutes: [], assists: 0, assistMinutes: [], yellowCard: false, yellowCardMinutes: [], redCard: false, redCardMinutes: [], substituted: false, substitutionMinute: null, cleanSheet: false },
                             { playerId: "mbarara-tyron", captain: false, goals: 0, goalMinutes: [], assists: 0, assistMinutes: [], yellowCard: false, yellowCardMinutes: [], redCard: false, redCardMinutes: [], substituted: false, substitutionMinute: null, cleanSheet: false },
-                            { playerId: "mbarara-tiff", captain: false, goals: 0, goalMinutes: [], assists: 1, assistMinutes: [31], yellowCard: false, yellowCardMinutes: [], redCard: false, redCardMinutes: [], substituted: false, substitutionMinute: null, cleanSheet: false },
+                            { playerId: "mbarara-tiff", captain: false, goals: 0, goalMinutes: [], assists: 0, assistMinutes: [], yellowCard: false, yellowCardMinutes: [], redCard: false, redCardMinutes: [], substituted: false, substitutionMinute: null, cleanSheet: false },
                             { playerId: "mbarara-yeta", captain: false, goals: 0, goalMinutes: [], assists: 0, assistMinutes: [], yellowCard: false, yellowCardMinutes: [], redCard: false, redCardMinutes: [], substituted: false, substitutionMinute: null, cleanSheet: false },
                             { playerId: "mbarara-isaac-barunda", captain: false, goals: 0, goalMinutes: [], assists: 0, assistMinutes: [], yellowCard: false, yellowCardMinutes: [], redCard: false, redCardMinutes: [], substituted: false, substitutionMinute: null, cleanSheet: false },
-                            { playerId: "mbarara-ambrose", captain: false, goals: 0, goalMinutes: [], assists: 1, assistMinutes: [70], yellowCard: false, yellowCardMinutes: [], redCard: false, redCardMinutes: [], substituted: false, substitutionMinute: null, cleanSheet: false },
+                            { playerId: "mbarara-ambrose", captain: false, goals: 0, goalMinutes: [], assists: 1, assistMinutes: [70], yellowCard: false, yellowCardMinutes: [], redCard: false, redCardMinutes: [], substituted: true, substitutionMinute: 45, cameOnFor: "mbarara-ken", cleanSheet: false },
                             { playerId: "mbarara-musinguzi", captain: false, goals: 0, goalMinutes: [], assists: 0, assistMinutes: [], yellowCard: false, yellowCardMinutes: [], redCard: false, redCardMinutes: [], substituted: false, substitutionMinute: null, cleanSheet: false },
                             { playerId: "mbarara-muzora", captain: false, goals: 0, goalMinutes: [], assists: 0, assistMinutes: [], yellowCard: false, yellowCardMinutes: [], redCard: false, redCardMinutes: [], substituted: false, substitutionMinute: null, cleanSheet: false }
                         ]
@@ -6287,7 +6287,7 @@ const leagueData = {
                     awayTeam: 'Wakiso',
                     venue: 'Maracanã Stadium',
                     status: 'live',
-                    homeScore: 0,
+                    homeScore: 1,
                     awayScore: 0
                 },
                 {
