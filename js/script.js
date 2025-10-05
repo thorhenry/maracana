@@ -6202,7 +6202,7 @@ const leagueData = {
                     awayTeam: 'Wakiso',
                     venue: 'Maracanã Stadium',
                     status: 'live',
-                    homeScore: 0,
+                    homeScore: 1,
                     awayScore: 1
                 }
             ]
