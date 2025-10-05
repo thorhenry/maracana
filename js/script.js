@@ -6470,7 +6470,7 @@ const leagueData = {
                     homeTeam: 'Mbarara',
                     awayTeam: 'Masaka',
                     venue: 'Maracanã Stadium',
-                    status: 'live',
+                    status: 'completed',
                     homeScore: 0,
                     awayScore: 3
                 },
@@ -6478,7 +6478,7 @@ const leagueData = {
                     homeTeam: 'Gulu',
                     awayTeam: 'Jinja',
                     venue: 'Maracanã Stadium',
-                    status: 'live',
+                    status: 'completed',
                     homeScore: 0,
                     awayScore: 1
                 }
