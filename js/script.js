@@ -6295,7 +6295,7 @@ const leagueData = {
                     awayTeam: 'Kabale',
                     venue: 'Maracanã Stadium',
                     status: 'live',
-                    homeScore: 0,
+                    homeScore: 2,
                     awayScore: 1
                 }
             ]
