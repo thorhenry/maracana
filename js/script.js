@@ -7108,7 +7108,7 @@ const leagueData = {
         ],
         semiFinals: [
             { homeTeam: "Masaka", awayTeam: "Jinja", homeScore: 0, awayScore: 0, status: "completed", penalties: { home: 1, away: 0 },
-                playerOfTheMatch: "mbarara-davie",
+                playerOfTheMatch: "masaka-lumala",
                 home: {
                 starting: [
                         { playerId: "masaka-roy", captain: false, goals: 0, goalMinutes: [], assists: 0, assistMinutes: [], yellowCard: false, yellowCardMinutes: [], redCard: false, redCardMinutes: [], substituted: false, substitutionMinute: null, cleanSheet: true },
@@ -7169,7 +7169,7 @@ const leagueData = {
                     ] 
                 }
              },
-            { homeTeam: "Mbarara", awayTeam: "Mbale", homeScore: null, awayScore: null, status: "scheduled" }
+            { homeTeam: "Mbarara", awayTeam: "Mbale", homeScore: 0, awayScore: 0, status: "live" }
         ],
         thirdPlace: [
             { homeTeam: "TBD", awayTeam: "TBD", homeScore: null, awayScore: null, status: "scheduled" }
