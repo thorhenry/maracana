@@ -6132,7 +6132,7 @@ const leagueData = {
                     status: 'completed',
                     homeScore: 1,
                     awayScore: 0,
-                    playerOfTheMatch: "",
+                    playerOfTheMatch: "mbale-ivan",
                     home: {
                         starting: [
                             { playerId: "mbale-hakim", captain: false, goals: 0, goalMinutes: [], assists: 0, assistMinutes: [], yellowCard: false, yellowCardMinutes: [], redCard: false, redCardMinutes: [], substituted: false, substitutionMinute: null, cleanSheet: true },
@@ -6449,7 +6449,7 @@ const leagueData = {
                     venue: 'Maracanã Stadium',
                     status: 'live',
                     homeScore: 1,
-                    awayScore: 0
+                    awayScore: 1
                 },
                 {
                     homeTeam: 'Wakiso',
