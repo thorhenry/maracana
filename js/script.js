@@ -5848,7 +5848,7 @@ const leagueData = {
                 { id: 'gulu-solomon', number: 2, name: 'Solomon', position: 'Defender' },
                 { id: 'gulu-sebastien', number: 20, name: 'Sebastien', position: 'Midfielder' },
                 { id: 'gulu-allano', number: 9, name: 'Allano', position: 'Forward' },
-                { id: 'gulu-francis', number: 11, name: 'Lucky', position: 'Midfielder' },
+                { id: 'gulu-francis', number: 11, name: 'Francis', position: 'Midfielder' },
                 { id: 'gulu-walash', number: 7, name: 'Walash', position: 'Forward' },
                 { id: 'gulu-jaguar', number: 100, name: 'Jaguar', position: 'Forward' },
                 { id: 'gulu-trevor', number: 19, name: 'Trevor', position: 'Forward' },
@@ -6633,15 +6633,15 @@ const leagueData = {
                     homeTeam: 'Masaka',
                     awayTeam: 'Mbale',
                     venue: 'Maracanã Stadium',
-                    status: 'live',
-                    homeScore: 0,
+                    status: 'completed',
+                    homeScore: 2,
                     awayScore: 2
                 },
                 {
                     homeTeam: 'Arua',
                     awayTeam: 'Jinja',
                     venue: 'Maracanã Stadium',
-                    status: 'live',
+                    status: 'completed',
                     homeScore: 0,
                     awayScore: 0
                 }
