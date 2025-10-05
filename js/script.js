@@ -6214,7 +6214,7 @@ const leagueData = {
                     homeTeam: 'Arua',
                     awayTeam: 'Mbale',
                     venue: 'Maracanã Stadium',
-                    status: 'live',
+                    status: 'completed',
                     homeScore: 0,
                     awayScore: 1
                 },
@@ -6222,7 +6222,7 @@ const leagueData = {
                     homeTeam: 'Gulu',
                     awayTeam: 'Mbarara',
                     venue: 'Maracanã Stadium',
-                    status: 'live',
+                    status: 'completed',
                     homeScore: 2,
                     awayScore: 1,
                     playerOfTheMatch: "mbarara-tony",
