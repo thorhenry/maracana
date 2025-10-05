@@ -6315,7 +6315,7 @@ const leagueData = {
                     homeTeam: 'Mbarara',
                     awayTeam: 'Mbale',
                     venue: 'Maracanã Stadium',
-                    status: 'live',
+                    status: 'completed',
                     homeScore: 1,
                     awayScore: 0
                 }
@@ -6328,17 +6328,17 @@ const leagueData = {
                     homeTeam: 'Wakiso',
                     awayTeam: 'Jinja',
                     venue: 'Maracanã Stadium',
-                    status: 'scheduled',
-                    homeScore: null,
-                    awayScore: null
+                    status: 'live',
+                    homeScore: 0,
+                    awayScore: 0
                 },
                 {
                     homeTeam: 'Kabale',
                     awayTeam: 'Masaka',
                     venue: 'Maracanã Stadium',
-                    status: 'scheduled',
-                    homeScore: null,
-                    awayScore: null
+                    status: 'live',
+                    homeScore: 0,
+                    awayScore: 0
                 }
             ]
         },
