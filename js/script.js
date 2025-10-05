@@ -6223,7 +6223,7 @@ const leagueData = {
                     awayTeam: 'Mbarara',
                     venue: 'Maracanã Stadium',
                     status: 'live',
-                    homeScore: 1,
+                    homeScore: 2,
                     awayScore: 1,
                     playerOfTheMatch: "mbarara-tony",
                     home: {
