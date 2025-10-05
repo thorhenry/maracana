@@ -6329,8 +6329,8 @@ const leagueData = {
                     awayTeam: 'Jinja',
                     venue: 'Maracanã Stadium',
                     status: 'live',
-                    homeScore: 0,
-                    awayScore: 1
+                    homeScore: 1,
+                    awayScore: 0
                 },
                 {
                     homeTeam: 'Kabale',
