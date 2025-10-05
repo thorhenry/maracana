@@ -5950,7 +5950,7 @@ const leagueData = {
                 { id: 'mbale-dee', number: 25, name: 'Dee', position: 'Defender' },
                 { id: 'mbale-tush', number: 99, name: 'Tush', position: 'Forward' },
                 { id: 'mbale-carrim', number: 6, name: 'Carrim', position: 'Defender' },
-                { id: 'mbale-musisi', number: 14, name: 'Musisi', position: 'Midfielder' },
+                { id: 'mbale-allan', number: 14, name: 'Allan', position: 'Midfielder' },
                 { id: 'mbale-ivan', number: 11, name: 'Ivan', position: 'Midfielder' },
                 { id: 'mbale-dembe', number: 15, name: 'Dembe', position: 'Defender' },
                 { id: 'mbale-ephraim', number: 19, name: 'Ephraim', position: 'Midfielder' },
@@ -6144,7 +6144,7 @@ const leagueData = {
                             { playerId: "mbale-benja", captain: false, goals: 0, goalMinutes: [], assists: 0, assistMinutes: [], yellowCard: false, yellowCardMinutes: [], redCard: false, redCardMinutes: [], substituted: false, substitutionMinute: null, cleanSheet: true },
                             { playerId: "mbale-peter", captain: false, goals: 0, goalMinutes: [], assists: 0, assistMinutes: [], yellowCard: false, yellowCardMinutes: [], redCard: false, redCardMinutes: [], substituted: false, substitutionMinute: null, cleanSheet: true },
                             { playerId: "mbale-dee", captain: false, goals: 0, goalMinutes: [], assists: 0, assistMinutes: [], yellowCard: false, yellowCardMinutes: [], redCard: false, redCardMinutes: [], substituted: false, substitutionMinute: null, cleanSheet: true },
-                            { playerId: "mbale-musisi", captain: false, goals: 0, goalMinutes: [], assists: 0, assistMinutes: [], yellowCard: false, yellowCardMinutes: [], redCard: false, redCardMinutes: [], substituted: false, substitutionMinute: null, cleanSheet: true },
+                            { playerId: "mbale-allan", captain: false, goals: 0, goalMinutes: [], assists: 0, assistMinutes: [], yellowCard: false, yellowCardMinutes: [], redCard: false, redCardMinutes: [], substituted: false, substitutionMinute: null, cleanSheet: true },
                             { playerId: "mbale-ivan", captain: false, goals: 1, goalMinutes: [67], goalTypes: ["open"], assists: 0, assistMinutes: [], yellowCard: false, yellowCardMinutes: [], redCard: false, redCardMinutes: [], substituted: false, substitutionMinute: null, cleanSheet: true },
                             { playerId: "mbale-dejango", captain: true, goals: 0, goalMinutes: [], assists: 1, assistMinutes: [67], yellowCard: false, yellowCardMinutes: [], redCard: false, redCardMinutes: [], substituted: false, substitutionMinute: null, cleanSheet: true }
                         ],
@@ -6378,7 +6378,7 @@ const leagueData = {
                             { playerId: "mbale-carrim", captain: false, goals: 0, goalMinutes: [], assists: 0, assistMinutes: [], yellowCard: false, yellowCardMinutes: [], redCard: false, redCardMinutes: [], substituted: false, substitutionMinute: null, cleanSheet: true },
                             { playerId: "mbale-dembe", captain: false, goals: 0, goalMinutes: [], assists: 0, assistMinutes: [], yellowCard: false, yellowCardMinutes: [], redCard: false, redCardMinutes: [], substituted: false, substitutionMinute: null, cleanSheet: true },
                             { playerId: "mbale-ephraim", captain: false, goals: 0, goalMinutes: [], assists: 0, assistMinutes: [], yellowCard: false, yellowCardMinutes: [], redCard: false, redCardMinutes: [], substituted: false, substitutionMinute: null, cleanSheet: true },
-                            { playerId: "mbale-musisi", captain: false, goals: 0, goalMinutes: [], assists: 0, assistMinutes: [], yellowCard: false, yellowCardMinutes: [], redCard: false, redCardMinutes: [], substituted: false, substitutionMinute: null, cleanSheet: true },
+                            { playerId: "mbale-allan", captain: false, goals: 0, goalMinutes: [], assists: 0, assistMinutes: [], yellowCard: false, yellowCardMinutes: [], redCard: false, redCardMinutes: [], substituted: false, substitutionMinute: null, cleanSheet: true },
                             { playerId: "mbale-abbey", captain: false, goals: 0, goalMinutes: [], assists: 0, assistMinutes: [], yellowCard: false, yellowCardMinutes: [], redCard: false, redCardMinutes: [], substituted: false, substitutionMinute: null, cleanSheet: true },
                             { playerId: "mbale-eric", captain: false, goals: 0, goalMinutes: [], assists: 0, assistMinutes: [], yellowCard: false, yellowCardMinutes: [], redCard: false, redCardMinutes: [], substituted: false, substitutionMinute: null, cleanSheet: true },
                             { playerId: "mbale-guvnor", captain: false, goals: 0, goalMinutes: [], assists: 0, assistMinutes: [], yellowCard: false, yellowCardMinutes: [], redCard: false, redCardMinutes: [], substituted: false, substitutionMinute: null, cleanSheet: true },
@@ -6685,7 +6685,7 @@ const leagueData = {
                             { playerId: "mbale-benja", captain: false, goals: 0, goalMinutes: [], assists: 0, assistMinutes: [], yellowCard: false, yellowCardMinutes: [], redCard: false, redCardMinutes: [], substituted: false, substitutionMinute: null, cleanSheet: true },
                             { playerId: "mbale-peter", captain: false, goals: 0, goalMinutes: [], assists: 0, assistMinutes: [], yellowCard: false, yellowCardMinutes: [], redCard: false, redCardMinutes: [], substituted: false, substitutionMinute: null, cleanSheet: true },
                             { playerId: "mbale-dee", captain: false, goals: 0, goalMinutes: [], assists: 0, assistMinutes: [], yellowCard: false, yellowCardMinutes: [], redCard: false, redCardMinutes: [], substituted: false, substitutionMinute: null, cleanSheet: true },
-                            { playerId: "mbale-musisi", captain: false, goals: 0, goalMinutes: [], assists: 0, assistMinutes: [], yellowCard: false, yellowCardMinutes: [], redCard: false, redCardMinutes: [], substituted: false, substitutionMinute: null, cleanSheet: true },
+                            { playerId: "mbale-allan", captain: false, goals: 0, goalMinutes: [], assists: 0, assistMinutes: [], yellowCard: false, yellowCardMinutes: [], redCard: false, redCardMinutes: [], substituted: false, substitutionMinute: null, cleanSheet: true },
                             { playerId: "mbale-ivan", captain: false, goals: 0, goalMinutes: [], assists: 0, assistMinutes: [], yellowCard: false, yellowCardMinutes: [], redCard: false, redCardMinutes: [], substituted: false, substitutionMinute: null, cleanSheet: true },
                             { playerId: "mbale-dejango", captain: true, goals: 0, goalMinutes: [], assists: 0, assistMinutes: [], yellowCard: false, yellowCardMinutes: [], redCard: false, redCardMinutes: [], substituted: false, substitutionMinute: null, cleanSheet: true }
                         ],
@@ -6848,7 +6848,58 @@ const leagueData = {
                     venue: 'Maracanã Stadium',
                     status: 'completed',
                     homeScore: 1,
-                    awayScore: 0
+                    awayScore: 0,
+                    playerOfTheMatch: "mbale-allan",
+                    home: {
+                        starting: [
+                            { playerId: "mbale-hakim", captain: false, goals: 0, goalMinutes: [], assists: 0, assistMinutes: [], yellowCard: false, yellowCardMinutes: [], redCard: false, redCardMinutes: [], substituted: false, substitutionMinute: null, cleanSheet: true },
+                            { playerId: "mbale-benja", captain: false, goals: 0, goalMinutes: [], assists: 0, assistMinutes: [], yellowCard: false, yellowCardMinutes: [], redCard: false, redCardMinutes: [], substituted: false, substitutionMinute: null, cleanSheet: true },
+                            { playerId: "mbale-peter", captain: false, goals: 0, goalMinutes: [], assists: 0, assistMinutes: [], yellowCard: false, yellowCardMinutes: [], redCard: false, redCardMinutes: [], substituted: false, substitutionMinute: null, cleanSheet: true },
+                            { playerId: "mbale-dee", captain: false, goals: 0, goalMinutes: [], assists: 0, assistMinutes: [], yellowCard: false, yellowCardMinutes: [], redCard: false, redCardMinutes: [], substituted: false, substitutionMinute: null, cleanSheet: true },
+                            { playerId: "mbale-allan", captain: false, goals: 1, goalMinutes: [57], assists: 0, assistMinutes: [], yellowCard: false, yellowCardMinutes: [], redCard: false, redCardMinutes: [], substituted: false, substitutionMinute: null, cleanSheet: true },
+                            { playerId: "mbale-ivan", captain: false, goals: 0, goalMinutes: [], assists: 0, assistMinutes: [], yellowCard: false, yellowCardMinutes: [], redCard: false, redCardMinutes: [], substituted: false, substitutionMinute: null, cleanSheet: true },
+                            { playerId: "mbale-dejango", captain: true, goals: 0, goalMinutes: [], assists: 1, assistMinutes: [57], yellowCard: false, yellowCardMinutes: [], redCard: false, redCardMinutes: [], substituted: false, substitutionMinute: null, cleanSheet: true }
+                        ],
+                        substitutes: [
+                            { playerId: "mbale-aldeine", captain: false, goals: 0, goalMinutes: [], assists: 0, assistMinutes: [], yellowCard: false, yellowCardMinutes: [], redCard: false, redCardMinutes: [], substituted: false, substitutionMinute: null, cleanSheet: true },
+                            { playerId: "mbale-tush", captain: false, goals: 0, goalMinutes: [], assists: 0, assistMinutes: [], yellowCard: false, yellowCardMinutes: [], redCard: false, redCardMinutes: [], substituted: false, substitutionMinute: null, cleanSheet: true },
+                            { playerId: "mbale-carrim", captain: false, goals: 0, goalMinutes: [], assists: 0, assistMinutes: [], yellowCard: false, yellowCardMinutes: [], redCard: false, redCardMinutes: [], substituted: false, substitutionMinute: null, cleanSheet: true },
+                            { playerId: "mbale-dembe", captain: false, goals: 0, goalMinutes: [], assists: 0, assistMinutes: [], yellowCard: false, yellowCardMinutes: [], redCard: false, redCardMinutes: [], substituted: false, substitutionMinute: null, cleanSheet: true },
+                            { playerId: "mbale-ephraim", captain: false, goals: 0, goalMinutes: [], assists: 0, assistMinutes: [], yellowCard: false, yellowCardMinutes: [], redCard: false, redCardMinutes: [], substituted: false, substitutionMinute: null, cleanSheet: true },
+                            { playerId: "mbale-balikowa", captain: false, goals: 0, goalMinutes: [], assists: 0, assistMinutes: [], yellowCard: false, yellowCardMinutes: [], redCard: false, redCardMinutes: [], substituted: false, substitutionMinute: null, cleanSheet: true },
+                            { playerId: "mbale-abbey", captain: false, goals: 0, goalMinutes: [], assists: 0, assistMinutes: [], yellowCard: false, yellowCardMinutes: [], redCard: false, redCardMinutes: [], substituted: false, substitutionMinute: null, cleanSheet: true },
+                            { playerId: "mbale-eric", captain: false, goals: 0, goalMinutes: [], assists: 0, assistMinutes: [], yellowCard: false, yellowCardMinutes: [], redCard: false, redCardMinutes: [], substituted: false, substitutionMinute: null, cleanSheet: true },
+                            { playerId: "mbale-guvnor", captain: false, goals: 0, goalMinutes: [], assists: 0, assistMinutes: [], yellowCard: false, yellowCardMinutes: [], redCard: false, redCardMinutes: [], substituted: false, substitutionMinute: null, cleanSheet: true },
+                            { playerId: "mbale-isaac", captain: false, goals: 0, goalMinutes: [], assists: 0, assistMinutes: [], yellowCard: false, yellowCardMinutes: [], redCard: false, redCardMinutes: [], substituted: false, substitutionMinute: null, cleanSheet: true },
+                            { playerId: "mbale-bobby", captain: false, goals: 0, goalMinutes: [], assists: 0, assistMinutes: [], yellowCard: false, yellowCardMinutes: [], redCard: false, redCardMinutes: [], substituted: false, substitutionMinute: null, cleanSheet: true },
+                            { playerId: "mbale-bruno", captain: false, goals: 0, goalMinutes: [], assists: 0, assistMinutes: [], yellowCard: false, yellowCardMinutes: [], redCard: false, redCardMinutes: [], substituted: false, substitutionMinute: null, cleanSheet: true }
+                        ]
+                    },
+                    away: {
+                        starting: [
+                            { playerId: "kabale-onana", captain: false, goals: 0, goalMinutes: [], assists: 0, assistMinutes: [], yellowCard: false, yellowCardMinutes: [], redCard: false, redCardMinutes: [], substituted: false, substitutionMinute: null, cleanSheet: true },
+                            { playerId: "kabale-aziz", captain: false, goals: 0, goalMinutes: [], assists: 0, assistMinutes: [], yellowCard: false, yellowCardMinutes: [], redCard: false, redCardMinutes: [], substituted: false, substitutionMinute: null, cleanSheet: true },
+                            { playerId: "kabale-francis", captain: false, goals: 0, goalMinutes: [], assists: 0, assistMinutes: [], yellowCard: false, yellowCardMinutes: [], redCard: false, redCardMinutes: [], substituted: false, substitutionMinute: null, cleanSheet: true },
+                            { playerId: "kabale-myles", captain: false, goals: 0, goalMinutes: [], assists: 0, assistMinutes: [], yellowCard: false, yellowCardMinutes: [], redCard: false, redCardMinutes: [], substituted: false, substitutionMinute: null, cleanSheet: true },
+                            { playerId: "kabale-isaac", captain: false, goals: 0, goalMinutes: [], assists: 0, assistMinutes: [], yellowCard: false, yellowCardMinutes: [], redCard: false, redCardMinutes: [], substituted: false, substitutionMinute: null, cleanSheet: true },
+                            { playerId: "kabale-stephen", captain: false, goals: 0, goalMinutes: [], assists: 0, assistMinutes: [], yellowCard: false, yellowCardMinutes: [], redCard: false, redCardMinutes: [], substituted: false, substitutionMinute: null, cleanSheet: true },
+                            { playerId: "kabale-jemmy", captain: true, goals: 0, goalMinutes: [], assists: 0, assistMinutes: [], yellowCard: false, yellowCardMinutes: [], redCard: false, redCardMinutes: [], substituted: false, substitutionMinute: null, cleanSheet: true }
+                        ],
+                        substitutes: [
+                            { playerId: "kabale-kipson", captain: false, goals: 0, goalMinutes: [], assists: 0, assistMinutes: [], yellowCard: false, yellowCardMinutes: [], redCard: false, redCardMinutes: [], substituted: false, substitutionMinute: null, cleanSheet: true },
+                            { playerId: "kabale-david", captain: false, goals: 0, goalMinutes: [], assists: 0, assistMinutes: [], yellowCard: false, yellowCardMinutes: [], redCard: false, redCardMinutes: [], substituted: false, substitutionMinute: null, cleanSheet: true },
+                            { playerId: "kabale-josh-muzaaya", captain: false, goals: 0, goalMinutes: [], assists: 0, assistMinutes: [], yellowCard: false, yellowCardMinutes: [], redCard: false, redCardMinutes: [], substituted: false, substitutionMinute: null, cleanSheet: true },
+                            { playerId: "kabale-fafa", captain: false, goals: 0, goalMinutes: [], assists: 0, assistMinutes: [], yellowCard: false, yellowCardMinutes: [], redCard: false, redCardMinutes: [], substituted: false, substitutionMinute: null, cleanSheet: true },
+                            { playerId: "kabale-russel", captain: false, goals: 0, goalMinutes: [], assists: 0, assistMinutes: [], yellowCard: false, yellowCardMinutes: [], redCard: false, redCardMinutes: [], substituted: false, substitutionMinute: null, cleanSheet: true },
+                            { playerId: "kabale-timo", captain: false, goals: 0, goalMinutes: [], assists: 0, assistMinutes: [], yellowCard: false, yellowCardMinutes: [], redCard: false, redCardMinutes: [], substituted: false, substitutionMinute: null, cleanSheet: true },
+                            { playerId: "kabale-kibalama", captain: false, goals: 0, goalMinutes: [], assists: 0, assistMinutes: [], yellowCard: false, yellowCardMinutes: [], redCard: false, redCardMinutes: [], substituted: false, substitutionMinute: null, cleanSheet: true },
+                            { playerId: "kabale-tony", captain: false, goals: 0, goalMinutes: [], assists: 0, assistMinutes: [], yellowCard: false, yellowCardMinutes: [], redCard: false, redCardMinutes: [], substituted: false, substitutionMinute: null, cleanSheet: true },
+                            { playerId: "kabale-kabox", captain: false, goals: 0, goalMinutes: [], assists: 0, assistMinutes: [], yellowCard: false, yellowCardMinutes: [], redCard: false, redCardMinutes: [], substituted: false, substitutionMinute: null, cleanSheet: true },
+                            { playerId: "kabale-marvin", captain: false, goals: 0, goalMinutes: [], assists: 0, assistMinutes: [], yellowCard: false, yellowCardMinutes: [], redCard: false, redCardMinutes: [], substituted: false, substitutionMinute: null, cleanSheet: true },
+                            { playerId: "kabale-brian", captain: false, goals: 0, goalMinutes: [], assists: 0, assistMinutes: [], yellowCard: false, yellowCardMinutes: [], redCard: false, redCardMinutes: [], substituted: false, substitutionMinute: null, cleanSheet: true },
+                            { playerId: "kabale-ken-lato", captain: false, goals: 0, goalMinutes: [], assists: 0, assistMinutes: [], yellowCard: false, yellowCardMinutes: [], redCard: false, redCardMinutes: [], substituted: false, substitutionMinute: null, cleanSheet: true }
+                        ]
+                    }
                 },
                 {
                     homeTeam: 'Arua',
@@ -6856,7 +6907,14 @@ const leagueData = {
                     venue: 'Maracanã Stadium',
                     status: 'completed',
                     homeScore: 1,
-                    awayScore: 0
+                    awayScore: 0,
+                    playerOfTheMatch: "arua-musa",
+                    home: {
+
+                    },
+                    away: {
+
+                    }
                 }
             ]
         },
@@ -7049,7 +7107,7 @@ const leagueData = {
             { homeTeam: "TBD", awayTeam: "TBD", homeScore: 2, awayScore: 1, status: "scheduled" }
         ],
         semiFinals: [
-            { homeTeam: "Masaka", awayTeam: "Jinja", homeScore: 0, awayScore: 0, status: "live",
+            { homeTeam: "Masaka", awayTeam: "Jinja", homeScore: 0, awayScore: 0, status: "completed", penalties: { home: 1, away: 0 },
                 playerOfTheMatch: "mbarara-davie",
                 home: {
                 starting: [
