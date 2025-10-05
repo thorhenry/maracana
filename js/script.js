@@ -6203,7 +6203,8 @@ const leagueData = {
                     venue: 'Maracanã Stadium',
                     status: 'completed',
                     homeScore: 1,
-                    awayScore: 1
+                    awayScore: 1,
+                    
                 }
             ]
         },
@@ -6352,7 +6353,8 @@ const leagueData = {
                     venue: 'Maracanã Stadium',
                     status: 'completed',
                     homeScore: 3,
-                    awayScore: 2
+                    awayScore: 2,
+                    
                 }
             ]
         },
@@ -6373,7 +6375,7 @@ const leagueData = {
                     venue: 'Maracanã Stadium',
                     status: 'completed',
                     homeScore: 1,
-                    awayScore: 0
+                    awayScore: 0,
                 }
             ]
         },
@@ -6470,7 +6472,7 @@ const leagueData = {
                     venue: 'Maracanã Stadium',
                     status: 'live',
                     homeScore: 0,
-                    awayScore: 2
+                    awayScore: 3
                 },
                 {
                     homeTeam: 'Gulu',
