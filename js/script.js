@@ -6648,7 +6648,13 @@ const leagueData = {
                     status: 'completed',
                     homeScore: 1,
                     awayScore: 0,
-                    playerOfTheMatch: "mbarara-davie"
+                    playerOfTheMatch: "mbarara-davie",
+                    home: {
+
+                    },
+                    away: {
+
+                    }
                 }
             ]
         },
@@ -6828,7 +6834,7 @@ const leagueData = {
                     awayTeam: 'Kabale',
                     venue: 'Maracanã Stadium',
                     status: 'live',
-                    homeScore: 0,
+                    homeScore: 1,
                     awayScore: 0
                 },
                 {
