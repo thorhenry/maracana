@@ -5821,7 +5821,7 @@ const leagueData = {
             squad: [
                 { id: 'mbarara-van', number: 1, name: 'Van', position: 'Goalkeeper' },
                 { id: 'mbarara-afande', number: 9, name: 'Afande', position: 'Forward' },
-                { id: 'mbarara-ken', number: 20, name: 'Ken', position: 'Defender' },
+                { id: 'mbarara-ken', number: 20, name: 'Kevin', position: 'Defender' },
                 { id: 'mbarara-seka-barack', number: 13, name: 'Seka Barack', position: 'Forward' },
                 { id: 'mbarara-amoblaze', number: 88, name: 'Amoblaze', position: 'Midfielder' },
                 { id: 'mbarara-benard', number: 99, name: 'Benard', position: 'Midfielder' },
@@ -7977,7 +7977,7 @@ const leagueData = {
             { homeTeam: "Mbale", awayTeam: "Jinja", homeScore: 1, awayScore: 0, status: "completed" }
         ],
         final: [
-            { homeTeam: "Mbarara", awayTeam: "Masaka", homeScore: 0, awayScore: 0, status: "live" }
+            { homeTeam: "Mbarara", awayTeam: "Masaka", homeScore: 0, awayScore: 0, status: "completed" , penalties: { home: 2, away: 1 }}
         ]
     },
     stats: {
