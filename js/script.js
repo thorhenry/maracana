@@ -6307,7 +6307,7 @@ const leagueData = {
                     homeTeam: 'Gulu',
                     awayTeam: 'Arua',
                     venue: 'Maracanã Stadium',
-                    status: 'live',
+                    status: 'completed',
                     homeScore: 0,
                     awayScore: 1
                 },
@@ -6316,7 +6316,7 @@ const leagueData = {
                     awayTeam: 'Mbale',
                     venue: 'Maracanã Stadium',
                     status: 'live',
-                    homeScore: 0,
+                    homeScore: 1,
                     awayScore: 0
                 }
             ]
