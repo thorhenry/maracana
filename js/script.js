@@ -6448,7 +6448,7 @@ const leagueData = {
                     awayTeam: 'Arua',
                     venue: 'Maracanã Stadium',
                     status: 'live',
-                    homeScore: 0,
+                    homeScore: 1,
                     awayScore: 0
                 },
                 {
