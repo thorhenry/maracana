@@ -6068,7 +6068,7 @@ const leagueData = {
                     homeTeam: 'Arua',
                     awayTeam: 'Mbarara',
                     venue: 'Maracanã Stadium',
-                    status: 'live',
+                    status: 'completed',
                     homeScore: 0,
                     awayScore: 1,
                     playerOfTheMatch: "",
