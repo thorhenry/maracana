@@ -1299,10 +1299,10 @@ const styles = `
     }
 
     .table th, .table td {
-        padding: 11.6px 12px;
+        padding: 11.6px 11px;
         text-align: center;
         border-bottom: 1px solid rgba(0, 255, 133, 0.1);
-        line-height: 1.2;
+        line-height: 1.5;
         white-space: nowrap;
         transition: all 0.2s ease;
     }
@@ -5782,7 +5782,7 @@ function calculateStandings() {
         });
     });
     
-    // Convert to array and sort by points (descending), then goal difference (descending), then alphabetically
+    // Convert to array and sort by points (descending), then goal difference (descending), then goals for (descending), then alphabetically
     return Object.values(standings).sort((a, b) => {
         const aGoalDiff = a.goalsFor - a.goalsAgainst;
         const bGoalDiff = b.goalsFor - b.goalsAgainst;
@@ -5797,7 +5797,12 @@ function calculateStandings() {
             return bGoalDiff - aGoalDiff;
         }
         
-        // If points and goal difference are equal, sort alphabetically (ascending)
+        // If goal difference is also equal, sort by goals for (descending)
+        if (b.goalsFor !== a.goalsFor) {
+            return b.goalsFor - a.goalsFor;
+        }
+        
+        // If still equal, sort alphabetically (ascending)
         return a.name.localeCompare(b.name);
     });
 }
@@ -7006,10 +7011,10 @@ const leagueData = {
     knockout: {
         quarterFinals: [
             { 
-                homeTeam: "TBD", 
-                awayTeam: "TBD", 
-                homeScore: 3, 
-                awayScore: 3, 
+                homeTeam: "Masaka", 
+                awayTeam: "Jinja", 
+                homeScore: null, 
+                awayScore: null, 
                 status: "scheduled",
                 penalties: { home: 4, away: 5 },
                 playerOfTheMatch: "mbarara-davie",
@@ -7044,8 +7049,8 @@ const leagueData = {
             { homeTeam: "TBD", awayTeam: "TBD", homeScore: 2, awayScore: 1, status: "scheduled" }
         ],
         semiFinals: [
-            { homeTeam: "TBD", awayTeam: "TBD", homeScore: null, awayScore: null, status: "scheduled" },
-            { homeTeam: "TBD", awayTeam: "TBD", homeScore: null, awayScore: null, status: "scheduled" }
+            { homeTeam: "Masaka", awayTeam: "Jinja", homeScore: 0, awayScore: 0, status: "live" },
+            { homeTeam: "Mbarara", awayTeam: "Mbale", homeScore: null, awayScore: null, status: "scheduled" }
         ],
         thirdPlace: [
             { homeTeam: "TBD", awayTeam: "TBD", homeScore: null, awayScore: null, status: "scheduled" }
@@ -8225,44 +8230,7 @@ function generateKnockoutPage() {
         <h2 class="page-title">Knockout Stage</h2>
         
         <div class="knockout-bracket">
-            <div class="bracket-round">
-                <h3>Quarter Finals</h3>
-                ${leagueData.knockout.quarterFinals.map(match => `
-                    <section class="fixture" onclick="viewMatchDetails('knockout', '${match.homeTeam}', '${match.awayTeam}')">
-                        <div class="teams">
-                            <div class="team-match">
-                                <div class="team-name-container">
-                                    <span>${match.homeTeam}</span>
-                                    ${match.home && (match.status === 'live' || match.status === 'completed') && getTeamRedCards(match, match.homeTeam) > 0 ? `<span class="red-card-indicator">${getRedCardSVG()}</span>` : ''}
-                                </div>
-                                ${getTeamLogoElement(match.homeTeam === 'TBD' ? 'TBD' : (leagueData.teams.find(t => t.name === match.homeTeam)?.id || ''), '40px')}
-                            </div>
-                            <div class="score-container">
-                                <span class="vs-score">${match.status === 'completed' ? `${match.homeScore} - ${match.awayScore}` : 'vs'}</span>
-                                ${match.status === 'completed' ? '<div class="match-status ft">FT</div>' : 
-                                  match.status === 'live' ? '<div class="match-status live">LIVE</div>' :
-                                  match.status === 'postponed' ? '<div class="match-status postponed">POSTPONED</div>' : ''}
-                                ${match.status === 'completed' && match.penalties && match.penalties.home !== null ? 
-                                    `<div class="penalties-display">Penalties: ${match.penalties.home}-${match.penalties.away}</div>` : ''}
-                            </div>
-                            <div class="team-match">
-                                ${getTeamLogoElement(match.awayTeam === 'TBD' ? 'TBD' : (leagueData.teams.find(t => t.name === match.awayTeam)?.id || ''), '40px')}
-                                <div class="team-name-container">
-                                    <span>${match.awayTeam}</span>
-                                    ${match.away && (match.status === 'live' || match.status === 'completed') && getTeamRedCards(match, match.awayTeam) > 0 ? `<span class="red-card-indicator">${getRedCardSVG()}</span>` : ''}
-                                </div>
-                            </div>
-                        </div>
-                        ${match.status === 'completed' || match.status === 'live' ? `
-                        <div class="fixture-footer">
-                            <span class="overview-link">Overview</span>
-                        </div>
-                        ` : ''}
-                    </section>
-                `).join('')}
-            </div>
-            
-            <hr class="horizontal-divider">
+
             
             <div class="bracket-round">
                 <h3>Semi Finals</h3>
@@ -8414,7 +8382,6 @@ function calculatePlayerStats() {
     
     // Process knockout data
     const allKnockoutMatches = [
-        ...leagueData.knockout.quarterFinals,
         ...leagueData.knockout.semiFinals,
         ...leagueData.knockout.thirdPlace,
         ...leagueData.knockout.final
@@ -8559,7 +8526,6 @@ function calculateMatchStats() {
     
     // Process knockout data
     const allKnockoutMatches = [
-        ...leagueData.knockout.quarterFinals,
         ...leagueData.knockout.semiFinals,
         ...leagueData.knockout.thirdPlace,
         ...leagueData.knockout.final
@@ -8732,7 +8698,6 @@ function areAllMatchesCompleted() {
     
     // Check all knockout matches
     const allKnockoutMatches = [
-        ...leagueData.knockout.quarterFinals,
         ...leagueData.knockout.semiFinals,
         ...leagueData.knockout.thirdPlace,
         ...leagueData.knockout.final
@@ -8765,7 +8730,6 @@ function getUpcomingMatches(limit = 4) {
     
     // Get upcoming matches from knockout
     const allKnockoutMatches = [
-        ...leagueData.knockout.quarterFinals,
         ...leagueData.knockout.semiFinals,
         ...leagueData.knockout.thirdPlace,
         ...leagueData.knockout.final
@@ -8803,7 +8767,6 @@ function getLiveMatches(limit = 4) {
     
     // Get live matches from knockout
     const allKnockoutMatches = [
-        ...leagueData.knockout.quarterFinals,
         ...leagueData.knockout.semiFinals,
         ...leagueData.knockout.thirdPlace,
         ...leagueData.knockout.final
@@ -8845,7 +8808,6 @@ function getTeamLiveGameStatus(teamName) {
     
     // Check knockout stages for live matches
     const allKnockoutMatches = [
-        ...leagueData.knockout.quarterFinals,
         ...leagueData.knockout.semiFinals,
         ...leagueData.knockout.thirdPlace,
         ...leagueData.knockout.final
@@ -8892,7 +8854,6 @@ function getTeamLiveScore(teamName) {
     
     // Check knockout stages for live matches
     const allKnockoutMatches = [
-        ...leagueData.knockout.quarterFinals,
         ...leagueData.knockout.semiFinals,
         ...leagueData.knockout.thirdPlace,
         ...leagueData.knockout.final
@@ -8964,8 +8925,8 @@ function getCurrentKnockoutStage() {
         return { stage: 'quarterFinals', title: 'Quarter Finals', matches: quarterFinals };
     }
     
-    // Default to quarter finals if no matches have started
-    return { stage: 'quarterFinals', title: 'Quarter Finals', matches: quarterFinals };
+    // Default to semi finals if no matches have started
+    return { stage: 'semiFinals', title: 'Semi Finals', matches: semiFinals };
 }
 
 function getLatestResults(limit = 4) {
