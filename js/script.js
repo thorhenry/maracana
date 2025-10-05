@@ -6296,7 +6296,7 @@ const leagueData = {
                     venue: 'Maracanã Stadium',
                     status: 'live',
                     homeScore: 2,
-                    awayScore: 1
+                    awayScore: 2
                 }
             ]
         },
